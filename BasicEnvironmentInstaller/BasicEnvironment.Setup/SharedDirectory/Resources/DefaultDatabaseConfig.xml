@@ -1,0 +1,9 @@
+﻿<Configuration>
+  <Host></Host>
+  <!--ComplianceSheriff Supports following Parameters-->
+  <!--<MaxPoolSize>300</MaxPoolSize>-->
+  <!--<ConnectTimeOut>200</ConnectTimeOut>-->
+  <!--for adding additional parameters to connection string, Please refer https://www.codeproject.com/articles/17768/ado-net-connection-pooling-at-a-glance-->
+  <!--Make sure that you don't specify MaxPoolSize and ConnectTimeOut in Additional parameters-->
+  <!--<AdditionalParameters>Pooling=True;Min Pool Size=100;</AdditionalParameters>-->
+</Configuration>

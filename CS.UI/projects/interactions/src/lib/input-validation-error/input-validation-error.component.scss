@@ -1,0 +1,40 @@
+@import "main-lib";
+
+$color-yellow-orange: #ffb337;
+
+:host {
+  position: absolute;
+  .error-message-wrapper {
+    position: relative;
+    transform: translate(25%, -75%);
+    width: 28rem;
+    &.cinv {
+      width: 15.75rem;
+    }
+    .warning-icon-wrapper {
+      vertical-align: middle;
+      .warning-icon {
+        background: no-repeat
+          url(./shared-styles/assets/validation-warning-icon.svg);
+        width: 2.75rem;
+        height: 2.5rem;
+        transform: translateY(10%);
+        &.cinv {
+          width: 1.546875rem;
+          height: 1.40625rem;
+        }
+      }
+    }
+
+    .validation-error-message {
+      color: $color-yellow-orange;
+      display: inline;
+      padding-left: 3px;
+      font-size: 1.8rem;
+      &.cinv {
+        padding-left: 0.1875rem;
+        font-size: 1.0125rem;
+      }
+    }
+  }
+}

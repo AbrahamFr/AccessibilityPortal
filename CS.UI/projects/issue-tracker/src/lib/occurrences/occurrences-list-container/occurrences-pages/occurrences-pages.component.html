@@ -1,0 +1,147 @@
+<section
+  role="tabpanel"
+  tabindex="0"
+  class="table-container"
+  data-automation="issues-by-pages-section"
+>
+  <h3 class="hide-element">Issue by Pages</h3>
+  <ng-container *ngIf="occurrencesByPage; else spinner">
+    <api-handler-error-guard [maybeError]="occurrencesByPage">
+      <ng-container
+        *ngIf="
+          occurrencesByPage && occurrencesByPage.occurrencePages.length > 0;
+          else noResults
+        "
+      >
+        <div
+          [ngClass]="{ 'page-wrapper': true, cinv: useCInvStyles }"
+          data-automation="issue-by-page-item"
+          *ngFor="let page of occurrencesByPage.occurrencePages; let i = index"
+        >
+          <div role="group" [attr.aria-label]="page.pageTitle">
+            <div class="heading-wrapper">
+              <h4
+                [ngClass]="{ 'page-title': true, cinv: useCInvStyles }"
+                data-automation="issue-by-page-title"
+              >
+                {{ page.pageTitle }}
+              </h4>
+              <div class="page-url" data-automation="page-url">
+                {{ page.pageUrl }}
+              </div>
+            </div>
+            <a
+              [ngClass]="{ 'cached-page-wrapper': true, cinv: useCInvStyles }"
+              href="{{ page.cachedPageLink }}"
+              target="_blank"
+              data-automation="issue-by-page-cached-page-link"
+            >
+              <div
+                class="cached-page-url"
+                data-automation="issue-by-page-link-text"
+              >
+                {{ page.pageUrl | urlPathname
+                }}<span class="hide-element"> (cached page url)</span>
+              </div>
+              <svg
+                [ngClass]="{ 'eye-icon': true, cinv: useCInvStyles }"
+                data-automation="eye-icon"
+              ></svg>
+            </a>
+            <div
+              class="occurrence-wrapper"
+              data-automation="issue-by-page-occurrences"
+            >
+              <div class="occurrence-count">
+                <span
+                  class="occurrence-label-text"
+                  data-automation="occurrence-label-text"
+                  >Occurrences</span
+                >
+                <span
+                  class="count-number"
+                  data-automation="occurrence-count-number"
+                >
+                  {{ page.noOfOccurrences }}
+                </span>
+                <button
+                  *ngIf="page.occurrences.length > 0"
+                  [id]="'toggle-list-button-' + i"
+                  [ngClass]="{ 'toggle-button': true, cinv: useCInvStyles }"
+                  toggleList
+                  aria-expanded="false"
+                  data-automation="toggle-page-occurrences-list"
+                ></button>
+                <ng-container *ngIf="page.occurrences.length > 0">
+                  <ul
+                    class="key-attribute-container"
+                    data-automation="page-occurrences-list"
+                  >
+                    <li
+                      class="page-key-attribute"
+                      data-automation="page-occurrence-list-item"
+                      *ngFor="let occurrence of page.occurrences"
+                    >
+                      <ng-container *ngIf="occurrence.keyAttribute">
+                        <a
+                          class="occurrence-item-cached-page-link"
+                          href="{{ occurrence.cachedPageLink }}"
+                          data-automation="occurrence-item-cached-page-link"
+                          target="_blank"
+                        >
+                          {{ occurrence.keyAttribute }}
+                        </a>
+                      </ng-container>
+                      <ng-container *ngIf="occurrence.keyAttribute == ''"
+                        ><span
+                          aria-label="no data"
+                          class="no-data"
+                          data-automation="no-data-dashes"
+                          >--</span
+                        ></ng-container
+                      >
+                    </li>
+                  </ul>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </api-handler-error-guard>
+  </ng-container>
+  <ng-container
+    *ngIf="
+      occurrencesByPage &&
+      occurrencesByPage.occurrencePages &&
+      occurrencesByPage.occurrencePages.length > 0
+    "
+  >
+    <interactions-pagination
+      [numberOfRecordsToShow]="occurrencesByPage.occurrencePages.length"
+      [totalRecords]="occurrencesByPage.totalFilteredPages"
+      [numberOfRecordsToFetchMore]="20"
+      (seeMore)="getMoreData($event)"
+    ></interactions-pagination>
+  </ng-container>
+</section>
+
+<ng-template #spinner>
+  <div>
+    <div class="loading-container" data-automation="loading-spinner-container">
+      <div class="loading">Loading...</div>
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noResults>
+  <div class="no-results" data-automation="no-data-available">
+    No data available
+  </div>
+</ng-template>

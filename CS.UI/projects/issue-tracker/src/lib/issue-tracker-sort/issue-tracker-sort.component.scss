@@ -1,0 +1,157 @@
+@import "main-cinv";
+@import "main-lib";
+
+.sort-container {
+  position: absolute;
+  top: -2rem;
+  right: 0;
+  background-color: $color-navy-blue;
+  color: $color-white-medium;
+  padding: 2rem;
+  border-left: 1px solid $color-white-medium;
+  z-index: 1;
+  &.cinv {
+    padding: 1.25rem;
+  }
+
+  @include respond(laptop) {
+    width: 25%;
+  }
+
+  @include respond(tab-land) {
+    width: 30%;
+  }
+
+  form {
+    .sort-heading {
+      font-family: "Lato-Bold", sans-serif;
+      font-size: 2rem;
+      color: $color-white-medium;
+      padding-bottom: 1rem;
+      &.cinv {
+        font-size: 1.25rem;
+        padding-bottom: 0.5625rem;
+      }
+    }
+
+    .sort-options-container {
+      padding: 2rem 0;
+      &.cinv {
+        padding: 1.25rem 0;
+      }
+      .sort-option-wrapper {
+        display: flex;
+        align-items: center;
+        height: 4rem;
+        margin-bottom: 1rem;
+        padding: 0 2rem;
+        &.cinv {
+          font-size: 1.25rem;
+          height: 2.25rem;
+          margin-bottom: 0.5625rem;
+          padding: 0 1.25rem;
+        }
+      }
+
+      .default-option-wrapper {
+        display: flex;
+        height: 4rem;
+        margin-bottom: 1rem;
+        padding: 0 2rem 6rem 2rem;
+        border-bottom: 1px solid $color-white-light;
+        width: calc(100% - 1rem);
+        &.cinv {
+          height: 3rem;
+          margin-bottom: 0.5625rem;
+          padding: 0 1.25rem 4rem 1.25rem;
+          width: calc(100% - 0.5625rem);
+        }
+      }
+
+      .option-input {
+        height: 2rem;
+        width: 2rem;
+        &.cinv {
+          height: 1.25rem;
+          width: 1.25rem;
+        }
+
+        &:checked,
+        &:active {
+          outline-style: auto;
+          outline-color: $color-cornflower-blue;
+        }
+      }
+
+      .option-label {
+        color: $color-white-medium;
+        padding-left: 1rem;
+        font-size: 1.6rem;
+        display: flex;
+        align-items: center;
+        &.cinv {
+          font-size: 1rem;
+          padding-left: 0.5625rem;
+        }
+      }
+
+      .default-option-label {
+        color: $color-white-medium;
+        padding-left: 1rem;
+        font-size: 1.6rem;
+        line-height: initial;
+        &.cinv {
+          font-size: 1rem;
+          padding-left: 0.5625rem;
+        }
+        .default-supplement-label {
+          color: $color-white-medium;
+          font-size: 1.6rem;
+          display: block;
+          line-height: initial;
+          &.cinv {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+    .button-group {
+      text-align: right;
+      padding: 1rem 0;
+      &.cinv {
+        padding: 0.5625rem 0;
+      }
+      .btn {
+        border: 1px solid $color-grey-medium;
+        font-weight: 500;
+        padding: 1rem 1.5rem;
+        font-size: 1.6rem;
+        color: $color-white;
+        background-color: transparent;
+        cursor: pointer;
+        width: 8rem;
+        &.cinv {
+          font-size: 1rem;
+          padding: 0.5625rem 1rem;
+          width: 5.15rem;
+        }
+
+        &:disabled {
+          background-color: $color-white-light;
+          color: $color-grey-dark;
+          cursor: unset;
+        }
+
+        &.primary-btn {
+          background-color: $color-white-medium;
+          color: $color-navy-blue;
+        }
+
+        &.med-margin-rt {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}

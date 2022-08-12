@@ -1,0 +1,27 @@
+@import "main-lib";
+@import "main-cinv";
+
+.export-btn {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  color: $color-white;
+  background: no-repeat 92%/30%
+    url(./shared-styles/assets/download-icon-white.svg);
+  border: none;
+  font-size: 1.6rem;
+  width: 8.5rem;
+  cursor: pointer;
+  &.cinv {
+    color: $color-black;
+    margin-right: 0rem;
+    font-size: 1rem;
+    width: 5rem;
+    background-image: url(./shared-styles/assets/download-icon.svg);
+  }
+
+  &:disabled {
+    cursor: unset;
+    opacity: 0.7;
+  }
+}

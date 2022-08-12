@@ -1,0 +1,5 @@
+{
+  "organizationId": "ComplianceInvestigate",
+  "authenticationType": "FormsAuthentication",
+  "refreshTimeout": "3"
+}

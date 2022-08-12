@@ -1,0 +1,41 @@
+<header class="header-container">
+  <a
+    [href]="[skipToMainContentUrl]"
+    class="sr-skip"
+    >Skip to content</a
+  >
+  <div class="logo-nav-container">
+    <a
+      class="header-logo"
+      [routerLink]="['externalRedirect', { externalUrl: homePath }]"
+      data-automation="logo-link"
+    >
+      <span class="logo">
+        <svg
+          src="assets/logo.svg"
+          class="logo-img-link"
+          role="img"
+          aria-label="Compliance Sheriff By AppGate. Navigate to Home"
+        ></svg>
+      </span>
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <app-header-nav class="header-nav" [homePath]="homePath"></app-header-nav>
+      <app-menu-dropdown 
+        [homePath]="homePath"
+        [orgVirtualDir]="orgVirtualDir"
+        [childRoute]="childRoute"
+        ></app-menu-dropdown>
+    </nav>
+  </div>
+  <app-sub-nav 
+    [homePath]="homePath"
+    [orgVirtualDir]="orgVirtualDir"
+    [childRoute]="childRoute"
+    ></app-sub-nav>
+  <app-breadcrumb-nav
+    [homePath]="homePath"
+    [orgVirtualDir]="orgVirtualDir"
+    [childRoute]="childRoute"
+  ></app-breadcrumb-nav>
+</header>

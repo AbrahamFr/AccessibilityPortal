@@ -1,0 +1,37 @@
+$color-yellow-orange: #ffb337;
+
+.server-error-container {
+  border-bottom: 1px solid #fec343;
+  border-top: 1px solid #fec343;
+  height: 6rem;
+  margin: 2.5rem 0 1rem 0;
+}
+
+.error-message-wrapper {
+  position: relative;
+  transform: translate(0%, 50%);
+  text-align: center;
+}
+
+.warning-icon-wrapper {
+  vertical-align: middle;
+}
+
+.warning-icon {
+  background: url(../assets/validation-warning-icon.svg);
+  width: 2.5rem;
+  height: 2rem;
+}
+
+.validation-error-message {
+  color: $color-yellow-orange;
+  display: inline;
+  padding-left: 3px;
+}
+
+#defaultError {
+  text-align: center;
+  font-size: 1.6rem;
+  font-family: "Lato-Bold", sans-serif;
+  padding-top: 1rem;
+}

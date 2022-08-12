@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="assets/QuickStartGuide.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <span class="logo">
+                <img
+                    src="assets/logo.svg"
+                    class="logo"
+                    role="img"
+                    alt="AppGate Logo" />
+            </span>
+            <h1 class="main-heading">SDK Quick Start
+            </h1>
+        </header>
+        <div class="panel-wrapper">
+            <div class="panel-left">
+                <div class="summary">
+                    <p class="block-text">
+                        The Compliance Sheriff SDK consists of APIs that let you
+              incorporate specific Compliance Sheriff features into your own
+              in-house applications. Standard functions can be called from any
+              front-end or UI that supports REST technology.
+                    </p>
+                    <p class="block-text">
+                        This SDK uses Swagger for its API documentation and testing
+                    </p>
+                    <p class="block-text no-padding-no-margin">
+                        <span class="tutorial-link-text">Not familiar with using REST APIs?</span>
+                        <div class="tutorial-link-wrapper">
+                            <span>Review this primer:</span>
+                            <a href="https://developer.mozilla.org/en-US/docs/Glossary/REST" target="_blank" class="api-list-item color-white" aria-label="Link to REST Tutorial" data-automation="rest-tutorial-link">
+                                <span class="api-link padding-left">
+                                    <img
+                                        src="assets/open-in-new.svg"
+                                        class="open-in-new-icon less-opacity"
+                                        role="img"
+                                        alt="Open In New Browser Icon" />
+                                </span>Rest API Tutorial</a>
+                        </div>
+                    </p>
+                </div>
+                <section>
+                    <h2 class="heading">Prepare</h2>
+                    <p>Make sure your target environment has the following items:</p>
+                    <ul>
+                        <li class="check-list-item">
+                            <span class="api-link">
+                                <img
+                                    src="assets/check-circle.svg"
+                                    class="open-in-new-icon"
+                                    role="img"
+                                    alt="Check Mark Icon" />
+                            </span>
+                            Dedicated virtual directory on the same IIS that hosts
+                Compliance Sheriff
+                        </li>
+                        <li class="check-list-item">
+                            <span class="api-link">
+                                <img
+                                    src="assets/check-circle.svg"
+                                    class="open-in-new-icon"
+                                    role="img"
+                                    alt="Check Mark Icon" />
+                            </span>
+                            Domain account credentials that can access the Compliance
+                Sheriff database and shared data directory
+                        </li>
+                        <li class="check-list-item">
+                            <span class="api-link">
+                                <img
+                                    src="assets/check-circle.svg"
+                                    class="open-in-new-icon"
+                                    role="img"
+                                    alt="Check Mark Icon" />
+                            </span>
+                            Ability to use a JSON Web Token (JWT) for authentication during
+                UI calls
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h2 class="heading">Access</h2>
+                    <p>
+                        To access the Compliance Sheriff SDK documentation in Swagger, click below:
+                    </p>
+                    <div class="swagger-path-wrapper">
+                        <a id="swaggerUrl" class="swagger-path-example" target="_blank" href="swagger">
+                            <span class="swagger-link">
+                                <img
+                                    src="assets/open-in-new-blue.svg"
+                                    class="swagger-open-in-new-icon less-opacity"
+                                    role="img"
+                                    alt="Open Swagger Url In New Browser Icon" />
+                            </span>Swagger
+                        </a>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="heading">Verify</h2>
+                    <p>
+                        To verify that the Compliance Sheriff SDK is successfully
+              installed on your IIS, use the Demo API endpoint.
+                    </p>
+                </section>
+            </div>
+            <div class="panel-right">
+                <section>
+                    <h2 class="heading">Authenticate</h2>
+                    <p>To authenticate with Swagger, follow these steps:</p>
+                    <ol>
+                        <li>Open the Compliance Sheriff Swagger site in your web browser.</li>
+                        <li>Use the <b>Try It Now</b> function for the Authentication API to output
+                a Bearer (apiKey) token.
+                        </li>
+                        <li>Click <b>Authorize</b> and copy the token (without quotation marks)
+                from the <b>Response Body</b> into the Value field, using this
+                syntax:
+                <div class="bearer-token-syntax-example">Bearer <em>token_key_value_without_quotation_marks</em></div>
+                        </li>
+                        <li>Click <b>Authorize</b> to submit your token</li>
+                        <li>Swagger returns the authorization and header information, and
+                the Authorize function displays as locked.
+                        </li>
+                    </ol>
+                </section>
+                <section>
+                    <h2 class="heading">Use</h2>
+                    <p>
+                        To use one of the Compliance Sheriff APIs, follow these steps:
+                    </p>
+                    <ol>
+                        <li>For each feature you want to implement, review the Swagger
+                documentation for the corresponding verbs that can act on models
+                and their properties. Required properties are marked with an
+                asterisk(*).
+                        </li>
+                        <li>Ensure your authentication header includes the Bearer (apiKey)
+                token. Authentication expires every 5 minutes.
+                        </li>
+                        <li>Ensure your UI call includes the appropriate verb, properties,
+                and target endpoint.
+                        </li>
+                    </ol>
+                </section>
+                <section>
+                    <h2 class="heading">Validate</h2>
+                    <ol>
+                        <li>To see which roles you have been assigned, decrypt the
+                JWT/Bearer token.
+                        </li>
+                        <li>To validate your API call, use the test function provided by
+                Swagger. This function requires authentication with Swagger.
+                        </li>
+                        <p>
+                            Click <b>Try It Now</b> for the corresponding verb, fill out the form
+                with your property definition and code snippet, and then click
+                <b>Execute</b>.
+                        </p>
+                    </ol>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

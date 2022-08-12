@@ -1,0 +1,18 @@
+<button
+  *ngIf="
+    (orgVirtualDir || useCInvStyles) &&
+    hasIssueTrackerPerm &&
+    ((this.childRoute | lowercase).includes('IssueTracker' | lowercase) ||
+      (this.childRoute | lowercase).includes('auditresults' | lowercase))
+  "
+  [ngClass]="{ 'export-btn': true, cinv: useCInvStyles }"
+  aria-haspopup="dialog"
+  aria-label="Export"
+  data-automation="btnExport"
+  id="btnexport"
+  (click)="onExportClick()"
+  name="Export"
+  [disabled]="hasNoData"
+>
+  Export
+</button>

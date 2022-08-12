@@ -1,0 +1,14 @@
+<div
+  [ngClass]="{ 'error-message-wrapper': true, cinv: useCInvStyles }"
+  [ngStyle]="styles"
+>
+  <span class="warning-icon-wrapper">
+    <svg [ngClass]="{ 'warning-icon': true, cinv: useCInvStyles }"></svg>
+  </span>
+  <div
+    id="error-message"
+    [ngClass]="{ 'validation-error-message': true, cinv: useCInvStyles }"
+    translate="{{ errorMessage }}"
+    [translateParams]="{ value: param }"
+  ></div>
+</div>

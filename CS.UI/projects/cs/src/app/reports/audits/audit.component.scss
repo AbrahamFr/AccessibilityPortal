@@ -1,0 +1,36 @@
+@import "main";
+
+:host {
+  min-height: 33vh;
+}
+
+.audit-container {
+  margin: 2rem;
+  position: relative;
+  min-height: 78vh;
+}
+
+.hide-element {
+  position: absolute;
+  left: -9999px;
+  height: 1px;
+  width: 1px;
+}
+
+.upload-btn-wrapper {
+  min-height: 3.5rem;
+}
+
+.add-btn {
+  margin-bottom: 1rem;
+  border: 1px solid $color-grey;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  background-color: $color-primary-blue;
+  color: $color-white;
+  width: 10rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

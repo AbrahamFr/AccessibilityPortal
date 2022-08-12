@@ -1,0 +1,263 @@
+@import "main-cinv";
+
+:host {
+  %form {
+    @extend %form-cinv;
+    display: grid;
+    grid-gap: 0.4rem;
+    align-items: center;
+    width: 75%;
+    margin-top: 1rem;
+    margin-left: 14rem;
+    margin-bottom: 4rem;
+    padding-top: 1rem;
+    padding-right: 3rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    color: $color-green;
+  }
+
+  %frmSectionHdr {
+    font-size: 2rem;
+    padding: 1rem;
+    margin-left: 3rem;
+  }
+
+  %frmSectionHdrSpacing {
+    margin-top: 30px;
+  }
+
+  %frm-label {
+    justify-self: end;
+  }
+
+  %error-message {
+    color: $color-pink;
+  }
+
+  %client-messages {
+    margin-top: 10px;
+    font-weight: bold;
+    justify-self: center;
+  }
+
+  %basic-button {
+    justify-self: center;
+    margin-top: 2rem;
+    margin-bottom: 0.25rem;
+    padding-top: 1rem;
+    padding-right: 4rem;
+    padding-bottom: 1rem;
+    padding-left: 4rem;
+    font-size: 1.2rem;
+  }
+
+  .user-profile-hdr {
+    font-size: 3rem;
+    font-weight: bold;
+    padding: 5px;
+    margin: 2rem 3rem 1rem 13rem;
+    color: $color-green;
+  }
+
+  form[name="userProfileFrm"] {
+    @extend %form;
+    grid-template:
+      " user-profile-name-hdr user-profile-name-hdr . " auto
+      " firstName-frm-label firstName-frm-input . " auto
+      " . firstName-errors . " auto
+      " lastName-frm-label lastName-frm-input . " auto
+      " . lastName-errors . " auto
+      " user-profile-email-hdr user-profile-email-hdr . " auto
+      " email-frm-label email-frm-input . " auto
+      " . email-errors . " auto
+      " . email-note . " auto
+      " user-profile-timezone-hdr user-profile-timezone-hdr . " auto
+      " . timeZone-frm-select . " auto
+      " . timeZone-errors . " auto
+      " . userProfile-client-messages . " auto
+      " . user-profile-button-submit . " auto
+      / 15% 60% 25%;
+
+    .user-profile-name-hdr {
+      grid-area: user-profile-name-hdr;
+      @extend %frmSectionHdr;
+    }
+
+    .firstName-frm-label {
+      grid-area: firstName-frm-label;
+      @extend %frm-label;
+    }
+
+    .firstName-frm-input {
+      grid-area: firstName-frm-input;
+    }
+
+    .firstName-errors {
+      grid-area: firstName-errors;
+      @extend %error-message;
+    }
+
+    .lastName-frm-label {
+      grid-area: lastName-frm-label;
+      @extend %frm-label;
+    }
+
+    .lastName-frm-input {
+      grid-area: lastName-frm-input;
+    }
+
+    .lastName-errors {
+      grid-area: lastName-errors;
+      @extend %error-message;
+    }
+
+    .user-profile-email-hdr {
+      grid-area: user-profile-email-hdr;
+      @extend %frmSectionHdr;
+      @extend %frmSectionHdrSpacing;
+    }
+
+    .email-note {
+      grid-area: email-note;
+      color: $color-navy;
+    }
+
+    .email-frm-label {
+      grid-area: email-frm-label;
+      @extend %frm-label;
+    }
+
+    .email-frm-input {
+      grid-area: email-frm-input;
+    }
+
+    .email-errors {
+      grid-area: email-errors;
+      @extend %error-message;
+    }
+
+    .user-profile-timezone-hdr {
+      margin-top: 20px;
+      grid-area: user-profile-timezone-hdr;
+      @extend %frmSectionHdr;
+      @extend %frmSectionHdrSpacing;
+    }
+
+    .timeZone-frm-label {
+      grid-area: timeZone-frm-label;
+      @extend %frm-label;
+    }
+
+    .timeZone-frm-select {
+      grid-area: timeZone-frm-select;
+    }
+
+    .timeZone-errors {
+      grid-area: timeZone-errors;
+      @extend %error-message;
+    }
+
+    .userProfile-client-messages {
+      grid-area: userProfile-client-messages;
+      @extend %client-messages;
+    }
+
+    .user-profile-button-submit {
+      grid-area: user-profile-button-submit;
+      @extend %basic-button;
+    }
+  }
+
+  form[name="pwdFrm"] {
+    @extend %form;
+    display: grid;
+    grid-gap: 0.4rem;
+    align-items: center;
+    grid-template:
+      " pwd-hdr pwd-hdr . " auto
+      " currentPassword-frm-label currentPassword-frm-input . " auto
+      " . current-password-errors . " auto
+      " newPassword-frm-label newPassword-frm-input . " auto
+      " . new-password-errors . " auto
+      " confirm-new-password-frm-label confirm-new-password-frm-input . " auto
+      " . confirm-new-password-errors . " auto
+      " . passwords-do-not-match-errors. " auto
+      " . forgot-pwd-link . " auto
+      " . pwd-client-messages . " auto
+      " . change-password-button-submit . " auto
+      / 15% 60% 25%;
+
+    .pwd-hdr {
+      grid-area: pwd-hdr;
+      @extend %frmSectionHdr;
+    }
+
+    .currentPassword-frm-label {
+      grid-area: currentPassword-frm-label;
+      @extend %frm-label;
+    }
+
+    .currentPassword-frm-input {
+      grid-area: currentPassword-frm-input;
+    }
+
+    .current-password-errors {
+      grid-area: current-password-errors;
+      @extend %error-message;
+    }
+
+    .newPassword-frm-label {
+      grid-area: newPassword-frm-label;
+      @extend %frm-label;
+    }
+
+    .newPassword-frm-input {
+      grid-area: newPassword-frm-input;
+    }
+
+    .new-password-errors {
+      grid-area: new-password-errors;
+      @extend %error-message;
+    }
+
+    .confirm-new-password-frm-label {
+      grid-area: confirm-new-password-frm-label;
+      @extend %frm-label;
+    }
+
+    .confirm-new-password-frm-input {
+      grid-area: confirm-new-password-frm-input;
+    }
+
+    .confirm-new-password-errors {
+      grid-area: confirm-new-password-errors;
+      @extend %error-message;
+    }
+
+    .passwords-do-not-match-errors {
+      grid-area: passwords-do-not-match-errors;
+      @extend %error-message;
+    }
+
+    .forgot-pwd-link {
+      grid-area: forgot-pwd-link;
+      justify-self: center;
+      margin-top: 20px;
+    }
+
+    .pwd-client-messages {
+      grid-area: pwd-client-messages;
+      @extend %client-messages;
+    }
+
+    .change-password-button-submit {
+      grid-area: change-password-button-submit;
+      @extend %basic-button;
+    }
+  }
+
+  .error-message-color {
+    color: $color-pink;
+  }
+}

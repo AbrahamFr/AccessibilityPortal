@@ -1,0 +1,183 @@
+@import "main";
+
+.wrapper {
+  min-height: 100vh;
+  position: relative;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+  width: 100%;
+  align-items: center;
+}
+
+.nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  flex: 1;
+}
+
+li.nav-item:hover:not(.active-nav) {
+  background-color: $color-light-grey;
+}
+
+li.nav-item:hover:not(.active-nav) > a {
+  color: $color-black;
+}
+
+li.nav-item:hover > a > i > span.dashboard-icon-dark {
+  background: url(../../../assets/dashboard-icon.svg) no-repeat;
+}
+
+li.nav-item:hover > a > i > span.scans-icon-dark {
+  background: url(../../../assets/scans-icon.svg) no-repeat;
+}
+
+li.nav-item:hover > a > i > span.checkpoints-icon-dark {
+  background: url(../../../assets/checkpoints-icon.svg) no-repeat;
+}
+
+li.nav-item:hover > a > i > span.reports-icon-dark {
+  background: url(../../../assets/reports-icon.svg) no-repeat;
+}
+
+li.nav-item:hover > a > i > span.alerts-icon-dark {
+  background: url(../../../assets/alerts-icon.svg) no-repeat;
+}
+
+.nav-item-link {
+  display: inline-flex;
+  justify-content: center;
+  text-decoration: none;
+  color: $color-black;
+  width: 100%;
+  padding: 0 1.5rem;
+  height: 100%;
+}
+
+.icon-wrapper {
+  align-self: center;
+  padding-right: 0.5rem;
+}
+
+.active-nav {
+  background-color: $color-navy-blue;
+}
+
+.active-nav > a > span {
+  color: $color-white;
+}
+
+.nav-text {
+  align-self: center;
+}
+
+.dashboard-icon {
+  background: url(../../../assets/dashboard-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.dashboard-icon-dark {
+  background: url(../../../assets/dashboard-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.scans-icon {
+  background: url(../../../assets/scans-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.scans-icon-dark {
+  background: url(../../../assets/scans-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.checkpoints-icon {
+  background: url(../../../assets/checkpoints-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.checkpoints-icon-dark {
+  background: url(../../../assets/checkpoints-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.views-icon {
+  background: url(../../../assets/views-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.summary-icon-dark {
+  background: url(../../../assets/summary-icon.svg) no-repeat;
+  width: 3rem;
+  height: 3rem;
+  display: block;
+}
+
+.reports-icon {
+  background: url(../../../assets/reports-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.reports-icon-dark {
+  background: url(../../../assets/reports-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.alerts-icon {
+  background: url(../../../assets/alerts-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.alerts-icon-dark {
+  background: url(../../../assets/alerts-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.monitors-icon {
+  background: url(../../../assets/monitors-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.notifications-icon {
+  background: url(../../../assets/notifications-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.settings-icon {
+  background: url(../../../../../shared-styles/assets/expand-more-icon.svg)
+    no-repeat;
+  width: 3.5rem;
+  height: 3rem;
+}

@@ -1,0 +1,52 @@
+#Build Definition: Agent Installer Build
+#This build will create artifacts for the 
+#agent installer component. The agent
+#installer installs the Worker Agent and the
+#Controller Agent of the Compliance Sheriff product.
+
+pool:
+  name: CSBuild
+
+trigger:
+  branches:
+    include:
+     - RC6.3
+  paths:
+    include:
+     - src/WinServices/ServiceInstaller/*
+
+variables:
+  BuildConfiguration: 'release'
+  BuildDefintionName: 'Agent Installer Build'
+  AgentInstallerProjSource: 'src/WinServices/ServiceInstaller'
+
+name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+steps:
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 5.x'
+  inputs:
+    versionSpec: 5.x
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: $(AgentInstallerProjSource)/ServiceInstaller.csproj
+    feedsToUse: config
+    nugetConfigPath: .nuget/NuGet.Config
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish Windows ServiceInstaller'
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: $(AgentInstallerProjSource)/ServiceInstaller.csproj
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory) --self-contained --runtime win-x64'
+    zipAfterPublish: false
+    modifyOutputPath: false
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: ServiceInstallerDrop'
+  inputs:
+    PathtoPublish: ' $(build.artifactstagingdirectory)'
+    ArtifactName: ServiceInstallerDrop

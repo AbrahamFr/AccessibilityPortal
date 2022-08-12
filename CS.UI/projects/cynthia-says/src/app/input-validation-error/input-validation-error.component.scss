@@ -1,0 +1,29 @@
+@import "main";
+
+:host {
+  position: absolute;
+}
+
+.error-message-wrapper {
+  position: relative;
+  transform: translate(60%, -75%);
+  width: 28rem;
+}
+
+.warning-icon-wrapper {
+  vertical-align: middle;
+}
+
+.warning-icon {
+  background: no-repeat url(../../assets/validation-warning-icon.svg);
+  width: 2.75rem;
+  height: 2.5rem;
+  transform: translateY(10%);
+}
+
+.validation-error-message {
+  color: $color-yellow-orange;
+  display: inline;
+  padding-left: 3px;
+  font-size: 1.8rem;
+}

@@ -1,0 +1,190 @@
+@import "main-lib";
+@import "main-cinv";
+
+:host {
+  width: 100%;
+
+  .summary-container {
+    background-color: $color-white;
+    margin: 1rem 2rem;
+    font-size: 1.6rem;
+    font-family: "Lato-Bold", sans-serif;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    border-radius: 0.5rem;
+    &.cinv {
+      background-color: $color-purple;
+      font-size: 1rem;
+      border-radius: 1rem;
+    }
+
+    .hide-element {
+      position: absolute;
+      left: -9999px;
+      height: 1px;
+      width: 1px;
+    }
+
+    .stats-container {
+      position: relative;
+      padding: 1rem 0;
+
+      .summary-stats-list {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding-left: 1rem;
+        .stat-wrapper {
+          display: flex;
+          align-items: center;
+          flex-grow: 1;
+          text-align: left;
+          font-family: "Lato-Bold", sans-serif;
+          .count-total {
+            font-size: 3rem;
+            padding-top: 0px;
+            padding-right: 1.5rem;
+            padding-bottom: 0px;
+            padding-left: 1rem;
+            pointer-events: none;
+            &.cinv {
+              color: $color-white;
+              font-size: 1.875rem;
+            }
+          }
+
+          .count-text {
+            vertical-align: super;
+            font-size: 1.6rem;
+            margin-right: 1rem;
+            pointer-events: none;
+            &.cinv {
+              color: $color-white;
+              font-size: 1rem;
+            }
+          }
+
+          .stat-filter-btn {
+            display: flex;
+            align-items: center;
+            font-family: "Lato-Bold", sans-serif;
+            background: transparent;
+            border: 1.5px solid transparent;
+            position: relative;
+            text-align: left;
+            padding-right: 3.5rem;
+            .stat-filter-icon {
+              position: absolute;
+              pointer-events: none;
+              right: 0;
+              opacity: 0;
+              border: none;
+              background: no-repeat center/100%
+                url(./shared-styles/assets/filter-icon.svg);
+              width: 3rem;
+              height: 3rem;
+              margin-right: 0.5rem;
+              &.cinv {
+                background-image: url(./shared-styles/assets/filter_list-white.svg);
+              }
+
+              &.enabled {
+                opacity: 1;
+              }
+
+              @media (-ms-high-contrast-adjust: none),
+                (-ms-high-contrast: none) {
+                transform: translateY(-50%);
+              }
+            }
+
+            .count-text {
+              color: $color-primary-blue;
+              border-bottom: 1.5px solid $color-primary-blue;
+              padding-bottom: 2px;
+              &.cinv {
+                color: $color-white;
+                border-bottom-color: $color-white;
+              }
+            }
+
+            &:hover,
+            &:focus {
+              cursor: pointer;
+              border: 1.5px solid $color-primary-blue;
+              &.cinv {
+                border-color: $color-white;
+              }
+              .stat-filter-icon {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .loading {
+      margin-left: 1rem;
+      font-size: 1.6rem;
+      &.cinv {
+        color: $color-white;
+      }
+    }
+
+    .lds-ring {
+      justify-content: center;
+      display: flex;
+      width: 6rem;
+      height: 3rem;
+      div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        margin: 6px;
+        border: 3px solid $color-navy-blue;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: $color-navy-blue transparent transparent transparent !important;
+
+        &.cinv {
+          color: $color-white;
+          border: 3px solid $color-white;
+          border-color: $color-white transparent transparent transparent !important;
+        }
+      }
+      div:nth-child(1) {
+        animation-delay: -0.45s;
+      }
+      div:nth-child(2) {
+        animation-delay: -0.3s;
+      }
+      div:nth-child(3) {
+        animation-delay: -0.15s;
+      }
+    }
+    @keyframes lds-ring {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  .no-data {
+    text-align: center;
+    padding-top: 1rem;
+  }
+}

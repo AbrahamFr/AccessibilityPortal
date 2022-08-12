@@ -1,0 +1,20 @@
+<cinv-audit-form
+  (refreshData)="updateRecentAudits()"
+  (changeView)="changeView($event)"
+  [selectedAudit]="selectedAudit"
+  class="audit-form"
+></cinv-audit-form>
+<div class="incentive">
+  <div class="future-chart">
+    <p></p>
+    <p>Future Compliance Investigate Reporting</p>
+    <p>— Coming Soon —</p>
+    <p></p>
+  </div>
+</div>
+<cinv-recent-audits
+  (changeView)="changeView($event)"
+  [selectedAudit]="selectedAudit"
+  [refreshData]="updateData.asObservable()"
+  class="recent-audits"
+></cinv-recent-audits>

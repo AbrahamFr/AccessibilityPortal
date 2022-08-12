@@ -1,0 +1,146 @@
+<section class="table-container" tabindex="0">
+  <h2 class="table-section-heading">Performance by Scan</h2>
+
+  <table
+    id="scan-performance-table"
+    cdk-table
+    [dataSource]="scanPerformanceResults$"
+  >
+    <caption class="hide-element">
+      List of scans and the total count of passed and failed checkpoints
+    </caption>
+
+    <ng-container cdkColumnDef="scan">
+      <th class="align-left scan-url-column" cdk-header-cell *cdkHeaderCellDef>
+        Scan
+      </th>
+      <td
+        data-automation="scan-perf-scan-name"
+        class="scan-url"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        <a
+          class="scan-url-link"
+          href="{{
+            this.homePath +
+              '/Summary.aspx?view=Summary&scan=' +
+              row.scanId +
+              '&ssg='
+          }}"
+          appExternalUrl
+          data-automation="scan-summary-link"
+        >
+          {{ row.scanName }}
+        </a>
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="pages">
+      <th class="column-heading" cdk-header-cell *cdkHeaderCellDef>Pages</th>
+      <td
+        class="results-data"
+        data-automation="row.scannedPages"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        {{ row.scannedPages.toLocaleString() }}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="checkpoints">
+      <th class="column-heading" cdk-header-cell *cdkHeaderCellDef>
+        Checkpoints
+      </th>
+      <td
+        data-automation="row.scannedCheckpoints"
+        class="results-data"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        {{ row.scannedCheckpoints.toLocaleString() }}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="successes">
+      <th class="column-heading" cdk-header-cell *cdkHeaderCellDef>
+        Successes
+      </th>
+      <td
+        data-automation="row.checkpointSuccess"
+        class="results-data"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        {{ row.checkpointSuccess.toLocaleString() }}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="failures">
+      <th class="column-heading" cdk-header-cell *cdkHeaderCellDef>Failures</th>
+      <td
+        data-automation="row.checkpointFailure"
+        class="results-data"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        {{ row.checkpointFailure.toLocaleString() }}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="percentFailed">
+      <th class="column-heading" cdk-header-cell *cdkHeaderCellDef>
+        Percent Failed
+      </th>
+      <td
+        data-automation="row.checkpointFailurePercent"
+        class="results-data"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        {{ row.checkpointFailurePercent.toLocaleString() }}%
+      </td>
+    </ng-container>
+
+    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value"></tr>
+    <tr
+      [id]="row.scanId"
+      cdk-row
+      *cdkRowDef="let row; columns: displayedColumns$.value"
+    ></tr>
+  </table>
+
+  <ng-container *ngIf="hasScanGroups; else noresults">
+    <ng-container
+      *ngIf="scanPerformanceResults$ | async as scans; else spinner"
+    >
+      <api-handler-error-guard [maybeError]="scans">
+        <ng-container *ngIf="scans.length == 0">
+          <div class="no-results" data-automation="no-data-available">
+            No data available
+          </div>
+        </ng-container>
+      </api-handler-error-guard>
+    </ng-container>
+  </ng-container>
+</section>
+
+<ng-template #spinner>
+  <div>
+    <div class="loading-container">
+      <div class="loading">Loading...</div>
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noresults>
+  <div class="no-results" data-automation="no-data-available">
+    No data available
+  </div>
+</ng-template>

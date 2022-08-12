@@ -1,0 +1,153 @@
+<div
+  id="issue-tracker-filter-container"
+  cdkTrapFocus
+  (outsideClick)="onOutsideClick($event)"
+  [ngClass]="{ 'filter-container': true, cinv: useCInvStyles }"
+>
+  <span class="triangle-icon"></span>
+  <form
+    autocomplete="off"
+    [formGroup]="issueTrackerFilterForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <h2 class="hide-element">Issue Tracker Filter Fields</h2>
+    <div>
+      <div role="tablist" class="filter-buttons">
+        <ng-container *ngFor="let formFilter of Object.keys(formFilters)">
+          <button
+            #filterProperties
+            [id]="formFilter.concat('-filter')"
+            [attr.data-automation]="
+              'issue-tracker-' + formFilter + '-filter-btn'
+            "
+            [ngClass]="{ 'filter-btn': true, cinv: useCInvStyles }"
+            role="tab"
+            type="button"
+            (click)="onClickFilter($event)"
+            (keydown)="onKeydownFilter($event)"
+            [ngStyle]="
+              formFilter.concat('-filter') == activeFilter.value
+                ? { opacity: '1' }
+                : ''
+            "
+            [attr.tabindex]="
+              formFilter.concat('-filter') == activeFilter.value ? '0' : '-1'
+            "
+            [setFocus]="formFilter == 'severity' ? true : false"
+          >
+            {{
+              useCInvStyles && formFilterDisplay[formFilter] === "Checkpoint"
+                ? "Test"
+                : formFilterDisplay[formFilter]
+            }}
+          </button>
+        </ng-container>
+      </div>
+    </div>
+    <div>
+      <ng-container *ngFor="let formFilter of Object.keys(formFilters)">
+        <section
+          role="tabpanel"
+          [ngClass]="{ 'filter-panel': true, cinv: useCInvStyles }"
+          [ngStyle]="
+            activeFilter.value == formFilter.concat('-filter')
+              ? { display: 'block' }
+              : { display: 'none' }
+          "
+        >
+          <h2 class="hide-element">
+            {{ formFilterDisplay[formFilter] }} Filter
+          </h2>
+          <div
+            [ngClass]="{ 'checkbox-wrapper': true, cinv: useCInvStyles }"
+            *ngIf="getFilterControl(formFilter) as control"
+          >
+            <ng-container
+              *ngIf="formFilter !== 'checkpointId'; else checkpoint"
+            >
+              <div *ngFor="let option of control.controls; let i = index">
+                <label
+                  [ngClass]="{ 'checkbox-label': true, cinv: useCInvStyles }"
+                  [for]="formFilter.concat(formFilters[formFilter][i].name)"
+                  [attr.data-automation]="
+                    'issue-tracker-' +
+                    formFilter +
+                    '-' +
+                    formFilters[formFilter][i].name +
+                    '-label'
+                  "
+                >
+                  {{ formFilters[formFilter][i].name | titlecase }}
+                  <input
+                    class="checkbox-input"
+                    type="checkbox"
+                    [formControl]="option"
+                    [checked]="option.value"
+                    [id]="formFilter.concat(formFilters[formFilter][i].name)"
+                  />
+                  <span class="checkbox-custom"
+                    ><span *ngIf="option.value" class="checked-checkbox"></span
+                  ></span>
+                </label>
+              </div>
+            </ng-container>
+          </div>
+        </section>
+      </ng-container>
+      <div class="selected-filters-wrapper">
+        <label (ngModel)="(allSelectedFilters)" class="selected-filters-label">
+          Selected Filters:<span
+            class="selected-filter"
+            [attr.data-automation]="'issue-tracker-filter-' + filter"
+            *ngFor="let filter of allSelectedFilters; let i = index"
+            >{{ filter
+            }}<span
+              class="plus-filter"
+              *ngIf="
+                allSelectedFilters.length > 0 &&
+                i < allSelectedFilters.length - 1
+              "
+              >+</span
+            ></span
+          >
+        </label>
+        <button
+          *ngIf="allSelectedFilters"
+          id="clear-filters-button"
+          data-automation="clear-filters-button"
+          [ngClass]="{ 'clear-icon': true, cinv: useCInvStyles }"
+          type="button"
+          title="Clear Filters"
+          (click)="onClearFilters($event)"
+        ></button>
+      </div>
+    </div>
+    <div class="button-group">
+      <button
+        title="Cancel Button"
+        data-automation="cancel-button"
+        [ngClass]="{ btn: true, 'med-margin-rt': true, cinv: useCInvStyles }"
+        type="button"
+        (click)="onClose(issueTrackerFilterForm)"
+      >
+        Cancel
+      </button>
+      <button
+        title="Apply Button"
+        data-automation="apply-filter-button"
+        [ngClass]="{ btn: true, 'primary-btn': true, cinv: useCInvStyles }"
+        type="submit"
+      >
+        Apply
+      </button>
+    </div>
+  </form>
+</div>
+
+<ng-template #checkpoint>
+  <app-issue-tracker-filter-checkpoint
+    [checkpoints]="checkpoints"
+    [checkpoint]="issueTrackerFilterForm.controls['checkpointId']"
+    (itemSelected)="onCheckpointSelected($event)"
+  ></app-issue-tracker-filter-checkpoint>
+</ng-template>

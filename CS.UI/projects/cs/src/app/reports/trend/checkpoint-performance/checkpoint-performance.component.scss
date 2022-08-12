@@ -1,0 +1,127 @@
+@import "main";
+
+:host {
+  min-width: 49%;
+  min-height: 30vh;
+  margin-left: 1rem;
+  border-radius: 0.5rem;
+  background-color: $color-white;
+
+  @include respond(tab-land) {
+    min-height: 0;
+    @media (-ms-high-contrast-adjust: none), (-ms-high-contrast: none) {
+      min-height: 0;
+    }
+  }
+}
+
+.checkpoint-performance-section {
+  background-color: $color-white;
+  border-radius: 0.5rem;
+  position: relative;
+  padding: 3rem 3rem 2.5rem 3rem;
+
+  @include respond(laptop) {
+    @media (-ms-high-contrast-adjust: none), (-ms-high-contrast: none) {
+      padding: 1rem 3rem;
+    }
+  }
+
+  @include respond(tab-land) {
+    @media (-ms-high-contrast-adjust: none), (-ms-high-contrast: none) {
+      padding: 0 3rem;
+    }
+  }
+}
+
+.checkpoint-performance-heading {
+  position: absolute;
+  color: $color-navy-blue;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-family: "Lato-Regular", sans-serif;
+  line-height: 2rem;
+  letter-spacing: 0.5px;
+}
+
+.no-results {
+  display: flex;
+  min-height: 23vh;
+  background-color: $color-white;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+}
+
+.loading-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 60%);
+  margin: 0.5rem 1rem;
+  height: 14rem;
+}
+
+.loading {
+  display: flex;
+  justify-self: center;
+  align-self: end;
+  margin-left: 1rem;
+  font-size: 1.6rem;
+}
+
+.lds-ring {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  margin: 6px;
+  border: 3px solid $color-navy-blue;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: $color-navy-blue transparent transparent transparent !important;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media print {
+  :host {
+    min-height: 0;
+  }
+  //IE11 specific properties used to detect browser for printing
+  @media (-ms-high-contrast-adjust: none), (-ms-high-contrast: none) {
+    :host {
+      min-height: 0;
+      margin: 0;
+    }
+    .checkpoint-performance-section {
+      padding: 0 2rem 0 2rem;
+    }
+  }
+}

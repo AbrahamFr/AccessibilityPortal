@@ -1,0 +1,174 @@
+{
+  "api": {
+    "issueTracker": {
+      "apiError": "Encountered an unexpected error",
+      "issueTrackerExport": {
+        "invalidRequest": {
+          "currentPageIsRequired": "Current page is required",
+          "currentPageMustBeInteger": "Current page must be a valid integer",
+          "currentPageMustBePositiveInteger": "Current page must be a valid positive integer",
+          "invalidJsonRequestBody": "Please check the JSON request object for the api call",
+          "invalidValueForExportFormat": "Export format is not one of the supported format",
+          "invalidValueForSortColumn": "Sort column value is not one of the supported sort value",
+          "invalidValueForSortDirection": "Sort direction value is not one of the supported sort direction value",
+          "invalidValueForState": "State value selected is not one of the supported state value",
+          "maxImpactMustBeInteger": "Max Impact must be a valid integer",
+          "maxImpactMustBePositiveInteger": "Max Impact must be a valid positive integer",
+          "maxImpactRangeBetween0And100": "Max Impact must be within the range of 0 and 100",
+          "minImpactMustBeInteger": "Min Impact must be a valid integer",
+          "minImpactMustBeLessThanMaxImpact": "Min impact must be less than Max Impact",
+          "minImpactMustBePositiveInteger": "Min Impact must be a valid positive integer",
+          "minImpactRangeBetween0And100": "Min Impact must be within the range of 0 and 100",
+          "onlyScanIdOrScanGroupIdRequired": "Either one and only one of Scan Id Or Scan Group Id is required",
+          "priorityLevelInvalid": "Invalid Priority Level selected",
+          "priorityLevelRangeBetween1And3": "Priority Level must be in between 1 and 3",
+          "recordsToReturnIsRequired": "Records to return is required",
+          "recordsToReturnMustBeInteger": "Records to return must be a valid integer",
+          "recordsToReturnMustBePositiveInteger": "Records to return must be a valid positive integer",
+          "scanGroupIdMustBeInteger": "Scan Group Id must be a valid integer",
+          "scanIdMustBeInteger": "Scan Id must be a valid integer",
+          "scanIdOrScanGroupIdRequired": "Either Scan Id or Scan Group Id is required"
+        }
+      },
+      "issueTrackerList": {
+        "invalidRequest": {
+          "currentPageIsRequired": "Current page is required",
+          "currentPageMustBeInteger": "Current page must be a valid integer",
+          "currentPageMustBePositiveInteger": "Current page must be a valid positive integer",
+          "invalidJsonRequestBody": "Please check the JSON request object for the api call",
+          "invalidValueForSortColumn": "Sort column value is not one of the supported sort value",
+          "invalidValueForSortDirection": "Sort direction value is not one of the supported sort direction value",
+          "invalidValueForState": "State value selected is not one of the supported state value",
+          "maxImpactMustBeInteger": "Max Impact must be a valid integer",
+          "maxImpactMustBePositiveInteger": "Max Impact must be a valid positive integer",
+          "maxImpactRangeBetween0And100": "Max Impact must be within the range of 0 and 100",
+          "minImpactMustBeInteger": "Min Impact must be a valid integer",
+          "minImpactMustBeLessThanMaxImpact": "Min impact must be less than Max Impact",
+          "minImpactMustBePositiveInteger": "Min Impact must be a valid positive integer",
+          "minImpactRangeBetween0And100": "Min Impact must be within the range of 0 and 100",
+          "minRangeValueMustBeInteger": "Min Range must be a valid Integer",
+          "onlyScanIdOrScanGroupIdRequired": "Either one and only one of Scan Id Or Scan Group Id is required",
+          "priorityLevelInvalid": "Invalid Priority Level selected",
+          "priorityLevelRangeBetween1And3": "Priority Level must be in between 1 and 3",
+          "recordsToReturnIsRequired": "Records to return is required",
+          "recordsToReturnMustBeInteger": "Records to return must be a valid integer",
+          "recordsToReturnMustBePositiveInteger": "Records to return must be a valid positive integer",
+          "scanGroupIdMustBeInteger": "Scan Group Id must be a valid integer",
+          "scanIdMustBeInteger": "Scan Id must be a valid integer",
+          "scanIdOrScanGroupIdRequired": "Either Scan Id or Scan Group Id is required"
+        },
+        "noLicenseKeyFound": "No Valid License Found"
+      },
+      "occurrencesByPage": {
+        "invalidRequest": {
+          "currentPageIsRequired": "Current page is required",
+          "currentPageMustBeInteger": "Current page must be a valid integer",
+          "currentPageMustBePositiveInteger": "Current page must be a valid positive integer",
+          "invalidJsonRequestBody": "Please check the JSON request object for the api call",
+          "invalidValueForSortColumn": "Sort column value is not one of the supported sort value",
+          "invalidValueForSortDirection": "Sort direction value is not one of the supported sort direction value",
+          "invalidValueForState": "State value selected is not one of the supported state value",
+          "maxImpactMustBeInteger": "Max Impact must be a valid integer",
+          "maxImpactMustBePositiveInteger": "Max Impact must be a valid positive integer",
+          "maxImpactRangeBetween0And100": "Max Impact must be within the range of 0 and 100",
+          "minImpactMustBeInteger": "Min Impact must be a valid integer",
+          "minImpactMustBeLessThanMaxImpact": "Min impact must be less than Max Impact",
+          "minImpactMustBePositiveInteger": "Min Impact must be a valid positive integer",
+          "minImpactRangeBetween0And100": "Min Impact must be within the range of 0 and 100",
+          "minRangeValueMustBeInteger": "Min Range must be a valid Integer",
+          "onlyScanIdOrScanGroupIdRequired": "Either one and only one of Scan Id Or Scan Group Id is required",
+          "priorityLevelInvalid": "Invalid Priority Level selected",
+          "priorityLevelRangeBetween1And3": "Priority Level must be in between 1 and 3",
+          "recordsToReturnIsRequired": "Records to return is required",
+          "recordsToReturnMustBeInteger": "Records to return must be a valid integer",
+          "recordsToReturnMustBePositiveInteger": "Records to return must be a valid positive integer",
+          "scanGroupIdMustBeInteger": "Scan Group Id must be a valid integer",
+          "scanIdMustBeInteger": "Scan Id must be a valid integer",
+          "scanIdOrScanGroupIdRequired": "Either Scan Id or Scan Group Id is required"
+        }
+      },
+      "occurrencesExport": {
+        "invalidRequest": {
+          "currentPageIsRequired": "Current page is required",
+          "currentPageMustBeInteger": "Current page must be a valid integer",
+          "currentPageMustBePositiveInteger": "Current page must be a valid positive integer",
+          "invalidJsonRequestBody": "Please check the JSON request object for the api call",
+          "invalidValueForSortColumn": "Sort column value is not one of the supported sort value",
+          "invalidValueForSortDirection": "Sort direction value is not one of the supported sort direction value",
+          "invalidValueForState": "State value selected is not one of the supported state value",
+          "maxImpactMustBeInteger": "Max Impact must be a valid integer",
+          "maxImpactMustBePositiveInteger": "Max Impact must be a valid positive integer",
+          "maxImpactRangeBetween0And100": "Max Impact must be within the range of 0 and 100",
+          "minImpactMustBeInteger": "Min Impact must be a valid integer",
+          "minImpactMustBeLessThanMaxImpact": "Min impact must be less than Max Impact",
+          "minImpactMustBePositiveInteger": "Min Impact must be a valid positive integer",
+          "minImpactRangeBetween0And100": "Min Impact must be within the range of 0 and 100",
+          "minRangeValueMustBeInteger": "Min Range must be a valid Integer",
+          "onlyScanIdOrScanGroupIdRequired": "Either one and only one of Scan Id Or Scan Group Id is required",
+          "priorityLevelInvalid": "Invalid Priority Level selected",
+          "priorityLevelRangeBetween1And3": "Priority Level must be in between 1 and 3",
+          "recordsToReturnIsRequired": "Records to return is required",
+          "recordsToReturnMustBeInteger": "Records to return must be a valid integer",
+          "recordsToReturnMustBePositiveInteger": "Records to return must be a valid positive integer",
+          "scanGroupIdMustBeInteger": "Scan Group Id must be a valid integer",
+          "scanIdMustBeInteger": "Scan Id must be a valid integer",
+          "scanIdOrScanGroupIdRequired": "Either Scan Id or Scan Group Id is required"
+        }
+      },
+      "occurrencesList": {
+        "invalidRequest": {
+          "currentPageIsRequired": "Current page is required",
+          "currentPageMustBeInteger": "Current page must be a valid integer",
+          "currentPageMustBePositiveInteger": "Current page must be a valid positive integer",
+          "invalidJsonRequestBody": "Please check the JSON request object for the api call",
+          "invalidValueForSortColumn": "Sort column value is not one of the supported sort value",
+          "invalidValueForSortDirection": "Sort direction value is not one of the supported sort direction value",
+          "invalidValueForState": "State value selected is not one of the supported state value",
+          "maxImpactMustBeInteger": "Max Impact must be a valid integer",
+          "maxImpactMustBePositiveInteger": "Max Impact must be a valid positive integer",
+          "maxImpactRangeBetween0And100": "Max Impact must be within the range of 0 and 100",
+          "minImpactMustBeInteger": "Min Impact must be a valid integer",
+          "minImpactMustBeLessThanMaxImpact": "Min impact must be less than Max Impact",
+          "minImpactMustBePositiveInteger": "Min Impact must be a valid positive integer",
+          "minImpactRangeBetween0And100": "Min Impact must be within the range of 0 and 100",
+          "minRangeValueMustBeInteger": "Min Range must be a valid Integer",
+          "onlyScanIdOrScanGroupIdRequired": "Either one and only one of Scan Id Or Scan Group Id is required",
+          "priorityLevelInvalid": "Invalid Priority Level selected",
+          "priorityLevelRangeBetween1And3": "Priority Level must be in between 1 and 3",
+          "recordsToReturnIsRequired": "Records to return is required",
+          "recordsToReturnMustBeInteger": "Records to return must be a valid integer",
+          "recordsToReturnMustBePositiveInteger": "Records to return must be a valid positive integer",
+          "scanGroupIdMustBeInteger": "Scan Group Id must be a valid integer",
+          "scanIdMustBeInteger": "Scan Id must be a valid integer",
+          "scanIdOrScanGroupIdRequired": "Either Scan Id or Scan Group Id is required"
+        }
+      }
+    }
+  },
+  "reports": {
+    "issueTracker": {
+      "fileName": {
+        "required": "File name is required"
+      },
+      "fileType": {
+        "required": "File format is required"
+      },
+      "issuesType": {
+        "required": "Please select number of issues to be exported"
+      },
+      "apiError": "Encountered an unexpected error"
+    },
+    "occurrences": {
+      "fileName": {
+        "required": "File name is required"
+      },
+      "fileType": {
+        "required": "File format is required"
+      },
+      "occurrencesType": {
+        "required": "Please select number of issues to be exported"
+      },
+      "apiError": "Encountered an unexpected error"
+    }
+  }
+}

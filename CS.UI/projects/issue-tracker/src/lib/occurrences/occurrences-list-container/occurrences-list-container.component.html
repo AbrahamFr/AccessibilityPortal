@@ -1,0 +1,155 @@
+<div
+  [ngClass]="{ 'occurrences-list-container': true, cinv: useCInvStyles }"
+  data-automation="occurrences-list-container"
+  role="group"
+  aria-label="Issue By Occurrence and Page"
+>
+  <app-occurrence-summary
+    [occurrenceSummary]="occurrenceSummary"
+  ></app-occurrence-summary>
+  <section
+    [ngClass]="{ 'occurrences-details-section': true, cinv: useCInvStyles }"
+  >
+    <div
+      role="tablist"
+      [ngClass]="{ 'occurrences-headings-list': true, cinv: useCInvStyles }"
+    >
+      <div>
+        <button
+          #occurrencesListTabs
+          id="occurrences-tab"
+          role="tab"
+          [attr.aria-selected]="
+            (occurrencesListVisibility$ | async) ? 'true' : 'false'
+          "
+          [attr.tabindex]="(occurrencesListVisibility$ | async) ? '0' : '-1'"
+          [ngClass]="{
+            'table-heading-wrapper': true,
+            'lg-margin-rt': true,
+            cinv: useCInvStyles
+          }"
+          (click)="onClickOccurrencesListTab($event)"
+          (keydown)="onKeydownOccurrencesListTab($event)"
+          data-automation="occurrences-tab"
+        >
+          <span
+            [ngClass]="{
+              'active-tab': (occurrencesListVisibility$ | async),
+              'inactive-tab': !(occurrencesListVisibility$ | async),
+              cinv: useCInvStyles
+            }"
+            >Occurrences</span
+          >
+          <ng-container
+            *ngIf="occurrencesByPage$ | async as occurrencesByPages"
+          >
+            <span
+              *ngIf="occurrencesList$ | async as occurrencesList"
+              [ngClass]="{
+                'active-tab': (occurrencesListVisibility$ | async),
+                'inactive-tab': !(occurrencesListVisibility$ | async),
+                cinv: useCInvStyles
+              }"
+              data-automation="occurrences-list-items-count"
+            >
+              ({{
+                occurrencesList["totalFilteredRecords"] > 0
+                  ? occurrencesList["totalFilteredRecords"].toLocaleString()
+                  : occurrencesByPages &&
+                    occurrencesByPages["totalFilteredPages"] > 0
+                  ? occurrencesByPages["totalFilteredPages"].toLocaleString()
+                  : "0"
+              }})
+            </span>
+          </ng-container>
+        </button>
+        <button
+          #occurrencesListTabs
+          id="pages-tab"
+          role="tab"
+          [attr.aria-selected]="
+            (occurrencesListVisibility$ | async) ? 'false' : 'true'
+          "
+          [attr.tabindex]="(occurrencesListVisibility$ | async) ? '-1' : '0'"
+          [ngClass]="{ 'table-heading-wrapper': true, cinv: useCInvStyles }"
+          (click)="onClickOccurrencesListTab($event)"
+          (keydown)="onKeydownOccurrencesListTab($event)"
+          data-automation="pages-tab"
+        >
+          <span
+            [ngClass]="{
+              'active-tab': !(occurrencesListVisibility$ | async),
+              'inactive-tab': (occurrencesListVisibility$ | async),
+              cinv: useCInvStyles
+            }"
+            data-automation="pages-list-items-count"
+            >pages</span
+          >
+          <span
+            *ngIf="occurrencesByPage$ | async as occurrencesByPages"
+            [ngClass]="{
+              'active-tab': !(occurrencesListVisibility$ | async),
+              'inactive-tab': (occurrencesListVisibility$ | async),
+              cinv: useCInvStyles
+            }"
+          >
+            ({{ occurrencesByPages["totalFilteredPages"].toLocaleString() }})
+          </span>
+        </button>
+      </div>
+      <div>
+        <button
+          id="occurrences-filter-button"
+          title="Filter Occurrences"
+          [ngClass]="{ 'filter-btn': true, cinv: useCInvStyles }"
+          (click)="onFilterClick()"
+          data-automation="occurrences-filter-button"
+        >
+          <span
+            *ngIf="
+              occurrenceSearchFilters && occurrenceSearchFilters?.length > 0
+            "
+            [ngClass]="{ 'search-filters-label': true, cinv: useCInvStyles }"
+            data-automation="filters-applied-count"
+            >{{ occurrenceSearchFilters?.length }} filters applied</span
+          >
+          <span
+            [ngClass]="{ 'filter-icon': true, cinv: useCInvStyles }"
+            data-automation="occurrence-filter-icon"
+          ></span>
+        </button>
+      </div>
+    </div>
+    <div class="table-display-container">
+      <app-occurrences-list
+        [ngClass]="
+          (occurrencesListVisibility$ | async)
+            ? 'active-table'
+            : 'inactive-table'
+        "
+        [occurrences]="occurrencesList$ | async"
+        [occurrencesByPage]="occurrencesByPage$ | async"
+      ></app-occurrences-list>
+      <app-occurrences-pages
+        [ngClass]="
+          (occurrencesListVisibility$ | async)
+            ? 'inactive-table'
+            : 'active-table'
+        "
+        [occurrencesByPage]="occurrencesByPage$ | async"
+      ></app-occurrences-pages>
+      <ng-container *ngIf="activeOccurrenceFilter$ | async">
+        <app-occurrences-filter
+          [showFilter]="this.activeOccurrenceFilter$.value"
+          [occurrences]="occurrencesList$ | async"
+          (closeFilter)="onCloseFilter()"
+        ></app-occurrences-filter>
+      </ng-container>
+    </div>
+    <ng-container *ngIf="isOccurrencesExportActive$ | async">
+      <app-occurrences-export
+        [occurrences]="occurrencesList$ | async"
+      ></app-occurrences-export>
+    </ng-container>
+  </section>
+</div>

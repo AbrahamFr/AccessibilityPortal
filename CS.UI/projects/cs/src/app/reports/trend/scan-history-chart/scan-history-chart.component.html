@@ -1,0 +1,84 @@
+<section tabindex="0" class="performance-history-section">
+  <h2 class="performance-history-heading">Performance History</h2>
+  <form
+    [formGroup]="performanceHistoryForm"
+    class="performance-history-container"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="performance-select-wrapper">
+      <div class="scan-type-select">
+        <label for="scan-history-select" class="hide-label"
+          >Select a Scan History Comparison</label
+        >
+        <select
+          id="scan-history-select"
+          tabindex="0"
+          formControlName="selectedPerformanceHistory"
+          class="scan-history"
+          data-automation="scan-history-select"
+          name="selectedChartOption.displayName"
+          (change)="onPerformanceOptionChange()"
+        >
+          <option [value]="selectedChartOption.displayName">{{
+            selectedChartOption.displayName
+          }}</option>
+          <option
+            *ngFor="let option of performanceHistoryOptions | filterOptions: selectedChartOption:'performanceType':performanceHistoryOptions"
+            [ngValue]="option"
+            >{{ option.displayName }}</option
+          >
+        </select>
+      </div>
+      <button
+        type="submit"
+        [disabled]="(submitButtonActivated | async) ? false : true"
+        [ngClass]="
+          (selectOptionChanged | async) ? 'activate-submit-btn' : 'submit-btn'
+        "
+        data-automation="scan-history-submit-btn"
+      >
+        Update
+      </button>
+    </div>
+    <div class="legend-wrapper">
+      <div class="legend-item med-rt-padding">
+        <div class="legend-total"></div>
+        <span class="legend-label">Total</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-fail"></div>
+        <span class="legend-label">Failed</span>
+      </div>
+    </div>
+  </form>
+  <ng-container *ngIf="hasScanGroups; else noresults">
+    <ng-container *ngIf="scanChartResults$ | async as scanChart; else spinner">
+      <ng-container *ngIf="scanChart; else spinner">
+        <ng-container
+          *ngIf="scanChart?.length > 0; else noresults"
+        >
+          <app-scan-chart
+            [data]="scanChart"
+            [selectedChartOption]="selectedChartOption"
+          ></app-scan-chart>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</section>
+
+<ng-template #spinner>
+  <div class="loading-container">
+    <div class="loading">Loading...</div>
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noresults>
+  <div class="no-results" data-automation="no-data-available">No data available</div>
+</ng-template>

@@ -1,0 +1,13 @@
+{
+  "testSite": {
+    "siteUrl": {
+      "required": "Site URL is required"
+    },
+    "complianceType": {
+      "required": "Compliance type is required"
+    },
+    "email": {
+      "required": "Email is required"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "api": {
+    "auditReport": {
+      "auditreportslist": {
+        "createOnly": "No Audit Reports have been uploaded by you"
+      },
+      "delete": {
+        "noPermission": "You do not have permission to delete this file",
+        "recordNotFound": "Record not found"
+      },
+      "download": {
+        "fileNotFound": "File not found on the Server",
+        "recordNotFound": "Record not found in the database"
+      },
+      "edit": {
+        "invalidReportType": "Invalid report type",
+        "noPermission": "You do not have permission to edit this file",
+        "recordNotFound": "Record not found",
+        "reportNameExists": "Report name already exists"
+      },
+      "upload": {
+        "fileNameExists": "File name already exists",
+        "fileNamesNotMatched": "File Names Not Matched",
+        "fileRequestTooLarge": "File too large",
+        "invalidFileExtension": "Invalid file extension",
+        "invalidReportType": "Invalid report type",
+        "invalidUploadFileName": "Invalid upload file name",
+        "reportNameExists": "Report name already exists",
+        "reportNameNotProperLength": "Report Name is not of valid length",
+        "unsupportedFileExtension": "File Extension is not supported"
+      },
+      "apiError": "Encountered an unexpected error"
+    },
+    "notFound": {
+      "apiError": "Encountered an unexpected error"
+    }
+  },
+  "reports": {
+    "auditReport": {
+      "reportFile": {
+        "required": "File is required",
+        "fileNameExists": "File name exists already",
+        "fileTooLarge": "File size exceeds {{value}}MB",
+        "requiredFileType": "File type is not allowed"
+      },
+      "reportName": {
+        "required": "Name is required",
+        "reportNameExists": "Report name already exists",
+        "minLength": "Name is less than 5 characters",
+        "maxLength": "Name exceeds 100 characters"
+      },
+      "reportType": {
+        "required": "Audit report type is required"
+      }
+    }
+  }
+}

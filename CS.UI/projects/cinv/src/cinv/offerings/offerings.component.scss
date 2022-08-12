@@ -1,0 +1,38 @@
+@import "main-cinv";
+
+:host {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 0.95rem;
+  margin-right: 2rem;
+  margin-bottom: 3.125rem;
+  margin-left: 2rem;
+  padding: 1rem;
+  .account-info-area {
+    border-style: solid;
+    border-width: 0.25rem;
+    border-color: $color-purple;
+    background-color: $color-white;
+
+    .account-info-hdr {
+      background-color: $color-purple;
+      text-transform: uppercase;
+      color: $color-white;
+      vertical-align: middle;
+      text-align: center;
+      margin-top: 1rem;
+      margin-right: 1rem;
+      margin-left: 1rem;
+      padding: 1rem;
+    }
+    ul {
+      list-style-type: none;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      li {
+        margin-top: 1.3rem;
+        margin-bottom: 1.3rem;
+      }
+    }
+  }
+}

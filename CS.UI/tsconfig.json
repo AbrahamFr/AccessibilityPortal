@@ -1,0 +1,52 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "module": "es2020",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom",
+      "es5"
+    ],
+    "paths": {
+      "authentication": [
+        "dist/authentication/authentication",
+        "dist/authentication"
+      ],
+      "api-handler": [
+        "dist/api-handler/api-handler",
+        "dist/api-handler"
+      ],
+      "interactions": [
+        "dist/interactions/interactions",
+        "dist/interactions"
+      ],
+      "navigation": [
+        "dist/navigation/navigation",
+        "dist/navigation"
+      ],
+      "core": [
+        "dist/core/core",
+        "dist/core"
+      ],
+      "issue-tracker": [
+        "dist/issue-tracker/issue-tracker",
+        "dist/issue-tracker"
+      ]
+    }
+  }
+}

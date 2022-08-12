@@ -1,0 +1,60 @@
+// MEDIA QUERY MANAGER
+/*
+0 - 600px:    Phone
+600 - 900px:  Tablet portrait
+900 - 1200px: Tablet landscape
+[1200 - 1980] is where normal styles apply
+1980 - 2600px: Desktop
+2600 - 4100px: 4K-Desktop
+
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- laptop
+- desktop
+- 4k-desktop
+
+ORDER: Base + typography > general layout + grid > page layout > components
+
+1em = 16px
+*/
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        @media (max-width: 37.5em) {
+            //600px
+            @content;
+        }
+    }
+    @if $breakpoint == tab-port {
+        @media (max-width: 56.25em) {
+            //900px
+            @content;
+        }
+    }
+    @if $breakpoint == tab-land {
+        @media (max-width: 75em) {
+            //1200px
+            @content;
+        }
+    }
+    @if $breakpoint == laptop {
+        @media (max-width: 123.75em) {
+            //1980px
+            @content;
+        }
+    }
+    @if $breakpoint == desktop {
+        @media (max-width: 162.5em) {
+            //2600px
+            @content;
+        }
+    }
+    @if $breakpoint == 4k-desktop {
+        @media (max-width: 256.25em) {
+            //4100px
+            @content;
+        }
+    }
+}

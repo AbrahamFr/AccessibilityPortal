@@ -1,0 +1,139 @@
+<nav class="sub-nav" aria-label="Reports">
+    <ul class="sub-nav-menu reports-sub-nav-transform">
+      <li id="sub-nav-item_Trend" class="sub-nav-item">
+        <a
+          #reportsSubNav
+          *ngIf="
+            orgVirtualDir &&
+            hasTrendPerm &&
+            !(this.childRoute | lowercase).includes('Trend' | lowercase)
+          "
+          class="sub-nav-item-link"
+          [routerLink]="[reportsUrl, 'Trend']"
+          data-automation="trend-link"
+        >
+          <span class="icon-wrapper">
+            <svg id="logo_Trend" class="icon trend-icon"></svg>
+          </span>
+          <span class="sub-nav-text">Trend</span>
+        </a>
+        <a
+          #reportsSubNav
+          *ngIf="
+            orgVirtualDir &&
+            hasTrendPerm &&
+            (this.childRoute | lowercase).includes('Trend' | lowercase)
+          "
+          class="active-sub-nav sub-nav-item-link"
+          href="javascript:window.location.reload();"
+          data-automation="trend-link"
+        >
+          <span class="icon-wrapper">
+            <svg id="logo_Trend" class="icon trend-icon"></svg>
+          </span>
+          <span class="sub-nav-text">Trend</span>
+        </a>
+      </li>
+      <li id="sub-nav-item_Summary" class="sub-nav-item">
+        <a
+          #reportsSubNav
+          class="sub-nav-item-link"
+          [routerLink]="[
+            'externalRedirect',
+            { externalUrl: homePath.concat('/Summary.aspx') }
+          ]"
+          data-automation="summary-link"
+        >
+          <span class="icon-wrapper">
+            <svg id="logo_Summary" class="icon summary-icon"></svg>
+          </span>
+          <span class="sub-nav-text">Summary</span>
+        </a>
+      </li>
+      <li id="sub-nav-item_IssueTracker" class="sub-nav-item">
+        <a
+          #reportsSubNav
+          *ngIf="
+            orgVirtualDir &&
+            hasIssueTrackerPerm &&
+            !(this.childRoute | lowercase).includes('IssueTracker' | lowercase)
+          "
+          class="sub-nav-item-link"
+          [routerLink]="[reportsUrl, 'IssueTracker']"
+          data-automation="issue-tracker-link"
+        >
+          <span class="icon-wrapper">
+            <svg id="logo_IssueTracker" class="icon issue-tracker-icon"></svg>
+          </span>
+          <span class="sub-nav-text">Issue Tracker</span>
+        </a>
+        <a
+          #reportsSubNav
+          *ngIf="
+            orgVirtualDir &&
+            hasIssueTrackerPerm &&
+            (this.childRoute | lowercase).includes('IssueTracker' | lowercase)
+          "
+          class="active-sub-nav sub-nav-item-link"
+          href="javascript:window.location.reload();"
+          data-automation="issue-tracker-link"
+        >
+          <span class="icon-wrapper">
+            <svg id="logo_IssueTracker" class="icon issue-tracker-icon"></svg>
+          </span>
+          <span class="sub-nav-text">Issue Tracker</span>
+        </a>
+      </li>
+      <li id="sub-nav-item_Views" class="sub-nav-item">
+        <a
+          #reportsSubNav
+          class="sub-nav-item-link"
+          [routerLink]="[
+            'externalRedirect',
+            { externalUrl: homePath.concat('/CustomViews.aspx') }
+          ]"
+          data-automation="views-link"
+        >
+          <span class="icon-wrapper">
+            <svg id="logo_Views" class="icon views-icon"></svg>
+          </span>
+          <span class="sub-nav-text">Custom Views</span>
+        </a>
+      </li>
+      <li id="sub-nav-item_Audit" class="sub-nav-item">
+        <a
+          #reportsSubNav
+          *ngIf="
+            orgVirtualDir &&
+            hasAuditPerm &&
+            !(this.childRoute | lowercase).includes('Audits' | lowercase)
+          "
+          class="sub-nav-item-link"
+          [routerLink]="[reportsUrl, 'Audits']"
+          title="Navigate to Audits"
+          data-automation="audit-link"
+        >
+          <span class="icon-wrapper">
+            <svg id="logo_Audit" class="icon audit-icon"></svg>
+          </span>
+          <span class="sub-nav-text">Audits</span>
+        </a>
+        <a
+          #reportsSubNav
+          *ngIf="
+            orgVirtualDir &&
+            hasAuditPerm &&
+            (this.childRoute | lowercase).includes('Audits' | lowercase)
+          "
+          class="active-sub-nav sub-nav-item-link"
+          href="javascript:window.location.reload();"
+          data-automation="audit-link"
+        >
+          <span class="icon-wrapper">
+            <svg id="logo_Audit" class="icon audit-icon"></svg>
+          </span>
+          <span class="sub-nav-text">Audits</span>
+        </a>
+      </li>
+    </ul>
+</nav>

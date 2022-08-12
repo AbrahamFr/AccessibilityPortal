@@ -1,0 +1,259 @@
+<div class="recent-audits-hdr">
+  <h2>Recent Audits</h2>
+  <input
+    type="image"
+    src="./assets/images/refresh-icon-green.svg"
+    class="recent-audits-refresh-btn"
+    (click)="populateRecentAudits()"
+    data-automation="recent-audits-refresh"
+    alt="Refresh"
+  />
+</div>
+<table cdk-table [dataSource]="recentAudits$" multiTemplateDataRows>
+  <ng-container cdkColumnDef="auditName">
+    <th
+      class="align-left header-container"
+      cdk-header-cell
+      *cdkHeaderCellDef
+      data-automation="recent-audits-list-column"
+    >
+      Audit Name
+    </th>
+    <td
+      class="align-left cdk-cell cell-container"
+      scope="row"
+      cdk-cell
+      *cdkCellDef="let row"
+      data-automation="recent-audits-list-item"
+    >
+      {{ row.scanName }}
+    </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="healthScore">
+    <th
+      class="align-left header-container"
+      cdk-header-cell
+      *cdkHeaderCellDef
+      data-automation="recent-audits-list-column"
+    >
+      Health Score
+    </th>
+    <td
+      class="align-left cdk-cell cell-container"
+      scope="row"
+      cdk-cell
+      *cdkCellDef="let row"
+      data-automation="recent-audits-list-item"
+    >
+      <span *ngIf="row.healthScore == null">--</span>
+      <span *ngIf="row.healthScore != null"
+        >{{ row.healthScore }}% compliant</span
+      >
+    </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="healthScoreChangePercent">
+    <th
+      class="align-left header-container"
+      cdk-header-cell
+      *cdkHeaderCellDef
+      data-automation="recent-audits-list-column"
+    >
+      Change Percentage
+    </th>
+    <td
+      class="align-left cdk-cell cell-container"
+      scope="row"
+      cdk-cell
+      *cdkCellDef="let row"
+      data-automation="recent-audits-list-item"
+    >
+      <span
+        data-automation="recent-audits-health-nochange"
+        *ngIf="
+          row.healthScoreChange != null && row.healthScoreChangePercent == 0
+        "
+        >no change</span
+      >
+      <span
+        data-automation="recent-audits-health-change"
+        *ngIf="row.healthScoreChangePercent > 0"
+      >
+        {{ row.healthScoreChangePercent }}%
+        <span
+          data-automation="recent-audits-health-increase"
+          *ngIf="row.healthScoreChange > 0"
+          >increase</span
+        >
+        <span
+          data-automation="recent-audits-health-decrease"
+          *ngIf="row.healthScoreChange < 0"
+          >decrease</span
+        >
+      </span>
+      <span
+        data-automation="recent-audits-health-novalue"
+        *ngIf="row.healthScoreChange == null"
+        >--</span
+      >
+    </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="checkpointGroupDescription">
+    <th
+      class="align-left header-container"
+      cdk-header-cell
+      *cdkHeaderCellDef
+      data-automation="recent-audits-list-column"
+    >
+      Checkpoint Group
+    </th>
+    <td
+      class="align-left cdk-cell cell-container"
+      scope="row"
+      cdk-cell
+      *cdkCellDef="let row"
+      data-automation="recent-audits-list-item"
+    >
+      {{ row.checkpointGroupDescription }}
+    </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="status">
+    <th
+      class="align-left header-container"
+      cdk-header-cell
+      *cdkHeaderCellDef
+      data-automation="recent-audits-list-column"
+    >
+      Status
+    </th>
+    <td
+      class="align-left cdk-cell cell-container"
+      scope="row"
+      cdk-cell
+      *cdkCellDef="let row"
+      data-automation="recent-audits-list-item"
+    >
+      <span *ngIf="row.status == 1" data-automation="audit-status-running"
+        >running now</span
+      >
+      <span *ngIf="row.status == 2" data-automation="audit-status-completed"
+        >ran {{ row.finished | dateAgo }}</span
+      >
+      <span *ngIf="row.status == 3" data-automation="audit-status-aborted"
+        >aborted</span
+      >
+      <span *ngIf="row.status == 4" data-automation="audit-status-pending"
+        >pending</span
+      >
+    </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="startingUrl">
+    <th
+      class="align-left header-container"
+      cdk-header-cell
+      *cdkHeaderCellDef
+      data-automation="recent-audits-list-column"
+    >
+      Starting Url
+    </th>
+    <td
+      style="width: 20%"
+      class="align-left cdk-cell cell-container"
+      scope="row"
+      cdk-cell
+      *cdkCellDef="let row"
+      data-automation="recent-audits-list-item"
+    >
+      {{ row.startingUrl }}
+    </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="expandedDetail">
+    <td cdk-cell *cdkCellDef="let row" [attr.colspan]="6" class="detail-cell">
+      <div
+        class="row element-detail"
+        [@detailExpand]="row == expandedElement || (selectedAudit && row.scanId === selectedAudit.scanId) ? 'expanded' : 'collapsed'"
+      >
+        <div class="element-detail-data">
+          <span
+            class="pages-in-level"
+            data-automation="recent-audits-pagesAndLevel-message"
+          >
+            Scanned {{ row.totalPagesRan }} pages in {{ row.scannedLevels }} level<span
+              *ngIf="row.levels > 1"
+              >s</span
+            >
+          </span>
+          <input
+            type="button"
+            class="run-audit"
+            (click)="runAudit(row.scanId)"
+            data-automation="recent-audits-runAudit"
+            value="Run"
+            [tabindex]="row == expandedElement || (selectedAudit && row.scanId === selectedAudit.scanId) ? 0 : -1"
+          />
+          <input
+            type="button"
+            class="delete-audit"
+            (click)="deleteAudit(row.scanId)"
+            data-automation="recent-audits-deleteAudit"
+            value="Delete"
+            [tabindex]="row == expandedElement || (selectedAudit && row.scanId === selectedAudit.scanId) ? 0 : -1"
+          />
+          <input
+            type="button"
+            class="edit-audit"
+            (click)="viewEdit($event, row)"
+            data-automation="recent-audits-editAudit"
+            value="Edit"
+            [tabindex]="row == expandedElement || (selectedAudit && row.scanId === selectedAudit.scanId) ? 0 : -1"
+          />
+          <input
+            type="button"
+            class="view-results"
+            (click)="viewResults(row)"
+            data-automation="recent-audits-viewResults"
+            value="View Results"
+            (keydown)="expandedElement = onDetailKeyDown($event, expandedElement, row)"
+            (blur)="expandedElement = onDetailBlur($event, row)"
+            [tabindex]="row == expandedElement || (selectedAudit && row.scanId === selectedAudit.scanId) ? 0 : -1"
+          />
+          <span></span>
+          <img
+            src="./assets/images/event-dark.svg"
+            alt="Schedule Image - coming soon"
+          />
+          <span class="schedule"
+            >Schedule <span class="coming-soon">coming soon!</span></span
+          >
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <!-- Header and Row Declarations -->
+  <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value"></tr>
+  <tr
+    tabindex="0"
+    cdk-row
+    *cdkRowDef="let row; columns: displayedColumns$.value; let idx = dataIndex"
+    [class.expanded-row]="expandedElement === row || (selectedAudit && row.scanId === selectedAudit.scanId)"
+    (click)="expandedElement = onClick($event, expandedElement, row, idx)"
+    (keydown)="expandedElement = onKeyDown($event, expandedElement, row)"
+  ></tr>
+  <tr
+    cdk-row
+    *cdkRowDef="let row; columns: ['expandedDetail']"
+    class="detail-row"
+  ></tr>
+</table>
+<interactions-pagination class="pagination"
+  [numberOfRecordsToShow]="recordsToShow"
+  [totalRecords]="totalRecords"
+  [numberOfRecordsToFetchMore]="20"
+  (seeMore)="getMoreData($event)"
+></interactions-pagination>

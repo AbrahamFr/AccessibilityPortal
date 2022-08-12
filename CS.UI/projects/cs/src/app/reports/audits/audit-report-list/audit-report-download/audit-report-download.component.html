@@ -1,0 +1,38 @@
+<div class="modal">
+  <div class="overlay" (click)="onClose()" data-automation="overlay"></div>
+  <div
+    class="modal_content"
+    role="dialog"
+    aria-labelledby="download-audit-report"
+    cdkTrapFocus
+    aria-modal="true"
+  >
+    <form class="form">
+      <button
+        title="Close Modal"
+        data-automation="close-modal"
+        class="close_modal"
+        type="button"
+        (click)="onClose()"
+      >
+        <svg class="close"></svg>
+      </button>
+      <h2 class="modal-heading" id="download-audit-report">Download Error</h2>
+
+      <api-handler-error-guard [maybeError]="error"></api-handler-error-guard>
+
+      <div class="button-group">
+        <button
+          title="Cancel Button"
+          data-automation="cancel-button"
+          class="btn primary-btn"
+          focus="true"
+          type="button"
+          (click)="onClose()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

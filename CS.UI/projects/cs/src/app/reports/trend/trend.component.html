@@ -1,0 +1,38 @@
+<div class="trend-container" id="main" role="main">
+    <h1 class="hide-element" id="main-content" tabindex="-1">Trend Report</h1>
+    <search-filter
+      [scanGroups]="scanGroups$ | async"
+      [selectedGroup]="selectedGroup$ | async"
+      (scanGroupSelected)="onScanGroupSelected($event)"
+    ></search-filter>
+  
+    <div class="performance-container">
+      <app-page-performance
+        [scanGroupId]="(selectedGroup$ | async)?.scanGroupId"
+        [hasScanGroups]="(scanGroups$ | async)?.length > 0"
+      ></app-page-performance>
+    
+      <app-checkpoint-performance
+        [scanGroupId]="(selectedGroup$ | async)?.scanGroupId"
+        [hasScanGroups]="(scanGroups$ | async)?.length > 0"
+      ></app-checkpoint-performance>
+    </div>
+  
+    <app-scan-history-chart
+      [scanGroupId]="(selectedGroup$ | async)?.scanGroupId"
+      [selectedChartOption]="selectedChartOption$ | async"
+      (performanceOptionSelected)="onPerformanceOptionSelected($event)"
+      [hasScanGroups]="(scanGroups$ | async)?.length > 0"
+    ></app-scan-history-chart>
+  
+    <app-top-failures
+      [scanGroupId]="(selectedGroup$ | async)?.scanGroupId"
+      [hasScanGroups]="(scanGroups$ | async)?.length > 0"
+    ></app-top-failures>
+  
+    <app-scan-performance
+      [scanGroupId]="(selectedGroup$ | async)?.scanGroupId"
+      [hasScanGroups]="(scanGroups$ | async)?.length > 0"
+    ></app-scan-performance>
+  
+  </div>

@@ -1,0 +1,19 @@
+<h1>Your website is being evaluated for its compliance level</h1>
+<div class="results">Results will be presented when they are ready</div>
+<div *ngIf="!errorMsg">
+  <img class="spinner" src="assets/images/loading2.gif" alt="loading image" />
+</div>
+
+<div class="error-message" *ngIf="errorMsg" data-automation="error-message">
+  {{ errorMsg }}
+</div>
+
+<div class="information">
+  <h2>While you wait...</h2>
+  <div class="navigation">
+    Feel free to navigate to
+    <a routerLink="/myhome" data-automation="link-to-home">My Home</a> to create
+    additional audits. When ready, results will be available on the Audit
+    Results page
+  </div>
+</div>

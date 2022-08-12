@@ -1,0 +1,16 @@
+{
+  "api": {
+    "notFound": {
+      "apiError": "Encountered an unexpected error"
+    },
+    "unknown": {
+      "badGateway": "Bad Gateway",
+      "forbidden": "Forbidden Request",
+      "gatewayTimeout": "Gateway Timeout",
+      "notFound": "Resource Not Found",
+      "serverError": "Encountered an unexpected error",
+      "serviceUnavailable": "Service is Unavailable",
+      "unauthorizedRequest": "Unauthorized Request"
+    }
+  }
+}

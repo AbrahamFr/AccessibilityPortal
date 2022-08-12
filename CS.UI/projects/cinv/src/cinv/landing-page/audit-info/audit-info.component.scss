@@ -1,0 +1,167 @@
+@import "main-cinv";
+
+:host {
+  //width: 100%;
+  form {
+    @extend %form-cinv;
+    display: grid;
+    grid-gap: 0.4rem;
+    align-items: center;
+    grid-template:
+      " first-step-number  first-step-text      first-step-text      " auto
+      " .                  url-frm-label        url-frm-input        " auto
+      " .                  .                    url-errors           " auto
+      " .                  guideline-frm-label  guideline-frm-input  " auto
+      " .                  .                    guideline-errors     " auto
+      " second-step-number second-step-text     second-step-text     " auto
+      " .                  email-frm-label      email-frm-input      " auto
+      " .                  .                    email-errors         " auto
+      " .                  password-frm-label   password-frm-input   " auto
+      " .                  .                    password-errors      " auto
+      " .                  first-name-frm-label first-name-frm-input " auto
+      " .                  .                    first-name-errors    " auto
+      " .                  last-name-frm-label  last-name-frm-input  " auto
+      " .                  .                    last-name-errors     " auto
+      " .                  .                    user-messages        " auto
+      " .                  .                    audit-my-site-button " auto
+      " .                  .                    login-link           " auto
+      / 10% 20% 70%;
+    width: 90%;
+    padding-top: 1rem;
+    padding-right: 3rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    color: $color-green;
+
+    %step-number {
+      font-size: 3rem;
+      font-weight: normal;
+      justify-self: center;
+      align-self: center;
+    }
+    .first-step-number {
+      grid-area: first-step-number;
+      @extend %step-number;
+    }
+    .second-step-number {
+      grid-area: second-step-number;
+      @extend %step-number;
+    }
+    %step-text {
+      font-size: 1.5rem;
+      justify-self: start;
+      align-self: center;
+    }
+    .first-step-text {
+      grid-area: first-step-text;
+      @extend %step-text;
+    }
+    .second-step-text {
+      grid-area: second-step-text;
+      @extend %step-text;
+    }
+
+    %frm-label {
+      justify-self: end;
+    }
+    .url-frm-label {
+      grid-area: url-frm-label;
+      @extend %frm-label;
+    }
+    .guideline-frm-label {
+      grid-area: guideline-frm-label;
+      @extend %frm-label;
+    }
+    .email-frm-label {
+      grid-area: email-frm-label;
+      @extend %frm-label;
+    }
+    .password-frm-label {
+      grid-area: password-frm-label;
+      @extend %frm-label;
+    }
+    .first-name-frm-label {
+      grid-area: first-name-frm-label;
+      @extend %frm-label;
+    }
+    .last-name-frm-label {
+      grid-area: last-name-frm-label;
+      @extend %frm-label;
+    }
+
+    %frm-input {
+      font-weight: 500;
+    }
+    .url-frm-input {
+      grid-area: url-frm-input;
+      @extend %frm-input;
+    }
+    .guideline-frm-input {
+      grid-area: guideline-frm-input;
+      @extend %frm-input;
+    }
+    .email-frm-input {
+      grid-area: email-frm-input;
+      @extend %frm-input;
+    }
+    .password-frm-input {
+      grid-area: password-frm-input;
+      @extend %frm-input;
+    }
+    .first-name-frm-input {
+      grid-area: first-name-frm-input;
+      @extend %frm-input;
+    }
+    .last-name-frm-input {
+      grid-area: last-name-frm-input;
+      @extend %frm-input;
+    }
+
+    .error-message {
+      display: inline-block;
+      justify-self: center;
+      align-self: center;
+      color: $color-pink;
+    }
+    .url-errors {
+      grid-area: url-errors;
+    }
+    .guideline-errors {
+      grid-area: guideline-errors;
+    }
+    .email-errors {
+      grid-area: email-errors;
+    }
+    .password-errors {
+      grid-area: password-errors;
+    }
+    .first-name-errors {
+      grid-area: first-name-errors;
+    }
+    .last-name-errors {
+      grid-area: last-name-errors;
+    }
+    .user-messages {
+      grid-area: user-messages;
+      justify-self: center;
+    }
+
+    .audit-my-site-button {
+      grid-area: audit-my-site-button;
+      justify-self: center;
+      margin-top: 3rem;
+      padding-top: 1.7rem;
+      padding-right: 4rem;
+      padding-bottom: 1.7rem;
+      padding-left: 4rem;
+      font-size: 1.3rem;
+    }
+
+    a {
+      grid-area: login-link;
+      justify-self: center;
+      margin-top: 0.3rem;
+      margin-bottom: 4rem;
+    }
+  }
+}

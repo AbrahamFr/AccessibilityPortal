@@ -1,0 +1,369 @@
+<section
+  [ngClass]="{ 'table-container': true, cinv: useCInvStyles }"
+  data-automation="issue-tracker-issues-list-section"
+>
+  <div [ngClass]="{ 'heading-wrapper': true, cinv: useCInvStyles }">
+    <h2 [ngClass]="{ 'table-heading': true, cinv: useCInvStyles }">
+      Issues Found
+      <span *ngIf="filteredIssuesCount"
+        >({{ filteredIssuesCount.toLocaleString() }})</span
+      >
+    </h2>
+    <div [ngClass]="{ 'icon-wrapper': true, cinv: useCInvStyles }">
+      <button
+        id="issue-tracker-filter-button"
+        title="Filter Issues"
+        class="filter-btn"
+        (click)="onFilterClick()"
+        data-automation="issues-list-filter-button"
+      >
+        <span
+          *ngIf="
+            issueTrackerSearchFilters && issueTrackerSearchFilters?.length > 0
+          "
+          [ngClass]="{ 'search-filters-label': true, cinv: useCInvStyles }"
+          data-automation="filters-applied-count"
+          >{{ issueTrackerSearchFilters?.length }} filters applied</span
+        >
+        <span [ngClass]="{ 'filter-icon': true, cinv: useCInvStyles }"></span>
+      </button>
+      <button
+        id="issue-tracker-sort-button"
+        title="Sort Issues"
+        [ngClass]="{ 'sort-icon': true, cinv: useCInvStyles }"
+        (click)="onSortClick()"
+        data-automation="issues-list-sort-button"
+      ></button>
+    </div>
+  </div>
+  <div class="table-wrapper">
+    <table
+      cdk-table
+      role="table"
+      [dataSource]="issues && issues.issueTrackerList"
+      data-automation="issue-tracker-issues-list-table"
+    >
+      <caption class="hide-element" data-automation="issues-list-table-caption">
+        {{
+          issues &&
+          issues.issueTrackerList &&
+          issues.issueTrackerList.length > 0
+            ? "List of Issues Found"
+            : "List of Issues - No Issue Found.  Make a new selection for updated results."
+        }}
+      </caption>
+
+      <ng-container cdkColumnDef="issue">
+        <th
+          class="align-left header-container"
+          cdk-header-cell
+          *cdkHeaderCellDef
+          data-automation="issues-list-issue-column"
+        >
+          Issue
+        </th>
+        <th
+          class="align-left cdk-cell cell-container"
+          scope="row"
+          cdk-cell
+          *cdkCellDef="let row"
+          data-automation="issues-list-issue-item"
+        >
+          {{ row.issue }}
+        </th>
+      </ng-container>
+
+      <ng-container cdkColumnDef="severity">
+        <th
+          cdk-header-cell
+          *cdkHeaderCellDef
+          data-automation="issues-list-severity-column"
+        >
+          Severity
+        </th>
+        <td
+          class="align-center"
+          cdk-cell
+          *cdkCellDef="let row"
+          data-automation="issues-list-severity-item"
+        >
+          {{ row.severity }}
+        </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="impact">
+        <th
+          cdk-header-cell
+          *cdkHeaderCellDef
+          data-automation="issues-list-impact-column"
+        >
+          Impact
+        </th>
+        <td
+          class="align-center"
+          cdk-cell
+          *cdkCellDef="let row"
+          data-automation="issues-list-impact-item"
+        >
+          <ng-container *ngIf="row.impact >= 80">High</ng-container>
+          <ng-container *ngIf="row.impact >= 40 && row.impact < 80"
+            >Med</ng-container
+          >
+          <ng-container *ngIf="row.impact < 40">Low</ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="occurrences">
+        <th
+          cdk-header-cell
+          *cdkHeaderCellDef
+          data-automation="issues-list-occurrences-column"
+        >
+          Occurrences
+        </th>
+        <td
+          class="align-center"
+          cdk-cell
+          *cdkCellDef="let row; let i = index"
+          data-automation="issues-list-occurrences-item"
+        >
+          <ng-container *ngIf="row.occurrences > 0 || row.pages > 0">
+            <button
+              (click)="
+                onOccurrencesClick(
+                  {
+                    issueId: row.issueId,
+                    checkpointId: row.checkpointId,
+                    checkpoint: row.checkpoint
+                  },
+                  {
+                    issue: row.issue,
+                    totalOccurrences: row.occurrences,
+                    totalPages: row.pages,
+                    priorityLevel: row.priorityLevel,
+                    state: row.state,
+                    activatedIssueTrackerElementId: $event.target.id
+                  },
+                  (context = 'occurrences')
+                )
+              "
+              [id]="'occurrences-column-btn-' + i"
+              [ngClass]="{ 'occurrences-btn': true, cinv: useCInvStyles }"
+              data-automation="occurrences-by-occurrences-link"
+            >
+              {{
+                row.occurrences > 0
+                  ? row.occurrences.toLocaleString()
+                  : row.pages.toLocaleString()
+              }}
+            </button>
+          </ng-container>
+          <ng-container *ngIf="row.occurrences === 0 && row.pages === 0">
+            {{ row.occurrences }}
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="pages">
+        <th
+          cdk-header-cell
+          *cdkHeaderCellDef
+          data-automation="issues-list-pages-column"
+        >
+          Pages
+        </th>
+        <td
+          class="align-center"
+          cdk-cell
+          *cdkCellDef="let row; let i = index"
+          data-automation="issues-list-pages-item"
+        >
+          <button
+            (click)="
+              onOccurrencesClick(
+                {
+                  issueId: row.issueId,
+                  checkpointId: row.checkpointId,
+                  checkpoint: row.checkpoint
+                },
+                {
+                  issue: row.issue,
+                  totalOccurrences: row.occurrences,
+                  totalPages: row.pages,
+                  priorityLevel: row.priorityLevel,
+                  state: row.state,
+                  activatedIssueTrackerElementId: $event.target.id
+                },
+                (context = 'pages')
+              )
+            "
+            [id]="'pages-column-btn-' + i"
+            [ngClass]="{ 'occurrences-btn': true, cinv: useCInvStyles }"
+            data-automation="occurrences-by-pages-link"
+          >
+            {{ row.pages.toLocaleString() }}
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="highestPageLevel">
+        <th
+          cdk-header-cell
+          *cdkHeaderCellDef
+          data-automation="issues-list-highest-page-level-column"
+        >
+          Highest Page Level
+        </th>
+        <td
+          class="align-center"
+          cdk-cell
+          *cdkCellDef="let row"
+          data-automation="issues-list-highest-page-level-item"
+        >
+          {{ row.highestPageLevel }}
+        </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="priorityLevel">
+        <th
+          cdk-header-cell
+          *cdkHeaderCellDef
+          data-automation="issues-list-priority-level-column"
+        >
+          Priority Level
+        </th>
+        <td
+          class="align-center"
+          cdk-cell
+          *cdkCellDef="let row"
+          data-automation="issues-list-priority-level-item"
+        >
+          {{ row.priorityLevel }}
+        </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="checkpoint">
+        <th
+          cdk-header-cell
+          *cdkHeaderCellDef
+          data-automation="issues-list-checkpoint-column"
+        >
+          <span *ngIf="useCInvStyles">Test</span
+          ><span *ngIf="!useCInvStyles">Checkpoint</span>
+        </th>
+        <td
+          cdk-cell
+          *cdkCellDef="let row"
+          data-automation="issues-list-checkpoint-item"
+        >
+          <ng-container *ngIf="row.checkpointUrl.length > 0">
+            <a
+              class="checkpoint-url-link"
+              href="{{ row.checkpointUrl }}"
+              data-automation="checkpoint-url-link"
+              target="_blank"
+            >
+              <span
+                ><img
+                  [ngClass]="{ 'open-in-new': true, cinv: useCInvStyles }"
+                  src="./shared-styles./assets/open-in-new-blue.svg"
+              /></span>
+              {{ row.checkpoint }}
+            </a>
+          </ng-container>
+          <ng-container *ngIf="row.checkpointUrl.length == 0">
+            {{ row.checkpoint }}
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="state">
+        <th
+          cdk-header-cell
+          *cdkHeaderCellDef
+          data-automation="issues-list-state-column"
+        >
+          State
+        </th>
+        <td
+          class="align-center"
+          cdk-cell
+          *cdkCellDef="let row"
+          data-automation="issues-list-state-item"
+        >
+          {{ row.state }}
+        </td>
+      </ng-container>
+
+      <tr
+        cdk-header-row
+        [ngClass]="{ cinv: useCInvStyles }"
+        *cdkHeaderRowDef="displayedColumns$.value"
+      ></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value"></tr>
+    </table>
+
+    <ng-container *ngIf="activeFilter$ | async">
+      <app-issue-tracker-filter
+        [checkpoints]="issues.checkpointList"
+        [showFilter]="this.activeFilter$.value"
+        (closeFilter)="onCloseFilter()"
+      ></app-issue-tracker-filter>
+    </ng-container>
+
+    <ng-container *ngIf="activeSort$ | async">
+      <app-issue-tracker-sort
+        [showFilter]="this.activeSort$.value"
+        (closeSort)="onCloseSort()"
+      ></app-issue-tracker-sort>
+    </ng-container>
+  </div>
+
+  <ng-container
+    *ngIf="
+      issues && issues.issueTrackerList && issues.issueTrackerList.length > 0
+    "
+  >
+    <interactions-pagination
+      [numberOfRecordsToShow]="issues.issueTrackerList.length"
+      [totalRecords]="issues.totalFilteredRecords"
+      [numberOfRecordsToFetchMore]="20"
+      (seeMore)="getMoreData($event)"
+    ></interactions-pagination>
+  </ng-container>
+
+  <ng-container *ngIf="hasScansOrScanGroups$ | async; else zeroState">
+    <ng-container *ngIf="issues; else spinner">
+      <api-handler-error-guard [maybeError]="issues">
+        <ng-container
+          *ngIf="issues.issueTrackerList && issues.issueTrackerList.length == 0"
+        >
+          <div class="no-results" data-automation="no-data-available">
+            {{noDataMessage()}}
+          </div>
+        </ng-container>
+      </api-handler-error-guard>
+    </ng-container>
+  </ng-container>
+</section>
+
+<ng-template #spinner>
+  <div>
+    <div class="loading-container" data-automation="loading-spinner-container">
+      <div class="loading">Loading...</div>
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #zeroState>
+  <div class="no-results" data-automation="no-data-zero-state">
+    <p>You currently do not have any Scan data</p>
+    <p>Please run a scan in order to view this report</p>
+  </div>
+</ng-template>

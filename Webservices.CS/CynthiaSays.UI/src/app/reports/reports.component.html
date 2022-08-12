@@ -1,0 +1,120 @@
+<div id="main-content" class="main-container">
+    <h1 id="page-title" class="heading">Reading Report Results</h1>
+
+    <p>The Result Report displays the results of your scan. The top of the report will show the URL that was scanned. Underneath that, there will be a “Scan Completed” with date and time stamp that the scan was run. Based upon the checkpoint group selected on the scan submit form, you will see the “Group” that the page was scanned against (i.e. Section 508, WCAG A, WCAG AA or WCAG AAA).</p>
+    <p>The main body of the report will show a table of results for each checkpoint rule in the group that was tested. The results will list each checkpoint rule, a definition of that rule and the underlying results.  Because this is an interactive report, as you navigate over the line items you will have the ability to expand the results table.</p>
+    <img alt="Reviewing the Results" src="<%= Page.ResolveUrl("~/Content/images/reports/resultsTable.png") %>" class="report-img" />
+    <p>As you expand the results table you will have the ability to drill down to the specific line and column of the Failure, Warning, and Visual Check within the body of the Result Report.</p>
+
+    <h2 class="heading">Result Icons:</h2>
+
+    <table class="results-table" summary="Table displays the result icons.">
+        <caption>The symbol next to each checkpoint that has been tested for indicates the status of that individual test:</caption>
+        <tr class="table-heading">
+            <th class="icon-col" scope="col">Icon</th>
+            <th class="status-col" scope="col">Status</th>
+            <th class="desc" scope="col">Description</th>
+        </tr>
+        <tr>
+            <td class="results-icon">
+                <img alt="Failed" src="<%= Page.ResolveUrl("~/Content/images/reports/Failed.png") %>" /></td>
+            <td class="desc">Failed</td>
+            <td class="desc">The page did not pass the checkpoint and must be fixed</td>
+        </tr>
+        <tr>
+            <td class="results-icon">
+                <img alt="Warning" src="<%= Page.ResolveUrl("~/Content/images/reports/Warning.png") %>" /></td>
+            <td class="desc">Warning</td>
+            <td class="desc">The page passed the checkpoint but could be improved</td>
+        </tr>
+        <tr>
+            <td class="results-icon">
+                <img alt="Passed" src="<%= Page.ResolveUrl("~/Content/images/reports/Passed.png") %>" /></td>
+            <td class="desc">Passed</td>
+            <td class="desc">The page passed the checkpoint</td>
+        </tr>
+        <tr>
+            <td class="results-icon">
+                <img alt="Visual" src="<%= Page.ResolveUrl("~/Content/images/reports/Visual.png") %>" /></td>
+            <td class="desc">Visual</td>
+            <td class="desc">A visual check is required to determine whether this page passed this checkpoint</td>
+        </tr>
+        <tr>
+            <td class="results-icon">
+                <img alt="N/A" src="<%= Page.ResolveUrl("~/Content/images/reports/n-a.png") %>" /></td>
+            <td class="desc">N/A</td>
+            <td class="desc">The checkpoint is not relevant for this page</td>
+        </tr>
+    </table>
+
+    <h2 class="heading padding">Accessing Detailed Violation Information using the Report Hyperlinks:</h2>
+    <p>When selecting the hyperlinks in a Cynthia Says report, the tested page will render on the violations which occurred. A red square will appear around the violations.</p>
+
+    <ol>
+        <li>To scroll through the individual violations on a page, use the arrows on the right side of the colored bar at the top of the page. These arrows have visual labels: <strong>Next Occurrence</strong> and <strong>Previous Occurrence</strong>.
+        <table class="reportDetails" summary="Next Occurrence and Previous Occurrence">
+            <caption>Buttons:</caption>
+            <tr>
+                <td>
+                    <img alt="Next Occurrence" src="<%= Page.ResolveUrl("~/Content/images/reports/nextOccurrence.png") %>" /></td>
+                <td>
+                    <img alt="Previous Occurrence" src="<%= Page.ResolveUrl("~/Content/images/reports/previousOccurrence.png") %>" /></td>
+            </tr>
+            <tr>
+                <th scope="row">Next Occurrence</th>
+                <th scope="row">Previous Occurrence</th>
+            </tr>
+        </table>
+        </li>
+
+        <li>To view the individual violations by number, click on the <strong>Occurrences</strong> pull-down menu and select a number. Select <strong>All</strong> to view all the violations on a page at once. (If more than one violation occurs on a page, show instances will default to <strong>All</strong> when opened.)
+        <p>
+            <img alt="Occurrences" src="<%= Page.ResolveUrl("~/Content/images/reports/Occurrences.png") %>" id="allOccurrences" /><br />
+            <label for="allOccurrences"><em>Occurrences pull-down menu:</em></label>
+        </p>
+        </li>
+
+        <li>To scroll through the pages on which one or more violations occurred, use the arrows in the grey field at the top left. These arrows have visual labels: <strong>Next Page</strong> and <strong>Previous Page</strong>.
+        <table class="reportDetails" summary="Next Page and Previous Page">
+            <caption>Buttons:</caption>
+            <tr>
+                <td>
+                    <img alt="Next Page" src="<%= Page.ResolveUrl("~/Content/images/reports/NextPage.png") %>" /></td>
+                <td>
+                    <img alt="Previous Page" src="<%= Page.ResolveUrl("~/Content/images/reports/PreviousPage.png") %>" /></td>
+            </tr>
+            <tr>
+                <th scope="row">Next Page</th>
+                <th scope="row">Previous Page</th>
+            </tr>
+        </table>
+        </li>
+
+        <li>To see where the violations occur in the HTML, click on the <strong>Code source</strong> button, located at the right end of the colored bar at the top of the page. The source HTML of the page will appear, and red squares will appear around the violations. To see the rendered page again, click on the <strong>Rendered view</strong> button, located in the same place the <strong>Code source</strong> button appeared earlier.
+        <table class="reportDetails" summary="Code source and Rendered view">
+            <caption>Buttons:</caption>
+            <tr>
+                <td>
+                    <img alt="Code source" src="<%= Page.ResolveUrl("~/Content/images/reports/CodeSource.png") %>" /></td>
+                <td>
+                    <img alt="Rendered view" src="<%= Page.ResolveUrl("~/Content/images/reports/RenderedView.png") %>" /></td>
+            </tr>
+            <tr>
+                <th scope="row">Code source</th>
+                <th scope="row">Rendered view</th>
+            </tr>
+        </table>
+        </li>
+
+        <li>If a reference page has been set for the checkpoint, you can access it by clicking on the <strong>How to fix?</strong> button.
+        <p>
+            <img alt="Code source" src="<%= Page.ResolveUrl("~/Content/images/reports/CodeSource.png") %>" id="fix" /><br />
+            <label for="fix"><em>How to fix?</em></label>
+        </p>
+        </li>
+
+        <li>The URL of the page being rendered will appear at the top of the page. Click on it to open the page outside of Compliance Sheriff<span class="sup">&reg;</span>. </li>
+
+    </ol>
+
+</div>

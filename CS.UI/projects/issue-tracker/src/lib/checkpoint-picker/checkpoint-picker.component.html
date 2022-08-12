@@ -1,0 +1,109 @@
+<section
+  [ngClass]="{ 'picker-container': true, cinv: useCInvStyles }"
+  data-automation="checkpoint-picker-container"
+>
+  <p class="label-wrapper">
+    Which <span *ngIf="!useCInvStyles">checkpoint group</span
+    ><span *ngIf="useCInvStyles">guideline</span> do you want to use?
+  </p>
+  <div class="checkpoint-wrapper">
+    <input
+      autocomplete="off"
+      type="text"
+      #searchBox
+      [value]="
+        (expandedDropdown | async)
+          ? searchBox.value
+          : selectedItem && selectedItem.shortDescription
+          ? selectedItem.shortDescription
+          : selectedCheckpointGroup
+      "
+      id="checkpoint-input"
+      [ngClass]="{ 'checkpoint-input': true, cinv: useCInvStyles }"
+      data-automation="checkpoint-search-input"
+      (click)="onClickInput()"
+      [attr.title]="
+        (expandedDropdown | async)
+          ? searchBox.value
+          : selectedItem && selectedItem.shortDescription
+          ? selectedItem.shortDescription
+          : selectedCheckpointGroup
+      "
+      (input)="onSearchChanged(searchBox.value)"
+      (keydown)="onKeyDown($event)"
+    />
+    <div
+      [style.display]="dropdownDisplay | async"
+      [ngClass]="{ 'checkpoint-picker': true, cinv: useCInvStyles }"
+      id="checkpointPicker"
+      (click)="onClickTypeahead($event)"
+    >
+      <ul [style.display]="allItemsDisplay | async">
+        <li
+          #allItemsList
+          [value]=""
+          id=""
+          data-automation="checkpoint-all-groups-list-item"
+          [ngClass]="{
+            'list-item': true,
+            'active-selection':
+              selectedItem && selectedItem.checkpointGroupId == ''
+          }"
+          tabindex="-1"
+          (click)="onSearchSelect('')"
+          (keydown)="onKeyDown($event)"
+        >
+          <span
+            *ngIf="hasScansOrScanGroups$ | async"
+            id="result-item"
+            class="item-name"
+            >All</span
+          >
+        </li>
+        <li
+          *ngFor="let group of checkpointGroups$ | async"
+          #allItemsList
+          tabindex="-1"
+          [id]="group.checkpointGroupId"
+          [value]="group.checkpointGroupId"
+          data-automation="checkpoint-group-all-items-list-item"
+          [ngClass]="{
+            'list-item': true,
+            'active-selection':
+              (group && group.checkpointGroupId) ==
+              (selectedItem && selectedItem.checkpointGroupId)
+          }"
+          (click)="onSearchSelect(group.checkpointGroupId)"
+          (keydown)="onKeyDown($event)"
+        >
+          <span id="group-item" class="item-name">{{
+            group.shortDescription
+          }}</span>
+        </li>
+      </ul>
+      <ul [style.display]="searchResultsDisplay | async">
+        <li
+          *ngFor="let result of searchResult$ | async"
+          #searchResultsList
+          tabindex="-1"
+          [id]="result.checkpointGroupId"
+          [value]="result.checkpointGroupId"
+          data-automation="checkpoint-group-search-result-list-item"
+          [ngClass]="{
+            'list-item': true,
+            'active-selection':
+              result.checkpointGroupId == selectedItem.checkpointGroupId
+          }"
+          (click)="
+            onSearchSelect(result.checkpointGroupId); searchBox.value = ''
+          "
+          (keydown)="onKeyDown($event)"
+        >
+          <span id="result-item" class="item-name">{{
+            result.shortDescription
+          }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

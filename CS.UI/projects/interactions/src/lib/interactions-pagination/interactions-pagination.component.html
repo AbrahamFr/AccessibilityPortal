@@ -1,0 +1,18 @@
+<ng-container *ngIf="totalRecords > 0">
+    <p class="pagination-display">
+    <span class="align-see-more-link">
+      {{ numberOfRecordsToShow }} (of
+      {{ totalRecords }}
+      )
+    </span>
+    <input
+      type="button"
+      id="see-more-link"
+      data-automation="see-more-link"
+      *ngIf="numberOfRecordsToShow < totalRecords"
+      [ngClass]="{ 'see-more-link' : true, cinv: useCInvStyles }"
+      (click)="getMoreData()"
+      value="See more ..."
+    />
+  </p>
+</ng-container>

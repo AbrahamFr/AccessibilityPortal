@@ -1,0 +1,12 @@
+<div class="error-message-wrapper" [ngStyle]="styles">
+    <span class="warning-icon-wrapper">
+      <svg class="warning-icon"></svg>
+    </span>
+    <div
+      id="error-message"
+      class="validation-error-message"
+      translate="{{ errorMessage }}"
+      [translateParams]="{value: param}"
+    ></div>
+  </div>
+  

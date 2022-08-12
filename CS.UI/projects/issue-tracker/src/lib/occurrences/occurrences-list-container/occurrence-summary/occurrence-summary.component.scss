@@ -1,0 +1,83 @@
+@import "main-lib";
+@import "main-cinv";
+
+:host {
+  width: 100%;
+  .heading-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2rem;
+    font-family: "Lato-Bold", sans-serif;
+    &.cinv {
+      font-size: 1.25rem;
+    }
+    .summary-item-issue {
+      font-family: "Lato-Bold", sans-serif;
+      padding-bottom: 0.5rem;
+      &.cinv {
+        color: $color-green;
+      }
+    }
+    .priority-state-wrapper {
+      display: flex;
+      align-items: center;
+      .summary-detail {
+        padding: 0 1rem;
+        &.cinv {
+          color: $color-green;
+        }
+      }
+      .separator-wrapper {
+        margin: 0.5rem 3px 0 4px;
+        .separator {
+          height: 1.8rem;
+          display: inline-block;
+          border: 1px solid $color-navy-blue;
+          &.cinv {
+            border-color: $color-green;
+          }
+        }
+      }
+    }
+  }
+
+  .summary-stats-list {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-left: 1rem;
+    min-height: 5rem;
+    background-color: $color-grey;
+    border-radius: 0.5rem;
+    &.cinv {
+      min-height: 3rem;
+      background-color: $color-gray;
+    }
+    .stat-wrapper {
+      display: flex;
+      align-items: center;
+      margin: 0 4rem;
+      text-align: left;
+      font-family: "Lato-Bold", sans-serif;
+      .count-total {
+        font-size: 3rem;
+        padding: 0 1.5rem 0 1rem;
+        &.cinv {
+          font-size: 1.875rem;
+          color: $color-black;
+        }
+      }
+
+      .count-text {
+        vertical-align: super;
+        font-size: 1.6rem;
+        padding-right: 1rem;
+        &.cinv {
+          font-size: 1rem;
+          color: $color-black;
+        }
+      }
+    }
+  }
+}

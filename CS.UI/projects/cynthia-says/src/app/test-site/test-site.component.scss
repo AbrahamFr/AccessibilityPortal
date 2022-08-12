@@ -1,0 +1,174 @@
+@import "main";
+
+label,
+input {
+  color: $color-white-medium;
+}
+
+.audit-container {
+  background-color: $color-grey;
+  padding: 2rem;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.audit-form {
+  padding: 3rem;
+  width: 60%;
+  background-color: $color-navy-blue;
+}
+
+.heading-wrapper {
+  padding: 2rem 0;
+}
+
+.heading {
+  font-size: 4rem;
+  line-height: 4rem;
+  font-family: "Lato-Light", sans-serif;
+}
+
+.sub-heading {
+  font-size: 1.8rem;
+  color: $color-navy-blue;
+}
+
+.form-fields-container {
+  border: none;
+  padding: 2rem 0;
+}
+
+.file-input-wrapper {
+  width: 80%;
+  margin: auto;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 0;
+  margin: 0 2rem;
+}
+
+.error-message-wrapper {
+  line-height: 1rem;
+  font-size: 1.4rem;
+  position: relative;
+}
+
+.adjust-left-position {
+  left: 25%;
+}
+
+.section-heading {
+  font-size: 2.4rem;
+  color: $color-white-medium;
+}
+
+label {
+  width: 18rem;
+  text-align: right;
+  font-weight: 500;
+  margin-right: 2rem;
+  font-size: 1.8rem;
+}
+
+select,
+input {
+  width: 100%;
+  border: none;
+  font-size: 1.8rem;
+  border-bottom: 1px solid $color-white-light;
+  background: transparent;
+  padding-left: 3px;
+}
+
+.select-compliance-type {
+  background: $color-navy-blue;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 1.8rem;
+  opacity: 0.9;
+  color: $color-white;
+  background: no-repeat 100% url(../../assets/expand-more-icon-white.svg);
+}
+
+option {
+  background-color: $color-navy-blue;
+  color: $color-white-medium;
+  &:hover {
+    background-color: $color-white-medium;
+    color: $color-navy-blue;
+  }
+}
+
+.value-prop-container {
+  display: flex;
+  padding: 2rem;
+  width: 40%;
+}
+
+.value-prop-list {
+  list-style: circle;
+  margin: 3rem;
+}
+
+.list-item {
+  padding: 3rem 3rem 3rem 1rem;
+}
+
+.btn-wrapper {
+  padding: 2rem 2rem 1rem 2rem;
+}
+
+.btn {
+  border: 1px solid $color-grey-medium;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 1.5rem 2rem;
+  color: $color-navy-blue;
+  background-color: $color-white-medium;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 2rem;
+
+  &:disabled {
+    background-color: $color-white-light;
+    color: $color-grey-dark;
+    cursor: unset;
+  }
+}
+
+.download-section {
+  margin: 1rem 0;
+  border: 2px solid $color-grey;
+  padding: 3rem;
+}
+
+.download-heading {
+  font-size: 2.4rem;
+  line-height: 2.44rem;
+  font-family: "Lato-Light", sans-serif;
+}
+
+.download-wrapper {
+  font-size: 1.8rem;
+  padding-top: 1rem;
+}
+
+.download-link {
+  color: $color-primary-blue;
+  cursor: pointer;
+}
+
+.error-message-wrapper {
+  line-height: 1rem;
+  font-size: 1.4rem;
+  position: relative;
+}

@@ -1,0 +1,47 @@
+@import "main";
+
+.trend-container {
+  padding: 3rem 5rem;
+  background-color: $color-grey;
+}
+
+.hide-element {
+  position: absolute;
+  left: -9999px;
+  height: 1px;
+  width: 1px;
+}
+
+.performance-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 25vh;
+  padding: 2rem 0;
+  justify-content: space-between;
+
+  @include respond(phone) {
+    flex-direction: column;
+  }
+}
+
+@media print {
+  .trend-container {
+    padding: 1rem;
+  }
+
+  .performance-container {
+    flex-direction: row;
+    min-height: 0;
+    padding: 1rem 0;
+  }
+
+  //IE11 specific properties used to detect browser for printing
+  @media (-ms-high-contrast-adjust: none), (-ms-high-contrast: none) {
+    .trend-container {
+      padding: 0.5rem;
+    }
+    .performance-container {
+      padding: 0.5rem 0;
+    }
+  }
+}

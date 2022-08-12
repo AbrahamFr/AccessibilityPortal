@@ -1,0 +1,16 @@
+$color-white: #fff;
+
+:host {
+  min-height: 75vh;
+}
+
+.container {
+  background-color: $color-white;
+  min-height: 78vh;
+}
+
+.message {
+  padding: 1rem 2rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+}

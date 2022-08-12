@@ -1,0 +1,174 @@
+@import "main-cinv";
+
+:host {
+  height: 100%;
+  width: 100%;
+  background-color: $color-white;
+  @extend %standard-border;
+
+  .recent-audits-hdr {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas: "recent-audits-hdr-title recent-audits-refresh-btn";
+    justify-content: left;
+
+    h2 {
+      padding: 1rem;
+      color: $color-green;
+      grid-area: recent-audits-hdr-title;
+    }
+    .recent-audits-refresh-btn {
+      align-self: center;
+      width: 2rem;
+      grid-area: recent-audits-refresh-btn;
+    }
+  }
+
+  table.cdk-table {
+    border-spacing: 0px;
+    width: 100%;
+
+    .cdk-header-cell {
+      background-color: $color-green;
+      color: $color-white;
+      height: 2rem;
+    }
+
+    .cdk-cell {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+
+      &:first-child {
+        padding-left: 2rem;
+      }
+    }
+
+    .expanded-row {
+      background-color: $color-gray;
+    }
+
+    tr.detail-row {
+      height: 0;
+
+      .detail-cell {
+        padding: 0rem !important;
+      }
+      .cdk-column-expandedDetail {
+        margin-top: 0px;
+        margin-right: auto;
+        margin-bottom: 0px;
+        margin-left: auto;
+
+        .element-detail {
+          overflow: hidden;
+          height: 5rem;
+
+          .element-detail-data {
+            display: grid;
+            grid-template-columns: repeat(5, auto) 1fr auto auto;
+            align-items: center;
+            border: solid 2px $color-light-blue;
+            font-size: 1.5rem;
+            color: rgba($color-black, 0.5);
+            margin-right: 2rem;
+            margin-left: 2rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+
+            .pages-in-level {
+              padding-top: 0.5rem;
+              padding-right: 0.7rem;
+              padding-bottom: 0.5rem;
+              padding-left: 0.7rem;
+              color: $color-purple;
+              font-size: 1rem;
+            }
+
+            %command-button {
+              display: inline-block;
+              height: 2rem;
+              padding-left: 2.7rem;
+              padding-right: 1rem;
+              border: hidden;
+              color: $color-black;
+              text-transform: uppercase;
+              font-size: 1rem;
+              border-left-color: $color-black;
+              border-left-style: solid;
+              border-left-width: thin;
+              &:hover,
+              &:focus {
+                background-color: $color-light-blue;
+                color: $color-white;
+              }
+            }
+            .run-audit {
+              @extend %command-button;
+              background-image: url("../../../assets/images/play_circle_outline.svg");
+              background-repeat: no-repeat;
+              background-position-x: 0.7rem;
+              background-position-y: center;
+              &:hover,
+              &:focus {
+                background-image: url("../../../assets/images/play_circle_outline-white.svg");
+              }
+            }
+            .delete-audit {
+              @extend %command-button;
+              background-image: url("../../../assets/images/delete-dark.svg");
+              background-repeat: no-repeat;
+              background-position-x: 0.7rem;
+              background-position-y: center;
+              &:hover,
+              &:focus {
+                background-image: url("../../../assets/images/delete-white.svg");
+              }
+            }
+            .edit-audit {
+              @extend %command-button;
+              background-image: url("../../../assets/images/edit-dark.svg");
+              background-repeat: no-repeat;
+              background-position-x: 0.7rem;
+              background-position-y: center;
+              &:hover,
+              &:focus {
+                background-image: url("../../../assets/images/edit-white.svg");
+              }
+            }
+            .view-results {
+              @extend %command-button;
+              background-image: url("../../../assets/images/issue-tracker-icon-dark.svg");
+              background-repeat: no-repeat;
+              background-position-x: 0.7rem;
+              background-position-y: center;
+              &:hover,
+              &:focus {
+                background-image: url("projects/shared-styles/assets/issue-tracker-icon-white.svg");
+              }
+            }
+            .schedule {
+              color: $color-purple;
+              text-transform: uppercase;
+              padding-right: 0.7rem;
+              padding-left: 0.7rem;
+              font-size: 1rem;
+              .coming-soon {
+                text-transform: lowercase;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .cell-container {
+      word-break: break-word;
+    }
+  }
+
+  .pagination {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-right: 1rem;
+  }
+}

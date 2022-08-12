@@ -1,0 +1,21 @@
+<div class="scan-group-container">
+  <label for="scan-group-select" class="scan-group-label">Scan Group </label>
+  <select
+    *ngIf="scanGroups"
+    id="scan-group-select"
+    tabindex="0"
+    [value]="selectedScanGroup && selectedScanGroup.scanGroupId"
+    class="scan-group"
+    (change)="onSelectOptionChange($event.target.value)"
+    data-automation="scan-group-select"
+  >
+    <option *ngIf="selectedScanGroup" [value]="selectedScanGroup.scanGroupId">{{
+      selectedScanGroup.displayName
+    }}</option>
+    <option
+      *ngFor="let group of scanGroups | filterOptions: selectedScanGroup:'scanGroupId':scanGroups"
+      [value]="group.scanGroupId"
+      >{{ group.displayName }}</option
+    >
+  </select>
+</div>

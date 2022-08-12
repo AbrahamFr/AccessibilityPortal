@@ -1,0 +1,57 @@
+<section class="search-section">
+  <h2 class="hide-heading">Select Scan Group</h2>
+  <form [formGroup]="searchForm" class="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <div class="scan-group-container">
+        <label for="scan-group-select" class="scan-group-label"
+          >Scan Group
+        </label>
+        <select
+          id="scan-group-select"
+          tabindex="0"
+          class="scan-group"
+          formControlName="selectedScanGroup"
+          (change)="onSelectOptionChange()"
+          data-automation="scan-group-select"
+        >
+          <option *ngIf="selectedGroup" [value]="selectedGroup.displayName">{{
+            selectedGroup.displayName
+          }}</option>
+          <option
+            *ngFor="
+              let group of scanGroups | filterOptions: selectedGroup:'scanGroupId':scanGroups
+            "
+            [ngValue]="group"
+            >{{ group.displayName }}</option
+          >
+        </select>
+      </div>
+      <button
+        type="submit"
+        [disabled]="(submitButtonActivated | async) ? false : true"
+        [ngClass]="
+          (selectOptionChanged | async) ? 'activate-submit-btn' : 'submit-btn'
+        "
+        data-automation="scan-group-submit-btn"
+      >
+        Apply
+      </button>
+    </div>
+    <div
+      class="last-scan-date-wrapper"
+      data-automation="last-scan-date-message"
+    >
+      <div *ngIf="selectedGroup && selectedGroup.lastScanDate; else zeroState">
+        <label for="last-scan-date">Last scan was </label>
+        <span id="last-scan-date" data-automation="last-scan-date">{{
+          selectedGroup.lastScanDate | date: "MM/dd/yyyy"
+        }}</span>
+      </div>
+    </div>
+  </form>
+</section>
+
+<ng-template #zeroState>
+  <label class="hide-label">Last Scan Date</label>
+  <span>You currently have no scheduled scan groups</span>
+</ng-template>

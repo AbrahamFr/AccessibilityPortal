@@ -1,0 +1,8 @@
+<Project>
+    <Target Name="NpmInstall"
+        Inputs="package.json;package-lock.json"
+        Outputs="node_modules\.npm-integrity">
+        <Exec Command="cd &quot;$(MSBuildProjectDirectory)&quot;&#xA;npm install" />
+        <Touch Files="$(MSBuildProjectDirectory)\node_modules\.npm-integrity" AlwaysCreate="true" />
+    </Target>
+</Project>

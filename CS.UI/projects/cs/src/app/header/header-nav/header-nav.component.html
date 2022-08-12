@@ -1,0 +1,80 @@
+<ul class="nav-menu">
+  <li id="navitem_Dashboard" class="nav-item">
+    <a
+      class="nav-item-link"
+      [routerLink]="[
+        'externalRedirect',
+        { externalUrl: homePath.concat('/Dashboard.aspx') }
+      ]"
+      data-automation="dashboard-link"
+    >
+      <span class="icon-wrapper">
+        <svg id="logo_Dashboard" class="icon dashboard-icon-dark"></svg>
+      </span>
+      <span class="nav-text">Dashboard</span>
+    </a>
+  </li>
+  <li id="navitem_Scans" class="nav-item">
+    <a
+      class="nav-item-link"
+      [routerLink]="[
+        'externalRedirect',
+        { externalUrl: homePath.concat('/Scans.aspx') }
+      ]"
+      data-automation="scans-link"
+    >
+      <span class="icon-wrapper">
+        <svg id="logo_Scans" class="icon scans-icon-dark"></svg>
+      </span>
+      <span class="nav-text">Scans</span>
+    </a>
+  </li>
+  <li id="navitem_Checkpoints" class="nav-item">
+    <a
+      class="nav-item-link"
+      [routerLink]="[
+        'externalRedirect',
+        { externalUrl: homePath.concat('/Checkpoints.aspx') }
+      ]"
+      data-automation="checkpoints-link"
+    >
+      <span class="icon-wrapper">
+        <svg
+          id="logo_Checkpoints"
+          class="icon checkpoints-icon-dark"
+        ></svg>
+      </span>
+      <span class="nav-text">Checkpoints</span>
+    </a>
+  </li>
+  <li id="navitem_Reports" class="nav-item active-nav">
+    <a
+      class="nav-item-link"
+      [routerLink]="[
+        'externalRedirect',
+        { externalUrl: homePath.concat('/Reports.aspx') }
+      ]"
+      data-automation="reports-link"
+    >
+      <span class="icon-wrapper">
+        <svg id="logo_Reports" class="icon reports-icon-dark"></svg>
+      </span>
+      <span class="nav-text">Reports</span>
+    </a>
+  </li>
+  <li id="navitem_Alerts" class="nav-item">
+    <a
+      class="nav-item-link"
+      [routerLink]="[
+        'externalRedirect',
+        { externalUrl: homePath.concat('/Alerts.aspx') }
+      ]"
+      data-automation="alerts-link"
+    >
+      <span class="icon-wrapper">
+        <svg id="logo_Alerts" class="icon alerts-icon-dark"></svg>
+      </span>
+      <span class="nav-text">Alerts</span>
+    </a>
+  </li>
+</ul>

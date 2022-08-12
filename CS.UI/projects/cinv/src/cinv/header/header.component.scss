@@ -1,0 +1,21 @@
+@import "main-cinv";
+
+:host {
+  display: grid;
+  grid-template-columns: auto auto;
+  background-color: $color-green;
+  align-items: center;
+  justify-content: stretch;
+  color: $color-white;
+
+  .header-logo {
+    text-decoration: none;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+    align-self: center;
+    .logo-img-link {
+      height: 4rem;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@import "main";
+
+.footer {
+  display: flex;
+  font-size: 1.4rem;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-white;
+  margin: 1rem 0;
+  padding-top: 1rem;
+
+  &__version {
+    padding-right: 0.5rem;
+  }
+
+  &__version-number {
+    padding-right: 1.5rem;
+  }
+
+  &__list {
+    display: flex;
+    list-style: none;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #2c6094;
+  }
+
+  &__separator {
+    padding: 0 1rem;
+  }
+  &__copyright {
+    padding: 0 0.5rem 0 1rem;
+  }
+}
+
+@media print {
+  .footer {
+    display: none;
+  }
+}

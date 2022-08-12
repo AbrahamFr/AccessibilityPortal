@@ -1,0 +1,277 @@
+[
+  {
+    "name": "Alaska",
+    "abbreviation": "AK",
+    "FIPS": "2"
+  },
+  {
+    "name": "Alabama",
+    "abbreviation": "AL",
+    "FIPS": "1"
+  },
+  {
+    "name": "Arkansas",
+    "abbreviation": "AR",
+    "FIPS": "5"
+  },
+  {
+    "name": "American Samoa",
+    "abbreviation": "AS",
+    "FIPS": "60"
+  },
+  {
+    "name": "Arizona",
+    "abbreviation": "AZ",
+    "FIPS": "4"
+  },
+  {
+    "name": "California",
+    "abbreviation": "CA",
+    "FIPS": "6"
+  },
+  {
+    "name": "Colorado",
+    "abbreviation": "CO",
+    "FIPS": "8"
+  },
+  {
+    "name": "Connecticut",
+    "abbreviation": "CT",
+    "FIPS": "9"
+  },
+  {
+    "name": "District of Columbia",
+    "abbreviation": "DC",
+    "FIPS": "11"
+  },
+  {
+    "name": "Delaware",
+    "abbreviation": "DE",
+    "FIPS": "10"
+  },
+  {
+    "name": "Florida",
+    "abbreviation": "FL",
+    "FIPS": "12"
+  },
+  {
+    "name": "Georgia",
+    "abbreviation": "GA",
+    "FIPS": "13"
+  },
+  {
+    "name": "Guam",
+    "abbreviation": "GU",
+    "FIPS": "66"
+  },
+  {
+    "name": "Hawaii",
+    "abbreviation": "HI",
+    "FIPS": "15"
+  },
+  {
+    "name": "Iowa",
+    "abbreviation": "IA",
+    "FIPS": "19"
+  },
+  {
+    "name": "Idaho",
+    "abbreviation": "ID",
+    "FIPS": "16"
+  },
+  {
+    "name": "Illinois",
+    "abbreviation": "IL",
+    "FIPS": "17"
+  },
+  {
+    "name": "Indiana",
+    "abbreviation": "IN",
+    "FIPS": "18"
+  },
+  {
+    "name": "Kansas",
+    "abbreviation": "KS",
+    "FIPS": "20"
+  },
+  {
+    "name": "Kentucky",
+    "abbreviation": "KY",
+    "FIPS": "21"
+  },
+  {
+    "name": "Louisiana",
+    "abbreviation": "LA",
+    "FIPS": "22"
+  },
+  {
+    "name": "Massachusetts",
+    "abbreviation": "MA",
+    "FIPS": "25"
+  },
+  {
+    "name": "Maryland",
+    "abbreviation": "MD",
+    "FIPS": "24"
+  },
+  {
+    "name": "Maine",
+    "abbreviation": "ME",
+    "FIPS": "23"
+  },
+  {
+    "name": "Michigan",
+    "abbreviation": "MI",
+    "FIPS": "26"
+  },
+  {
+    "name": "Minnesota",
+    "abbreviation": "MN",
+    "FIPS": "27"
+  },
+  {
+    "name": "Missouri",
+    "abbreviation": "MO",
+    "FIPS": "29"
+  },
+  {
+    "name": "Mississippi",
+    "abbreviation": "MS",
+    "FIPS": "28"
+  },
+  {
+    "name": "Montana",
+    "abbreviation": "MT",
+    "FIPS": "30"
+  },
+  {
+    "name": "North Carolina",
+    "abbreviation": "NC",
+    "FIPS": "37"
+  },
+  {
+    "name": "North Dakota",
+    "abbreviation": "ND",
+    "FIPS": "38"
+  },
+  {
+    "name": "Nebraska",
+    "abbreviation": "NE",
+    "FIPS": "31"
+  },
+  {
+    "name": "New Hampshire",
+    "abbreviation": "NH",
+    "FIPS": "33"
+  },
+  {
+    "name": "New Jersey",
+    "abbreviation": "NJ",
+    "FIPS": "34"
+  },
+  {
+    "name": "New Mexico",
+    "abbreviation": "NM",
+    "FIPS": "35"
+  },
+  {
+    "name": "Nevada",
+    "abbreviation": "NV",
+    "FIPS": "32"
+  },
+  {
+    "name": "New York",
+    "abbreviation": "NY",
+    "FIPS": "36"
+  },
+  {
+    "name": "Ohio",
+    "abbreviation": "OH",
+    "FIPS": "39"
+  },
+  {
+    "name": "Oklahoma",
+    "abbreviation": "OK",
+    "FIPS": "40"
+  },
+  {
+    "name": "Oregon",
+    "abbreviation": "OR",
+    "FIPS": "41"
+  },
+  {
+    "name": "Pennsylvania",
+    "abbreviation": "PA",
+    "FIPS": "42"
+  },
+  {
+    "name": "Puerto Rico",
+    "abbreviation": "PR",
+    "FIPS": "72"
+  },
+  {
+    "name": "Rhode Island",
+    "abbreviation": "RI",
+    "FIPS": "44"
+  },
+  {
+    "name": "South Carolina",
+    "abbreviation": "SC",
+    "FIPS": "45"
+  },
+  {
+    "name": "South Dakota",
+    "abbreviation": "SD",
+    "FIPS": "46"
+  },
+  {
+    "name": "Tennessee",
+    "abbreviation": "TN",
+    "FIPS": "47"
+  },
+  {
+    "name": "Texas",
+    "abbreviation": "TX",
+    "FIPS": "48"
+  },
+  {
+    "name": "Utah",
+    "abbreviation": "UT",
+    "FIPS": "49"
+  },
+  {
+    "name": "Virginia",
+    "abbreviation": "VA",
+    "FIPS": "51"
+  },
+  {
+    "name": "Virgin Islands",
+    "abbreviation": "VI",
+    "FIPS": "78"
+  },
+  {
+    "name": "Vermont",
+    "abbreviation": "VT",
+    "FIPS": "50"
+  },
+  {
+    "name": "Washington",
+    "abbreviation": "WA",
+    "FIPS": "53"
+  },
+  {
+    "name": "Wisconsin",
+    "abbreviation": "WI",
+    "FIPS": "55"
+  },
+  {
+    "name": "West Virginia",
+    "abbreviation": "WV",
+    "FIPS": "54"
+  },
+  {
+    "name": "Wyoming",
+    "abbreviation": "WY",
+    "FIPS": "56"
+  }
+]

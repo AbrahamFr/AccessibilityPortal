@@ -1,0 +1,28 @@
+<form [formGroup]="emailPasswordResetForm" (ngSubmit)="onSubmit()">
+  <!-- <h2>Email Reset</h2> -->
+  <label class="email-frm-label" for="emailAddress">Email</label>
+  <input
+    class="email-frm-input"
+    type="text"
+    id="emailAddress"
+    data-automation="input-email"
+    formControlName="emailAddress"
+  />
+
+  <button
+    class="email-password-button"
+    data-automation="button-submit"
+    type="submit"
+  >
+    Send Password Reset Link
+  </button>
+
+  <div
+    [innerHTML]="userMessage"
+    data-automation="user-messages"
+    class="user-messages"
+  ></div>
+  <a routerLink="/landing" data-automation="link-landing"
+    >Don’t have an account? Get one here.</a
+  >
+</form>

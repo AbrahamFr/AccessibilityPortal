@@ -1,0 +1,154 @@
+<form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+  <div class="first-step-number">1</div>
+  <div class="first-step-text">Tell us what you want to audit</div>
+  <label class="url-frm-label" for="url">Start at this page</label>
+  <input
+    class="url-frm-input"
+    type="text"
+    id="url"
+    data-automation="input-url-start-page"
+    formControlName="url"
+    style="height: 30px"
+  />
+  <div class="url-errors">
+    <div class="error-message" *ngIf="isSubmitted && f.url.errors">
+      <small
+        *ngIf="f.url.errors.required"
+        data-automation="error-input-url-required"
+        >Url is Required</small
+      >
+      <small
+        *ngIf="f.url.errors.pattern"
+        data-automation="error-input-url-pattern"
+        >Please provide valid Url</small
+      >
+    </div>
+  </div>
+  <label class="guideline-frm-label" for="guideline">Use this guideline</label>
+  <select
+    class="guideline-frm-input"
+    id="guideline"
+    data-automation="dropdown-guideline"
+    formControlName="guideline"
+  >
+    <option value="0200">Section 508</option>
+    <option value="W21_A">WCAG 2.1 A</option>
+    <option value="W21_AA">WCAG 2.1 AA</option>
+    <option value="W21_AAA">WCAG 2.1 AAA</option>
+  </select>
+  <div class="guideline-errors">
+    <div class="error-message" *ngIf="isSubmitted && f.guideline.errors">
+      <small
+        *ngIf="f.guideline.errors.required"
+        data-automation="error-input-guideline-required"
+        >Please select a Guideline</small
+      >
+    </div>
+  </div>
+  <div class="second-step-number">2</div>
+  <div class="second-step-text">Create an account</div>
+  <label class="email-frm-label" for="userName">Email</label>
+  <input
+    class="email-frm-input"
+    type="text"
+    id="userName"
+    data-automation="input-email"
+    formControlName="userName"
+  />
+  <div class="email-errors">
+    <div class="error-message" *ngIf="isSubmitted && f.userName.errors">
+      <small
+        *ngIf="f.userName.errors.required"
+        data-automation="error-input-email-required"
+        >Email is Required</small
+      >
+      <small
+        *ngIf="f.userName.errors.pattern"
+        data-automation="error-input-email-pattern"
+        >Please provide valid Email Address</small
+      >
+    </div>
+  </div>
+  <label class="password-frm-label" for="password">Password</label>
+  <input
+    class="password-frm-input"
+    type="password"
+    id="password"
+    data-automation="input-password"
+    formControlName="password"
+  />
+  <div class="password-errors">
+    <div class="error-message" *ngIf="isSubmitted && f.password.errors">
+      <small
+        *ngIf="f.password.errors.required"
+        data-automation="error-input-password-required"
+        >Password is Required</small
+      >
+      <small
+        *ngIf="f.password.errors.pattern"
+        data-automation="error-input-password-pattern"
+        >Password minimum length is 8 and should include uppercase, lowercase,
+        and one special character</small
+      >
+    </div>
+  </div>
+
+  <label class="first-name-frm-label" for="firstName">First Name</label>
+  <input
+    class="first-name-frm-input"
+    type="text"
+    id="firstName"
+    data-automation="input-firstName"
+    formControlName="firstName"
+  />
+  <div class="first-name-errors">
+    <div class="error-message" *ngIf="isSubmitted && f.firstName.errors">
+      <small
+        *ngIf="f.firstName.errors.required"
+        data-automation="error-input-firstName-required"
+        >First Name is Required</small
+      >
+      <small
+        *ngIf="(f.firstName.errors.pattern && f.firstName.touched)"
+        data-automation="error-input-firstName-pattern"
+        >First Name should only contain alphabetic characters</small
+      >      
+    </div>
+  </div>
+
+  <label class="last-name-frm-label" for="lastName">Last Name</label>
+  <input
+    class="last-name-frm-input"
+    type="text"
+    id="lastName"
+    data-automation="input-lastName"
+    formControlName="lastName"
+  />
+  <div class="last-name-errors">
+    <div class="error-message" *ngIf="isSubmitted && f.lastName.errors">
+      <small
+        *ngIf="f.lastName.errors.required"
+        data-automation="error-input-lastName-required"
+        >Last Name is Required</small
+      >
+      <small
+      *ngIf="f.lastName.errors.pattern && f.lastName.touched"
+      data-automation="error-input-lastName-pattern"
+      >Last Name should only contain alphabetic characters</small
+    >      
+    </div>
+  </div>
+  <div data-automation="user-messages" class="user-messages">
+    {{ errorMsg }}
+  </div>
+  <button
+    class="audit-my-site-button"
+    type="submit"
+    data-automation="button-submit-audit-my-site"
+  >
+    AUDIT MY SITE
+  </button>
+  <a routerLink="/login" data-automation="link-account-login"
+    >Already have an account? Log in here.</a
+  >
+</form>

@@ -1,0 +1,250 @@
+{
+    "options": {
+      "chart": {
+        "title": {
+          "text": "Total Pages and Failed Pages by Run Date",
+          "margin": 3,
+          "font_size": 8
+        },
+        "area": {
+          "x": 0,
+          "y": 0,
+          "width": 1100,
+          "height": 300
+        },
+        "padding": 15,
+        "chart_type": "bar"
+      },
+      "multiseries": {
+        "type": "stacked"
+      },
+      "axis": {
+        "min_interval": 25,
+        "datapoint_margin": 5,
+        "x": {
+          "title": {
+            "text": "Run Date",
+            "margin": 8,
+            "font_size": 16
+          },
+          "tick": {
+            "margin": 8,
+            "font_size": 13,
+            "opacity": 1,
+            "stroke_width": 2,
+            "stroke_linecap": "round",
+            "length": 10
+          },
+          "values": {
+            "start": null,
+            "end": null,
+            "interval": null
+          },
+          "stroke_width": 2,
+          "stroke_linecap": "round"
+        },
+        "y": {
+          "title": {
+            "text": "Pages",
+            "margin": 20,
+            "font_size": 14
+          },
+          "tick": {
+            "margin": 3,
+            "font_size": 14,
+            "opacity": 1,
+            "stroke_width": 2,
+            "stroke_linecap": "round",
+            "length": 10
+          },
+          "values": {
+            "start": null,
+            "end": null,
+            "interval": null
+          },
+          "stroke_width": 2,
+          "stroke_linecap": "round"
+        }
+      },
+      "bar": {
+        "bar_width_min": 10
+      },
+      "line": {
+        "line_width": 5,
+        "base_symbol_size": 10
+      },
+      "pie": {
+        "label": {
+          "margin": 5,
+          "font_size": 15
+        },
+        "radius": {
+          "outer": "auto",
+          "inner": 0.5
+        }
+      },
+      "scatterplot": {
+        "clusters": {
+          "active": false,
+          "count": {
+            "value": 2,
+            "min": 0,
+            "max": 30
+          }
+        },
+        "trendline": {
+          "active": false,
+          "linear": true,
+          "polynomial": false,
+          "polynomial_degree": {
+            "value": 2,
+            "min": 0,
+            "max": 5
+          }
+        }
+      },
+      "map": {
+        "map_id": "us_states",
+        "padding": 0.01
+      },
+      "colors": {
+        "primary": "hsl(270, 50%, 50%)",
+        "accent": "hsl(270, 50%, 25%)",
+        "active": "hsl(270, 50%, 65%)",
+        "palette": null
+      }
+    },
+    "facets": {
+      "scanGroupRunId": {
+        "label": "Scan Group Run Id",
+        "datatype": "numeric",
+        "selected": false,
+        "chart_type": "bar",
+        "axis": null,
+        "order": 0,
+        "color": "hsl(225, 30%, 52%)",
+        "symbol_id": null
+      },
+      "scanGroupId": {
+        "label": "Scan Group Id",
+        "datatype": "numeric",
+        "selected": false,
+        "chart_type": "bar",
+        "axis": null,
+        "order": 0,
+        "color": "hsl(75, 43%, 45%)",
+        "symbol_id": null
+      },
+      "runDate": {
+        "label": "Run Date",
+        "datatype": "date",
+        "selected": true,
+        "chart_type": "bar",
+        "axis": "independent",
+        "order": 0,
+        "color": "hsl(12, 69%, 35%)",
+        "symbol_id": null
+      },
+      "totalPages": {
+        "label": "Total Pages",
+        "datatype": "numeric",
+        "selected": true,
+        "chart_type": "bar",
+        "axis": "dependent",
+        "order": 0,
+        "color": "hsl(210, 54%, 38%)",
+        "symbol_id": null
+      },
+      "passedPages": {
+        "label": "Passed Pages",
+        "datatype": "numeric",
+        "selected": false,
+        "chart_type": "bar",
+        "axis": null,
+        "order": 0,
+        "color": "hsl(215, 37%, 66%)",
+        "symbol_id": null
+      },
+      "failedPages": {
+        "label": "Failed Pages",
+        "datatype": "numeric",
+        "selected": true,
+        "chart_type": "line",
+        "axis": "dependent",
+        "order": 1,
+        "color": "hsl(20, 100%, 73%)",
+        "symbol_id": "symbol_circle"
+      },
+      "passedPagePercent": {
+        "label": "Passed Page Percent",
+        "datatype": "numeric",
+        "selected": false,
+        "chart_type": "bar",
+        "axis": null,
+        "order": 0,
+        "color": "hsl(34, 57%, 46%)",
+        "symbol_id": null
+      },
+      "failedPagePercent": {
+        "label": "Failed Page Percent",
+        "datatype": "numeric",
+        "selected": false,
+        "chart_type": "bar",
+        "axis": null,
+        "order": 0,
+        "color": "hsl(51, 56%, 64%)",
+        "symbol_id": null
+      },
+      "totalCheckpoints": {
+        "label": "Total Checkpoints",
+        "datatype": "numeric",
+        "selected": false,
+        "chart_type": "bar",
+        "axis": null,
+        "order": 0,
+        "color": "hsl(210, 54%, 38%)",
+        "symbol_id": null
+      },
+      "passedCheckpoints": {
+        "label": "Passed Checkpoints",
+        "datatype": "numeric",
+        "selected": false,
+        "chart_type": "bar",
+        "axis": null,
+        "order": 0,
+        "color": "#2c6094",
+        "symbol_id": null
+      },
+      "failedCheckpoints": {
+        "label": "Failed Checkpoints",
+        "datatype": "numeric",
+        "selected": false,
+        "chart_type": "bar",
+        "axis": null,
+        "order": 0,
+        "color": "hsl(20, 100%, 73%)",
+        "symbol_id": null
+      },
+      "passedCheckpointPercent": {
+        "label": "Passed Checkpoint Percent",
+        "datatype": "numeric",
+        "selected": false,
+        "chart_type": "bar",
+        "axis": null,
+        "order": 0,
+        "color": "hsl(30, 42%, 35%)",
+        "symbol_id": null
+      },
+      "failedCheckpointPercent": {
+        "label": "Failed Checkpoint Percent",
+        "datatype": "numeric",
+        "selected": false,
+        "chart_type": "bar",
+        "axis": null,
+        "order": 0,
+        "color": "hsl(0, 100%, 50%)",
+        "symbol_id": null
+      }
+    }
+  }
+  

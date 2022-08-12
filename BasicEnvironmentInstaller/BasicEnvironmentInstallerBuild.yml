@@ -1,0 +1,66 @@
+#Build Definition: Basic Environment Installer Build
+#This build will create the components for the 
+#Basic Environment installer. The Basic Environment
+#establishes the shared directory and main/meta
+#databases of the Compliance Sheriff product. 
+
+pool:
+  name: CSBuild
+  demands: msbuild
+
+trigger:
+  branches:
+    include:
+     - RC6.3
+  paths:
+    include:
+     - src/Common/BasicEnvironmentInstaller/*
+
+variables:
+  BuildConfiguration: 'release'
+  BuildDefinitionName: 'Installer_BasicEnvironment Build'
+  BasicEnvInstallerProjSource: 'src/Common/BasicEnvironmentInstaller'
+
+name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+steps:
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 5.x'
+  inputs:
+    versionSpec: 5.x
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore ComplianceSheriff.sln'
+  inputs:
+    restoreSolution: ComplianceSheriff.sln
+    feedsToUse: config
+    nugetConfigPath: .nuget/NuGet.Config
+
+- task: MSBuild@1
+  displayName: 'MSBuild BasicEnvironmentSetup'
+  inputs:
+    solution: $(BasicEnvInstallerProjSource)/BasicEnvironment.Setup/BasicEnvironment.Setup.csproj
+    msbuildArchitecture: x64
+    configuration: '$(BuildConfiguration)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: BasicEnvironmentSetup'
+  inputs:
+    PathtoPublish: '$(BasicEnvInstallerProjSource)/BasicEnvironment.Setup/bin/$(BuildConfiguration)'
+    ArtifactName: BasicEnvironmentSetupDrop
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish BasicEnvironmentPrereq'
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: $(BasicEnvInstallerProjSource)/BasicEnvironment.Prereq/BasicEnvironment.Prereq.csproj
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory) --self-contained --runtime win-x64'
+    zipAfterPublish: false
+    modifyOutputPath: false
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: BasicEnvironmentPrereq'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+    ArtifactName: BasicEnvironmentPrereqDrop

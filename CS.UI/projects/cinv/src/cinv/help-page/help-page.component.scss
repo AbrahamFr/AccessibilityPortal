@@ -1,0 +1,100 @@
+@import "main-cinv";
+:host {
+  margin: 1rem;
+  //
+  display: grid;
+  grid-gap: 0.6rem;
+  grid-template:
+    " welcome         welcome         " auto
+    " toc             article          " auto
+    " toc             article          " auto / 25% 75%;
+  background-color: $color-white;
+  color: $color-black;
+  padding-bottom: 3rem;
+  padding-left: 2rem;
+  .sr-skip {
+    position: absolute;
+    text-align: center;
+    height: 1px;
+    width: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    border: 0;
+  
+    &:active,
+    &:focus {
+      height: auto;
+      width: auto;
+      padding: 1rem;
+      position: relative;
+      font-weight: 600;
+    }
+  }
+  h1 {
+    grid-area: welcome;
+    text-align: center;
+    color: $color-purple;
+  }
+  h2 {
+    font-weight: normal;
+    font-size: 1.7rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+    color: $color-green;
+  }
+  ol {
+    font-weight: normal;
+  }
+  ul {
+    font-weight: normal;
+  }
+  .error-message {
+    display: inline-block;
+    justify-self: center;
+    align-self: center;
+    color: $color-pink;
+  }
+  .toc {
+    grid-area: toc;
+    position: fixed;
+  }
+  .article {
+    grid-area: article;
+    padding-left: 3em;
+    padding-right: 3em;
+    background-color: $color-white;
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0px;
+      padding: 0.5rem 1rem;
+      margin: 1rem;
+      width: 100%;
+
+      th,
+      tr {
+        padding: 0.5rem 1rem;
+        vertical-align: middle;
+      }
+      th {
+        background-color: $color-green;
+        color: $color-white;
+        height: 2rem;
+      }
+      td {
+        padding: 0.5rem;
+        border: 1px solid $color-purple;
+        &.bold {
+          font-weight: bold;
+        }
+        &.center-text {
+          text-align: center;
+        }
+      }
+    }
+    .BackToTop {
+      text-align: right;
+    }
+  }
+}

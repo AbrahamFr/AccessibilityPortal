@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="31px" height="31px" viewBox="0 0 31 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>CS_X</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="CS_X" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M15.5,2 C8.07339357,2 2,8.07339357 2,15.5 C2,22.9266064 8.07339357,29 15.5,29 C22.9266064,29 29,22.9266064 29,15.5 C29,8.03695568 22.9909932,2 15.5,2 Z" id="Combined-Shape" stroke="#9D1F14" stroke-width="3"></path>
+        <g id="Group" transform="translate(9.000000, 8.500000)" stroke="#9D1F14" stroke-linecap="round" stroke-width="3">
+            <path d="M12.5104076,0.98959236 L0.48959236,13.0104076" id="Line"></path>
+            <path d="M0.48959236,0.98959236 L12.5104076,13.0104076" id="Line"></path>
+        </g>
+    </g>
+</svg>

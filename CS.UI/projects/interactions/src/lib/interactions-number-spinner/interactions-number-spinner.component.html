@@ -1,0 +1,27 @@
+<div
+  class="wrapper"
+  [ngClass]="{
+    'horizontal-wrapper': direction === 'horizontal',
+    'vertical-wrapper': direction === 'vertical'
+  }"
+>
+  <input
+    type="image"
+    [class.ripple]="!min || value > min"
+    (click)="dec()"
+    data-automation="minus-number-spinner"
+    [disabled]="value <= min"
+    src="shared-styles/assets/minus.svg"
+  />
+
+  <div data-automation="value-number-spinner">{{ value }}</div>
+
+  <input
+    type="image"
+    [class.ripple]="!max || value < max"
+    (click)="inc()"
+    data-automation="plus-number-spinner"
+    [disabled]="value >= max"
+    src="shared-styles/assets/plus.svg"
+  />
+</div>

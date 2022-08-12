@@ -1,0 +1,123 @@
+@import "main";
+
+app-scan-chart {
+  min-height: 35vh;
+  position: relative;
+}
+
+app-scan-chart .grid-line {
+  stroke: $color-pastel-grey;
+  shape-rendering: crispEdges;
+}
+
+app-scan-chart .domain {
+  stroke: none;
+}
+
+app-scan-chart .line-graph {
+  fill: none;
+  stroke: $color-red-orange;
+  stroke-width: 2px;
+}
+
+app-scan-chart .line-graph-dot {
+  fill: $color-white;
+  stroke: $color-red-orange;
+  stroke-width: 1.5px;
+}
+
+app-scan-chart #bar-chart {
+  height: inherit;
+  width: inherit;
+
+  //IE11 specific properties used to detect browser for responsive svg scaling
+  @media (-ms-high-contrast-adjust: none), (-ms-high-contrast: none) {
+    @include respond(desktop) {
+      height: 500px;
+    }
+    @include respond(laptop) {
+      height: 450px;
+    }
+    @include respond(sm-laptop) {
+      height: 375px;
+    }
+    @include respond(tab-land) {
+      height: 300px;
+    }
+    @include respond(tab-port) {
+      height: 225px;
+    }
+    @include respond(phone) {
+      height: 175px;
+    }
+  }
+}
+
+app-scan-chart .chart-wrapper {
+  background-color: $color-white;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  min-height: 30vh;
+  width: inherit;
+
+  @include respond(tab-land) {
+    min-height: 0;
+  }
+}
+
+app-scan-chart #symbol_circle > path {
+  fill: $color-peach;
+}
+
+app-scan-chart g > text.axis_label,
+app-scan-chart g > text.axis_label_y {
+  fill: $color-primary-blue;
+}
+
+app-scan-chart #y-axis > text {
+  position: absolute;
+  transform: translate(-3%, -5%);
+}
+
+app-scan-chart svg#fizz_chart-bar > g > text.chart_title {
+  opacity: 0;
+}
+
+app-scan-chart g.tick_group_x {
+  word-spacing: -2px;
+}
+
+app-scan-chart .totalCheckpoints,
+app-scan-chart .totalPages {
+  fill: $color-black;
+  stroke: none;
+  opacity: 0.6;
+}
+
+@media print {
+  app-scan-chart .chart-wrapper {
+    width: auto;
+    padding-bottom: 0;
+    min-height: 20vh;
+  }
+  app-scan-chart {
+    min-height: 20vh;
+  }
+
+  //IE11 specific properties used to detect browser for responsive svg scaling
+  @media (-ms-high-contrast-adjust: none), (-ms-high-contrast: none) {
+    app-scan-chart {
+      min-height: 100px;
+    }
+
+    app-scan-chart .chart-wrapper {
+      width: auto;
+      padding-bottom: 0;
+      min-height: 100px;
+    }
+
+    app-scan-chart #chart {
+      width: 900px;
+    }
+  }
+}

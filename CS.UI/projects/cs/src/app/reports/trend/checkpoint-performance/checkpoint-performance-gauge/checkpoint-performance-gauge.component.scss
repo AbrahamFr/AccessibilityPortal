@@ -1,0 +1,37 @@
+@import "main";
+
+#checkpoint-perf-gauge {
+  height: inherit;
+  width: inherit;
+
+  //IE11 specific properties used to detect browser for responsive svg scaling
+  @media (-ms-high-contrast-adjust: none), (-ms-high-contrast: none) {
+    @include respond(desktop) {
+      height: 350px;
+    }
+    @include respond(laptop) {
+      height: 300px;
+    }
+    @include respond(sm-laptop) {
+      height: 275px;
+    }
+    @include respond(tab-land) {
+      height: 250px;
+    }
+    @include respond(tab-port) {
+      height: 175px;
+    }
+    @include respond(phone) {
+      height: 175px;
+    }
+  }
+}
+
+@media print {
+  //IE11 specific properties used to detect browser for printing
+  @media (-ms-high-contrast-adjust: none), (-ms-high-contrast: none) {
+    #checkpoint-perf-gauge {
+      height: 225px;
+    }
+  }
+}

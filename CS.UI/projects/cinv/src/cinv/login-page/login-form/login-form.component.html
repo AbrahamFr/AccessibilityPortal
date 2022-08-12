@@ -1,0 +1,63 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <h2>Continue to your accessibility audit</h2>
+  <label class="email-label" for="userName">Email</label>
+  <input
+    class="email-frm-input"
+    type="text"
+    id="userName"
+    data-automation="input-email"
+    formControlName="userName"
+  />
+  <div class="email-errors">
+    <div class="error-message" *ngIf="isSubmitted && f.userName.errors">
+      <small
+        *ngIf="f.userName.errors.required"
+        data-automation="error-input-email-required"
+        >Username is Required</small
+      >
+      <small
+        *ngIf="f.userName.errors.pattern"
+        data-automation="error-input-email-pattern"
+        >Please provide valid Email Address</small
+      >
+    </div>
+  </div>
+  <label class="password-label" for="password">Password</label>
+  <input
+    class="password-frm-input"
+    type="password"
+    id="password"
+    data-automation="input-password"
+    formControlName="password"
+  />
+  <div class="password-errors">
+    <div class="error-message" *ngIf="isSubmitted && f.password.errors">
+      <small
+        *ngIf="f.password.errors.required"
+        data-automation="error-input-password-required"
+        >Password is Required</small
+      >
+      <small
+        data-automation="error-startPage-invalid"
+        *ngIf="f.password.errors?.pattern"
+      >
+        Password is invalid.
+      </small>
+    </div>
+  </div>
+  <a
+    class="forgot-password"
+    data-automation="link-forgot-password"
+    routerLink="/sendPasswordReset"
+    >I forgot my password. Send me a validation email</a
+  >
+  <div class="client-messages" data-automation="client-messages">
+    {{ clientMessages | async }}
+  </div>
+  <button class="login-button" data-automation="button-submit" type="submit">
+    CONTINUE
+  </button>
+  <a class="create-account" data-automation="link-create-account" href="#"
+    >Don't have an account? Get one here.
+  </a>
+</form>

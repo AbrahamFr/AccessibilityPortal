@@ -1,0 +1,56 @@
+<nav class="breadcrumb-nav" role="navigation" aria-label="Breadcrumb">
+  <ol class="breadcrumb-container">
+    <li class="breadcrumb-home-wrapper">
+      <a
+        class="breadcrumb-home-link"
+        [routerLink]="['externalRedirect', { externalUrl: homePath }]"
+        data-automation="home-link"
+      >
+        <span class="icon-wrapper">
+          <svg class="breadcrumb-home-icon"></svg>
+        </span>
+        <span class="breadcrumb-home">Home</span>
+      </a>
+    </li>
+    <ng-container *ngFor="let route of breadCrumbChilds">
+      <ng-container *ngIf="route !== activeChild">
+        <li class="breadcrumb">
+          <a
+            class="breadcrumb-link"
+            [routerLink]="
+              route == 'Reports'
+                ? [
+                    'externalRedirect',
+                    { externalUrl: homePath.concat('/Reports.aspx') }
+                  ]
+                : [topLevelNavPath, route]
+            "
+            data-automation="breadcrumb-link"
+          >
+            <span class="breadcrumb-icon-wrapper">
+              <svg class="breadcrumb-arrow"></svg>
+            </span>
+            <span class="nav-breadcrumb">
+              {{ route | humanize }}
+            </span>
+          </a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="route === activeChild">
+        <li class="breadcrumb">
+          <span class="breadcrumb-icon-wrapper">
+            <svg class="breadcrumb-arrow"></svg>
+          </span>
+          <span class="nav-breadcrumb active">{{
+            activeChild | humanize
+          }}</span>
+        </li>
+      </ng-container>
+    </ng-container>
+  </ol>
+  <app-export-items
+    [orgVirtualDir]="orgVirtualDir"
+    [childRoute]="childRoute"
+    class="export-items"
+  ></app-export-items>
+</nav>

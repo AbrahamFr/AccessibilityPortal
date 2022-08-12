@@ -1,0 +1,71 @@
+@import "main";
+
+.dropdown-container {
+  height: 6vh;
+  position: relative;
+  border-left: 1px solid $color-black;
+  padding-right: 1rem;
+  min-height: 5rem;
+}
+
+.dropdown-btn {
+  background: url(../../../../../shared-styles/assets/expand-more-icon.svg)
+    no-repeat;
+  width: 3.5rem;
+  height: 3rem;
+}
+
+.user-settings-container {
+  display: flex;
+  height: 6vh;
+  align-items: center;
+  min-height: 5rem;
+  cursor: pointer;
+}
+
+.settings-btn-container {
+  width: 15rem;
+  border: none;
+  height: 100%;
+  position: relative;
+  background: no-repeat 100%
+    url(../../../../../shared-styles/assets/expand-more-icon.svg);
+  background-color: $color-white;
+  cursor: pointer;
+}
+
+.settings-btn {
+  position: absolute;
+  top: 0;
+  width: 3.5rem;
+  height: 3rem;
+  transform: translate(-50%, 25%);
+}
+
+.dropdown {
+  list-style: none;
+  background-color: $color-white;
+  border-top: 1px solid $color-black;
+  position: absolute;
+  top: 100%;
+  width: calc(100% - 1rem);
+  z-index: 999;
+}
+
+.menu-item {
+  border-bottom: 1px solid $color-black;
+  border-right: 1px solid $color-black;
+  border-left: 1px solid $color-black;
+}
+
+.menu-item:hover {
+  background-color: $color-light-grey;
+}
+
+.menu-item-link {
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+  color: $color-black;
+  padding: 1rem 1rem 1rem 1.5rem;
+}

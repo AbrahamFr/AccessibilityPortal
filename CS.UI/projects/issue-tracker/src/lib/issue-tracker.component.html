@@ -1,0 +1,50 @@
+<div
+  [ngClass]="{ 'issue-tracker-container': true, cinv: useCInvStyles }"
+  id="main"
+  role="main"
+  data-automation="issue-tracker-container"
+>
+  <h1
+    class="hide-element"
+    *ngIf="!useCInvStyles"
+    id="main-content"
+    tabindex="-1"
+  >
+    Issue Tracker Report
+  </h1>
+  <div class="cinv-header" *ngIf="useCInvStyles">
+    <h1 id="main-content">Issue Tracker</h1>
+    <app-export-items
+      [orgVirtualDir]=""
+      [childRoute]="'auditresults'"
+      class="export-items"
+    ></app-export-items>
+  </div>
+  <div class="picker-wrapper">
+    <app-scan-picker
+      [scans]="scans$ | async"
+      [selectedScan]="selectedScan$ | async"
+      [scanGroups]="scanGroups$ | async"
+      [selectedScanGroup]="selectedScanGroup$ | async"
+      (itemSelected)="onScanSelected($event)"
+    ></app-scan-picker>
+
+    <app-checkpoint-picker
+      [selectedItem]="selectedCheckpointGroup$ | async"
+      (itemSelected)="onCheckpointGroupSelected($event)"
+    ></app-checkpoint-picker>
+  </div>
+
+  <app-issue-tracker-summary [issueTrackerIssues]="issueTrackerData$ | async">
+  </app-issue-tracker-summary>
+
+  <app-issue-tracker-list
+    [issues]="issueTrackerData$ | async"
+  ></app-issue-tracker-list>
+
+  <ng-container *ngIf="isExportActive$ | async">
+    <app-issue-tracker-export
+      [issues]="issueTrackerData$ | async"
+    ></app-issue-tracker-export>
+  </ng-container>
+</div>

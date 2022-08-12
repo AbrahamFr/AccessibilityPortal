@@ -1,0 +1,205 @@
+@import "main-lib";
+
+.filter-container {
+  position: absolute;
+  top: -2rem;
+  right: 0;
+  background-color: $color-navy-blue;
+  color: $color-white-medium;
+  padding: 2rem;
+  border-left: 1px solid $color-white-medium;
+  z-index: 1;
+  &.cinv {
+    padding: 1.25rem;
+  }
+
+  @include respond(laptop) {
+    width: 60%;
+  }
+
+  @include respond(tab-land) {
+    width: 75%;
+  }
+  .hide-element {
+    position: absolute;
+    left: -9999px;
+    height: 1px;
+    width: 1px;
+  }
+
+  .filter-buttons {
+    display: flex;
+    justify-content: space-between;
+    .filter-btn {
+      flex-grow: 1;
+      border-radius: 0;
+      padding: 1rem 2rem;
+      font-family: "Lato-Regular", sans-serif;
+      font-size: 1.6rem;
+      background-color: $color-white;
+      opacity: 0.8;
+      width: 15rem;
+      font-family: "Lato-Bold", sans-serif;
+      &.cinv {
+        font-size: 1rem;
+        padding: 0.625rem 1.25rem;
+      }
+
+      &:focus,
+      &:hover {
+        opacity: 1;
+      }
+      &:not(:last-child) {
+        margin-right: 1.5px;
+      }
+    }
+  }
+
+  .filter-panel {
+    height: 11rem;
+    &.cinv {
+      height: 6.875rem;
+    }
+    .checkbox-wrapper {
+      display: flex;
+      padding: 4rem 3rem;
+      justify-content: space-between;
+      width: 66%;
+      &.cinv {
+        padding: 2.5rem 1.875rem;
+      }
+      .checkbox-label {
+        position: relative;
+        color: $color-white;
+        padding-left: 3rem;
+        cursor: pointer;
+        padding-right: 2rem;
+        min-width: 15rem;
+        font-size: 1.6rem;
+        font-family: "Lato-Regular", sans-serif;
+        &.cinv {
+          padding-left: 3rem;
+          padding-right: 2rem;
+          min-width: 15rem;
+          font-size: 1rem;
+        }
+        .checkbox-input {
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0;
+          height: 0;
+          width: 0;
+        }
+
+        input[type="checkbox"]:focus {
+          outline-width: 1.5px;
+          outline-style: solid;
+          height: 2rem;
+          width: 2rem;
+          -webkit-appearance: none;
+          -ms-appearance: none;
+          opacity: 1;
+        }
+        .checkbox-custom {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          height: 2rem;
+          width: 2rem;
+          border: 1px solid $color-white-medium;
+          transform: translateY(-50%);
+          .checked-checkbox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 1rem;
+            width: 1rem;
+            background-color: $color-white-medium;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+    }
+  }
+
+  .selected-filters-wrapper {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid $color-white-light;
+    width: 100%;
+    //min-height: 3.5rem;
+    align-items: center;
+    .selected-filters-label {
+      color: $color-white-light;
+      align-self: center;
+      padding: 0.5rem 1.5rem;
+      .selected-filter {
+        color: inherit;
+        &:first-child {
+          padding-left: 1rem;
+        }
+        .plus-filter {
+          color: inherit;
+          padding: 0.5rem;
+        }
+      }
+    }
+  }
+
+  .clear-icon {
+    border: none;
+    margin-right: 1rem;
+    background: no-repeat center/100%
+      url(./shared-styles/assets/clear-x-circle-white.svg);
+    min-width: 3rem;
+    min-height: 3rem;
+    opacity: 0.8;
+    &.cinv {
+      min-width: 1.875rem;
+      min-height: 1.875rem;
+    }
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+
+  .button-group {
+    text-align: right;
+    padding-top: 2rem;
+
+    .btn {
+      border: 1px solid $color-grey-medium;
+      font-weight: 500;
+      padding: 1rem 1.5rem;
+      font-size: 1.6rem;
+      color: $color-white;
+      background-color: transparent;
+      cursor: pointer;
+      width: 9rem;
+      &.cinv {
+        padding: 0.625rem 0.938rem;
+        font-size: 1rem;
+        width: 5.625rem;
+      }
+
+      &:disabled {
+        background-color: $color-white-light;
+        color: $color-grey-dark;
+        cursor: unset;
+      }
+    }
+
+    .primary-btn {
+      background-color: $color-white-medium;
+      color: $color-navy-blue;
+    }
+
+    .med-margin-rt {
+      margin-right: 1rem;
+    }
+  }
+}

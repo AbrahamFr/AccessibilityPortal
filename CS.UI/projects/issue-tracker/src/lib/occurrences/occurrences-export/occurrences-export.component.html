@@ -1,0 +1,287 @@
+<div class="modal">
+  <div
+    class="overlay"
+    (click)="onClose(occurrencesExportsFileDownloadForm)"
+    data-automation="overlay"
+  ></div>
+  <div
+    [ngClass]="{ modal_content: true, cinv: useCInvStyles }"
+    role="dialog"
+    aria-labelledby="occurrences-export"
+    cdkTrapFocus
+    aria-modal="true"
+  >
+    <form
+      autocomplete="off"
+      [formGroup]="occurrencesExportsFileDownloadForm"
+      (ngSubmit)="onExport()"
+    >
+      <button
+        title="Close Modal"
+        data-automation="close-modal"
+        [ngClass]="{ close_modal: true, cinv: useCInvStyles }"
+        type="button"
+        (click)="onClose(occurrencesExportsFileDownloadForm)"
+      >
+        <svg [ngClass]="{ close: true, cinv: useCInvStyles }"></svg>
+      </button>
+      <h2
+        [ngClass]="{ 'modal-heading': true, cinv: useCInvStyles }"
+        id="occurrences-tracker-export"
+      >
+        Export Occurrences
+      </h2>
+      <fieldset
+        [ngClass]="{ 'form-fields-container': true, cinv: useCInvStyles }"
+      >
+        <ng-container
+          *ngIf="
+            occurrences.totalFilteredRecords === occurrences.totalOccurrences ||
+            occurrences.totalFilteredRecords === 0
+          "
+        >
+          <p
+            [ngClass]="{ 'modal-text': true, cinv: useCInvStyles }"
+            id="all-occurrences-instruction"
+          >
+            All occurrences
+            <span
+              *ngIf="occurrences.totalOccurrences"
+              [ngClass]="{ 'occurrences-count': true, cinv: useCInvStyles }"
+              data-automation="total-occurrences-count"
+              aria-label="Total Number of Occurrences"
+              >({{ occurrences.totalOccurrences }})</span
+            >
+            will be exported.
+          </p>
+        </ng-container>
+        <ng-container
+          *ngIf="
+            occurrences.totalFilteredRecords !== occurrences.totalOccurrences &&
+            occurrences.totalFilteredRecords > 0
+          "
+        >
+          <p
+            [ngClass]="{ 'modal-text': true, cinv: useCInvStyles }"
+            id="which-occurrences"
+          >
+            Which occurrences do you want to export?
+          </p>
+          <div [ngClass]="{ 'radio-btn-wrapper': true, cinv: useCInvStyles }">
+            <div>
+              <input
+                [ngClass]="{ 'radio-options': true, cinv: useCInvStyles }"
+                type="radio"
+                id="allOccurrences"
+                name="occurrencesType"
+                formControlName="occurrencesType"
+                data-automation="allOccurrences-export-button"
+                value="allOccurrences"
+                aria-labelledby="label-all-occurrences"
+                [checked]="true"
+              />
+              <label
+                [ngClass]="{ 'radio-label': true, cinv: useCInvStyles }"
+                id="label-all-occurrences"
+                for="allOccurrences"
+              >
+                All occurrences in this report
+              </label>
+              <span
+                *ngIf="occurrences.totalOccurrences"
+                [ngClass]="{ 'occurrences-count': true, cinv: useCInvStyles }"
+                data-automation="total-occurrences-count"
+                aria-label="Total Number of Occurrences"
+                >({{ occurrences.totalOccurrences }})</span
+              >
+            </div>
+            <div>
+              <input
+                [ngClass]="{ 'radio-options': true, cinv: useCInvStyles }"
+                type="radio"
+                id="filteredOccurrences"
+                name="occurrencesType"
+                formControlName="occurrencesType"
+                data-automation="filteredOccurrences-export-button"
+                aria-labelledby="label-filtered-occurrences"
+                value="filteredOccurrences"
+              />
+              <label
+                [ngClass]="{ 'radio-label': true, cinv: useCInvStyles }"
+                id="label-filtered-occurrences"
+                for="filteredOccurrences"
+              >
+                Only the occurrences I filtered
+              </label>
+              <span
+                *ngIf="occurrences.totalFilteredRecords"
+                [ngClass]="{ 'occurrences-count': true, cinv: useCInvStyles }"
+                data-automation="total-filtered-occurrences-count"
+                aria-label="Total Number of Filtered Occurrences"
+                >({{ occurrences.totalFilteredRecords }})</span
+              >
+            </div>
+          </div>
+        </ng-container>
+
+        <div [ngClass]="{ 'input-wrapper': true, cinv: useCInvStyles }">
+          <label
+            [ngClass]="{ 'input-padding': true, cinv: useCInvStyles }"
+            for="reportFormat"
+            >Format</label
+          >
+          <select
+            id="reportFormat"
+            data-automation="reportFormat"
+            name="reportFormat"
+            [ngClass]="{
+              'report-format': true,
+              'input-field': true,
+              cinv: useCInvStyles
+            }"
+            formControlName="reportFormat"
+            [(ngModel)]="reportFormat"
+            [ngStyle]="
+              !occurrencesExportsFileDownloadForm.controls['reportFormat'].value
+                ? { 'font-style': 'italic', color: 'rgba(255, 255, 255, .6)' }
+                : ''
+            "
+          >
+            <option
+              value=""
+              disabled
+              selected
+              [ngClass]="{ 'select-hint': true, cinv: useCInvStyles }"
+            >
+              required
+            </option>
+            <option value="csv" [ngClass]="{ cinv: useCInvStyles }">
+              Comma Separated Value - CSV
+            </option>
+            <option value="json" [ngClass]="{ cinv: useCInvStyles }">
+              JavaScript Object Notation - JSON
+            </option>
+            <option value="xlsx" [ngClass]="{ cinv: useCInvStyles }">
+              Microsoft Excel - XLSX
+            </option>
+            <option value="xml" [ngClass]="{ cinv: useCInvStyles }">
+              eXtensible Markup Language - XML
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            occurrencesExportsFileDownloadForm.controls['reportFormat']
+              .hasError &&
+            occurrencesExportsFileDownloadForm.controls['reportFormat'].touched
+          "
+          class="error-message-wrapper"
+        >
+          <ng-container
+            *ngIf="
+              occurrencesExportsFileDownloadForm.controls[
+                'reportFormat'
+              ].hasError('required')
+            "
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.occurrences.fileType.required'"
+              [styles]="{ left: '2%' }"
+            ></interactions-input-validation-error>
+          </ng-container>
+        </div>
+
+        <div [ngClass]="{ 'input-wrapper': true, cinv: useCInvStyles }">
+          <label
+            [ngClass]="{ 'input-padding': true, cinv: useCInvStyles }"
+            for="reportName"
+            >Name</label
+          >
+          <div class="file-name-type-wrapper">
+            <input
+              type="text"
+              id="reportName"
+              data-automation="reportName"
+              name="reportName"
+              formControlName="reportName"
+              [ngClass]="{ 'input-field': true, cinv: useCInvStyles }"
+              [(ngModel)]="reportName"
+            />
+            <p [ngClass]="{ 'modal-text': true, cinv: useCInvStyles }">
+              .{{ reportFormat }}
+            </p>
+          </div>
+        </div>
+        <div
+          *ngIf="
+            occurrencesExportsFileDownloadForm.controls['reportName']
+              .hasError &&
+            occurrencesExportsFileDownloadForm.controls['reportName'].touched
+          "
+          class="error-message-wrapper"
+        >
+          <ng-container
+            *ngIf="
+              occurrencesExportsFileDownloadForm.controls[
+                'reportName'
+              ].hasError('required')
+            "
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.occurrences.fileName.required'"
+              [styles]="{ left: '2%' }"
+            ></interactions-input-validation-error>
+          </ng-container>
+        </div>
+      </fieldset>
+
+      <api-handler-error-guard
+        [maybeError]="activeError$ | async"
+        [formTemplate]="true"
+      ></api-handler-error-guard>
+
+      <ng-container *ngIf="isLoading | async">
+        <div [ngClass]="{ 'loading-wrapper': true, cinv: useCInvStyles }">
+          <div [ngClass]="{ 'loading-container': true, cinv: useCInvStyles }">
+            <div [ngClass]="{ loading: true, cinv: useCInvStyles }">
+              Generating Report...
+            </div>
+            <div class="lds-ring">
+              <div [ngClass]="{ cinv: useCInvStyles }"></div>
+              <div [ngClass]="{ cinv: useCInvStyles }"></div>
+              <div [ngClass]="{ cinv: useCInvStyles }"></div>
+              <div [ngClass]="{ cinv: useCInvStyles }"></div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <div [ngClass]="{ 'button-group': true, cinv: useCInvStyles }">
+        <button
+          id="cancel-button"
+          title="Cancel"
+          data-automation="cancel-button"
+          [ngClass]="{ btn: true, 'med-margin-rt': true, cinv: useCInvStyles }"
+          focus="true"
+          type="button"
+          (click)="onClose(occurrencesExportsFileDownloadForm)"
+          [disabled]="isLoading | async"
+        >
+          Cancel
+        </button>
+        <button
+          id="export-button"
+          title="Export"
+          data-automation="export-button"
+          [ngClass]="{ btn: true, 'primary-btn': true, cinv: useCInvStyles }"
+          type="submit"
+          [disabled]="
+            occurrencesExportsFileDownloadForm.invalid || (isLoading | async)
+          "
+        >
+          Export
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

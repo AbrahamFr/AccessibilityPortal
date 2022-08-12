@@ -1,0 +1,109 @@
+@import "main";
+
+:host {
+  min-height: 20vh;
+  position: relative;
+}
+
+.top-failures-section {
+  padding: 2rem 0;
+}
+
+.tables-container {
+  background-color: $color-white;
+  border-radius: 0.5rem;
+  padding: 2rem 3rem 3rem 3rem;
+}
+
+.table-headings-list {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+.table-heading-wrapper {
+  background-color: $color-white;
+  color: $color-navy-blue;
+  border-radius: 0;
+  border: none;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-family: "Lato-Bold", sans-serif;
+  text-align: left;
+  padding-bottom: 2rem;
+}
+
+.page-heading-wrapper {
+  padding-right: 2rem;
+}
+
+.inactive-tab {
+  background-color: $color-white;
+  color: $color-primary-blue;
+}
+
+.active-tab {
+  opacity: 1;
+  span {
+    border-bottom: 1.5px solid $color-navy-blue;
+    padding-bottom: 2px;
+    cursor: pointer;
+  }
+}
+
+.inactive-heading {
+  color: $color-primary-blue;
+  cursor: pointer;
+}
+
+.hide-element {
+  position: absolute;
+  left: -9999px;
+  height: 1px;
+  width: 1px;
+}
+
+.active-table {
+  display: block;
+}
+
+.inactive-table {
+  display: none;
+}
+
+@media print {
+  .table-headings-list {
+    display: none;
+  }
+  .inactive-table {
+    display: block;
+  }
+
+  section {
+    page-break-inside: auto;
+    page-break-after: auto;
+    page-break-before: auto;
+    break-before: auto;
+  }
+
+  .tables-container {
+    page-break-inside: auto;
+    padding: 0;
+    background-color: unset;
+  }
+
+  .top-failures-section {
+    padding: 1rem 0;
+  }
+
+  //IE11 specific properties used to detect browser for printing
+  @media (-ms-high-contrast-adjust: none), (-ms-high-contrast: none) {
+    :host {
+      min-height: 0;
+    }
+
+    .tables-container {
+      padding: 0.5rem 0 1rem 0;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<Project>
+
+    <PropertyGroup>
+        <BuildRootDir>$(MSBuildThisFileDirectory)</BuildRootDir>
+    </PropertyGroup>
+
+    <Import Project="build\common.props" />
+
+</Project>

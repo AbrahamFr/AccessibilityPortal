@@ -1,0 +1,36 @@
+<nav>
+  <a
+    *ngIf="loginState === 'navigate'"
+    [routerLink]="['/login']"
+    [ngClass] = "{'active-link':isActiveTab('login', false)}"
+    [routerLinkActiveOptions]="{ exact: false }"
+    data-automation="link-login"
+    >Log In</a
+  >
+  <a
+    *ngIf="loginState === 'authenticated'"
+    [routerLink]="['/myhome']"
+    [ngClass] = "{'active-link':isActiveTab('myhome', false)}"
+    [routerLinkActiveOptions]="{ exact: false }"
+    data-automation="link-my-home"
+    >My Home</a
+  >
+  <a
+    *ngIf="loginState === 'authenticated'"
+    [routerLink]="['/auditresults']"
+    [ngClass] = "{'active-link':isActiveTab('auditresults', false)}"
+    [routerLinkActiveOptions]="{ exact: false }"
+    data-automation="link-audit-results"
+    >Audit Results</a
+  >
+  <!-- <a
+    *ngIf="loginState === 'authenticated'"
+    routerLink="/upgrade"
+    routerLinkActive="active-link"
+    data-automation="link-upgrade"
+    >Upgrade</a
+  > -->
+  <cinv-menu-dropdown
+    *ngIf="loginState === 'authenticated'"
+  ></cinv-menu-dropdown>
+</nav>

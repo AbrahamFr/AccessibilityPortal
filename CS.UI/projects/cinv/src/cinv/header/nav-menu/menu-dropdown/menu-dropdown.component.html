@@ -1,0 +1,29 @@
+<button
+  #dropdownMenuItems
+  id="profile-dropdown"
+  name="profile-dropdown"
+  data-automation="button-profile-dropdown"
+  aria-haspopup="menu"
+  [attr.aria-expanded]="isDropdownActive ? 'true' : 'false'"
+  (click)="onToggleDropdown()"
+  (keydown)="onKeyDown($event)"
+>
+  My Profile
+</button>
+<ul [style.display]="dropdownVisibility | async" role="menu">
+  <li
+    *ngFor="let link of linkList"
+    #dropdownMenuItems
+    tabindex="-1"
+    (keydown)="onKeyDown($event)"
+    role="menuitem"
+  >
+    <a
+      (click)="onToggleDropdown()" 
+      class="menu-item-link"
+      [routerLink]="'/' + link.link"
+      [attr.data-automation]="'link-' + link.link"
+      >{{ link.display }}</a
+    >
+  </li>
+</ul>

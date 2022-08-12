@@ -1,0 +1,159 @@
+<div class="modal">
+  <div
+    class="overlay"
+    (click)="onClose(editReportForm)"
+    data-automation="overlay"
+  ></div>
+  <div
+    class="modal_content"
+    role="dialog"
+    aria-labelledby="edit-audit-report"
+    cdkTrapFocus
+    aria-modal="true"
+  >
+    <form
+      autocomplete="off"
+      [formGroup]="editReportForm"
+      class="form"
+      (ngSubmit)="onSubmit()"
+    >
+      <button
+        title="Close Modal"
+        data-automation="close-modal"
+        class="close_modal"
+        type="button"
+        (click)="onClose(editReportForm)"
+      >
+        <svg class="close"></svg>
+      </button>
+      <h2 class="modal-heading" id="edit-audit-report">Edit Audit Report</h2>
+      <fieldset class="form-fields-container">
+        <div class="input-wrapper">
+          <label for="reportName">Name</label>
+          <input
+            type="text"
+            id="reportName"
+            name="reportName"
+            data-automation="report-name"
+            formControlName="reportName"
+            focus="true"
+            required
+            [attr.disabled]="(isLoading | async) ? '' : null"
+          />
+        </div>
+        <div
+          *ngIf="
+            editReportForm.controls['reportName'].hasError &&
+            editReportForm.controls['reportName'].touched
+          "
+          class="error-message-wrapper"
+        >
+          <ng-container
+            *ngIf="editReportForm.controls['reportName'].hasError('minlength')"
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.auditReport.reportName.minLength'"
+            ></interactions-input-validation-error>
+          </ng-container>
+
+          <ng-container
+            *ngIf="editReportForm.controls['reportName'].hasError('required')"
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.auditReport.reportName.required'"
+            ></interactions-input-validation-error>
+          </ng-container>
+
+          <ng-container
+            *ngIf="editReportForm.controls['reportName'].hasError('maxlength')"
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.auditReport.reportName.maxLength'"
+            ></interactions-input-validation-error>
+          </ng-container>
+
+          <ng-container
+            *ngIf="
+              editReportForm.controls['reportName'].hasError('reportNameExists')
+            "
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.auditReport.reportName.reportNameExists'"
+            ></interactions-input-validation-error>
+          </ng-container>
+        </div>
+        <div class="input-wrapper">
+          <label for="auditTypeId">Type</label>
+          <select
+            id="auditTypeId"
+            data-automation="audit-type-id"
+            name="auditTypeId"
+            class="select-report"
+            formControlName="auditTypeId"
+            [attr.disabled]="(isLoading | async) ? '' : null"
+          >
+            <option value="1">Baseline Audit</option>
+            <option value="2">Regression</option>
+            <option value="3">VPAT</option>
+            <option value="4">Other</option>
+          </select>
+        </div>
+        <div class="comments-wrapper">
+          <label class="comments-label" for="reportDescription">Comments</label>
+          <textarea
+            type="text"
+            id="reportDescription"
+            data-automation="report-description"
+            class="comments-textarea"
+            name="reportDescription"
+            formControlName="reportDescription"
+            [attr.disabled]="(isLoading | async) ? '' : null"
+          ></textarea>
+        </div>
+
+        <ng-container *ngIf="!(serverValidationError$ | async)">
+          <api-handler-error-guard
+            [maybeError]="activeError$ | async"
+            [formTemplate]="true"
+          ></api-handler-error-guard>
+        </ng-container>
+      </fieldset>
+
+      <ng-container *ngIf="isLoading | async">
+        <div class="loading-wrapper">
+          <div class="loading-container">
+            <div class="loading">Loading...</div>
+            <div class="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <div class="button-group">
+        <button
+          title="Cancel Button"
+          data-automation="cancel-button"
+          class="btn med-margin-rt"
+          type="button"
+          (click)="onClose(editReportForm)"
+          [disabled]="isLoading | async"
+        >
+          Cancel
+        </button>
+        <button
+          title="Save Button"
+          data-automation="save-button"
+          class="btn primary-btn"
+          type="submit"
+          [disabled]="editReportForm.invalid || (isLoading | async)"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

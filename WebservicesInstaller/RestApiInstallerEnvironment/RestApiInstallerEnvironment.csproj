@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>6.5.0.2</Version>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.5.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="1.6.0" />
+    <PackageReference Include="System.Net.Primitives" Version="4.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Installers\InstallersShared\FileSystem\FileSystem.csproj" />
+    <ProjectReference Include="..\..\..\Installers\InstallersShared\Formatters\Formatters.csproj" />
+    <ProjectReference Include="..\..\..\Installers\InstallersShared\SystemAccount\SystemAccount.csproj" />
+    <ProjectReference Include="..\..\..\Installers\InstallersShared\WebServer\WebServer.csproj" />
+    <ProjectReference Include="..\..\..\Installers\InstallersShared\ApplicationPoolSecurity\ApplicationPoolSecurity.csproj" />
+    <ProjectReference Include="..\..\..\Installers\InstallersShared\FileSecurity\FileSecurity.csproj" />
+    <ProjectReference Include="..\RestApiInstallerDomain\RestApiInstallerDomain.csproj" />
+    <ProjectReference Include="..\RestApiInstallerSetup\RestApiInstallerSetup.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="WebServicesSetup.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

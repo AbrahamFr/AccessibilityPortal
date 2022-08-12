@@ -1,0 +1,68 @@
+<div data-automation="occurrence-summary-container">
+  <div
+    [ngClass]="{ 'heading-wrapper': true, cinv: useCInvStyles }"
+    data-automation="summary-heading-wrapper"
+  >
+    <h2
+      [ngClass]="{ 'summary-item-issue': true, cinv: useCInvStyles }"
+      data-automation="summary-issue"
+    >
+      {{ occurrenceSummary.issue }}
+    </h2>
+    <div
+      class="priority-state-wrapper"
+      data-automation="priority-state-wrapper"
+    >
+      <span
+        [ngClass]="{ 'summary-detail': true, cinv: useCInvStyles }"
+        data-automation="priority-level"
+        >P{{ occurrenceSummary.priorityLevel }}</span
+      ><span class="separator-wrapper"
+        ><span
+          [ngClass]="{ separator: true, cinv: useCInvStyles }"
+        ></span></span
+      ><span
+        [ngClass]="{ 'summary-detail': true, cinv: useCInvStyles }"
+        data-automation="state"
+        >{{ occurrenceSummary.state }}</span
+      >
+    </div>
+  </div>
+  <ul
+    [ngClass]="{ 'summary-stats-list': true, cinv: useCInvStyles }"
+    data-automation="summary-stats-list"
+  >
+    <li class="stat-wrapper" data-automation="summary-statistic-list-item">
+      <span
+        [ngClass]="{ 'count-total': true, cinv: useCInvStyles }"
+        data-automation="occurrences-count-total"
+      >
+        {{
+          occurrenceSummary.totalOccurrences > 0
+            ? occurrenceSummary.totalOccurrences.toLocaleString()
+            : occurrenceSummary.totalPages.toLocaleString()
+        }}
+      </span>
+      <span
+        [ngClass]="{ 'count-text': true, cinv: useCInvStyles }"
+        data-automation="occurrences-count-text"
+      >
+        occurrences
+      </span>
+    </li>
+    <li class="stat-wrapper" data-automation="summary-statistic-list-item">
+      <span
+        [ngClass]="{ 'count-total': true, cinv: useCInvStyles }"
+        data-automation="pages-count-total"
+      >
+        {{ occurrenceSummary.totalPages.toLocaleString() }}
+      </span>
+      <span
+        [ngClass]="{ 'count-text': true, cinv: useCInvStyles }"
+        data-automation="pages-count-text"
+      >
+        pages
+      </span>
+    </li>
+  </ul>
+</div>

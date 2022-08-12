@@ -1,0 +1,100 @@
+<div class="dropdown-container" role="navigation">
+    <div class="user-settings-container">
+      <button
+        #dropdownMenuItems
+        class="settings-btn-container"
+        id="settings-button"
+        name="settings-button"
+        title="Manage user preferences and settings"
+        aria-haspopup="menu"
+        [attr.aria-expanded]="isDropdownActive ? 'true' : 'false'"
+        data-automation="settings-button"
+        (click)="onToggleDropdown()"
+        (keydown)="onKeyDown($event)"
+      >
+          {{ userName }}
+      </button>
+    </div>
+    <ul
+      [style.display]="dropdownVisibility | async"
+      class="dropdown"
+      role="menu"
+    >
+      <li
+        #dropdownMenuItems
+        tabindex="-1"
+        [style.opacity]="dropdownVisibility | async"
+        class="menu-item logout-link"
+        role="menuitem"
+        (keydown)="onKeyDown($event)"
+      >
+        <a
+          tabindex="-1"
+          class="menu-item-link"
+          [routerLink]="[
+            'externalRedirect',
+            { externalUrl: homePath.concat('/Settings.aspx') }
+          ]"
+          data-automation="settings-link"
+          >Settings</a
+        >
+      </li>
+      <li
+        *ngIf="isAdministrator"
+        #dropdownMenuItems
+        tabindex="-1"
+        [style.opacity]="dropdownVisibility | async"
+        class="menu-item logout-link"
+        role="menuitem"
+        (keydown)="onKeyDown($event)"
+      >
+        <a
+          tabindex="-1"
+          class="menu-item-link"
+          [routerLink]="[
+            'externalRedirect',
+            { externalUrl: homePath.concat('/Admin.aspx') }
+          ]"
+          data-automation="admin-link"
+          >Admin</a
+        >
+      </li>
+      <li
+        #dropdownMenuItems
+        tabindex="-1"
+        [style.opacity]="dropdownVisibility | async"
+        class="menu-item help-link"
+        role="menuitem"
+        (keydown)="onKeyDown($event)"
+      >
+        <a
+          tabindex="-1"
+          class="menu-item-link"
+          [routerLink]="[
+            'externalRedirect',
+            { externalUrl: [activeHelpUrl] }
+          ]"
+          data-automation="help-link"
+          target="_blank"
+          >Help</a
+        >
+      </li>
+      <li
+        *ngIf="orgVirtualDir"
+        #dropdownMenuItems
+        tabindex="-1"
+        [style.opacity]="dropdownVisibility | async"
+        class="menu-item logout-link"
+        role="menuitem"
+        (keydown)="onKeyDown($event)"
+      >
+        <a
+          tabindex="-1"
+          class="menu-item-link"
+          [routerLink]="[orgVirtualDir, 'Logout']"
+          data-automation="logout-link"
+          >Sign out</a
+        >
+      </li>
+    </ul>
+</div>

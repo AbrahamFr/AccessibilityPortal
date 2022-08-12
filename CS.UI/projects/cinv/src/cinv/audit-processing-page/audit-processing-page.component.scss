@@ -1,0 +1,37 @@
+@import "main-cinv";
+
+:host {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-rows: auto auto auto auto 1fr;
+  padding: 1rem;
+  color: $color-green;
+  .results {
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  .spinner {
+    margin-top: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 3rem;
+    margin-left: 2rem;
+  }
+  .error-message {
+    color: $color-pink;
+    padding: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+  .information {
+    @extend %standard-border;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    width: 60%;
+    .navigation {
+      color: $color-purple;
+      padding-bottom: 2rem;
+      padding-left: 2rem;
+    }
+  }
+}

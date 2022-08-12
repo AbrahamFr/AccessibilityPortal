@@ -1,0 +1,133 @@
+{
+    "options": {
+      "chart": {
+        "title": {
+          "text": "Checkpoint Performance",
+          "margin": 25,
+          "font_size": 30,
+          "value_label": "dependent.0.bounds.total",
+          "align": "start"
+        },
+        "area": {
+          "x": 0,
+          "y": 0,
+          "width": 900,
+          "height": 350
+        },
+        "padding": 0,
+        "chart_type": "gauge"
+      },
+      "multiseries": {
+        "type": "single"
+      },
+      "axis": {
+        "min_interval": 25,
+        "datapoint_margin": 3,
+        "x": {
+          "title": {
+            "text": null,
+            "margin": 8,
+            "font_size": 14
+          },
+          "tick": {
+            "margin": 3,
+            "font_size": 13,
+            "opacity": 1,
+            "stroke_width": 2,
+            "stroke_linecap": "round",
+            "length": 10
+          },
+          "values": {
+            "start": null,
+            "end": null,
+            "interval": null
+          },
+          "stroke_width": 2,
+          "stroke_linecap": "round"
+        },
+        "y": {
+          "title": {
+            "text": null,
+            "margin": 8,
+            "font_size": 14
+          },
+          "tick": {
+            "margin": 3,
+            "font_size": 13,
+            "opacity": 1,
+            "stroke_width": 2,
+            "stroke_linecap": "round",
+            "length": 10
+          },
+          "values": {
+            "start": null,
+            "end": null,
+            "interval": null
+          },
+          "stroke_width": 2,
+          "stroke_linecap": "round"
+        },
+        "r": {
+          "title": {
+            "text": null,
+            "margin": 8,
+            "font_size": 15
+          },
+          "tick": {
+            "margin": 0,
+            "font_size": 30,
+            "opacity": 1,
+            "stroke_width": 2,
+            "stroke_linecap": "round",
+            "length": 0
+          },
+          "values": {
+            "start": null,
+            "end": null,
+            "interval": null
+          },
+          "stroke_width": 2,
+          "stroke_linecap": "round"
+        }
+      },
+      "gauge": {
+        "label": {
+          "margin": 0,
+          "font_size": 15
+        },
+        "center_label": {
+          "font_size": 10,
+          "is_render": true,
+          "value_index": 0,
+          "y_offset": 0,
+          "font_size_percent": 0.7,
+          "unit_size_percent": 0.9
+        },
+        "radius": {
+          "outer": "auto",
+          "inner_percent": 0.7
+        },
+        "arc_type": "custom",
+        "start_angle_offset": -0.5,
+        "arc": 1
+      },
+      "pie": {
+          "label": {
+            "margin": 3,
+            "font_size": 14
+          },
+          "center_label": {
+            "is_render": true,
+            "value_index": 0
+          },
+          "radius": {
+              "outer": "auto",
+              "inner": null
+          }
+        },
+      "colors": {
+        "palette": null
+      }
+    }
+  }
+  

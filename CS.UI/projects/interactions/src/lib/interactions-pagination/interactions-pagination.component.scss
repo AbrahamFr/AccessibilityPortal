@@ -1,0 +1,31 @@
+@import "main-lib";
+@import "main-cinv";
+
+:host {
+  display: flex;
+
+  .pagination-display {
+    margin-left: auto;
+    font-family: "Lato-Bold", sans-serif;
+
+    .align-see-more-link {
+      margin-right: 0.7rem;
+    }
+
+    .see-more-link {
+      font-family: "Lato-Bold", sans-serif;
+      background: none;
+      border: none;
+      padding: 0;
+      color: $color-primary-blue;
+      cursor: pointer;
+      &:disabled {
+        cursor: unset;
+        color: $color-grey;
+      }
+      &.cinv {
+        font-size: 1rem;
+      }
+    }
+  }
+}

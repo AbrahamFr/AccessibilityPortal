@@ -1,0 +1,169 @@
+<section role="tabpanel" tabindex="0" class="table-container">
+  <h2 class="hide-element">Pages With Most Checkpoint Failures</h2>
+
+  <table
+    class="page-failures-table"
+    role="table"
+    cdk-table
+    [dataSource]="pageFailureResults$"
+  >
+    <caption class="hide-element">
+      List of pages that have the most failures
+    </caption>
+
+    <ng-container cdkColumnDef="pageUrl">
+      <th
+        cdk-header-cell
+        class="align-left col-large padding-left"
+        *cdkHeaderCellDef
+      >
+        Page
+      </th>
+      <td
+        data-automation="page-failure-url"
+        class="align-left page-url-data col-large"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        {{ row.pageUrl }}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="failuresTrend">
+      <th class="col-small" cdk-header-cell *cdkHeaderCellDef>
+        Failures
+      </th>
+      <td
+        cdk-cell
+        data-automation="page-failure-trend-status"
+        *cdkCellDef="let row"
+      >
+        <span>
+          <svg
+            *ngIf="
+              row.oneRunBackCheckpointFailures &&
+              row.currentCheckpointFailures > row.oneRunBackCheckpointFailures
+            "
+            data-automation="page-failure-trend-up"
+            class="trend-up-icon"
+            alt="Failures have increased from previous run."
+            title="Failures have increased from previous run."
+          ></svg>
+          <svg
+            *ngIf="
+              row.currentCheckpointFailures < row.oneRunBackCheckpointFailures
+            "
+            data-automation="page-failure-trend-down"
+            class="trend-down-icon"
+            alt="Failures have decreased from previous run."
+            title="Failures have decreased from previous run."
+          ></svg>
+          <svg
+            *ngIf="
+              row.currentCheckpointFailures == row.oneRunBackCheckpointFailures
+            "
+            data-automation="page-failure-trend-no-change"
+            class="trend-no-change-icon"
+            alt="Failures are same as previous run."
+            title="Failures are same as previous run."
+          ></svg>
+          <span
+            *ngIf="row.oneRunBackCheckpointFailures == 0"
+            data-automation="page-failure-first-run"
+          >
+          </span>
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="oneRunBackCheckpointFailures">
+      <th class="col-small" cdk-header-cell *cdkHeaderCellDef>Last</th>
+      <td
+        data-automation="page-failure-last-run-failures"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        {{ row.oneRunBackCheckpointFailures.toLocaleString() }}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="currentCheckpointFailures">
+      <th class="col-small" cdk-header-cell *cdkHeaderCellDef>Now</th>
+      <td
+        data-automation="page-failure-current-failures"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        {{ row.currentCheckpointFailures.toLocaleString() }}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="priority1Failures">
+      <th class="col-small" cdk-header-cell *cdkHeaderCellDef>P1</th>
+      <td
+        data-automation="page-failure-p1-failure-total"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        {{ row.priority1Failures.toLocaleString() }}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="priority2Failures">
+      <th class="col-small" cdk-header-cell *cdkHeaderCellDef>P2</th>
+      <td
+        data-automation="page-failure-p2-failure-total"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        {{ row.priority2Failures.toLocaleString() }}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="priority3Failures">
+      <th class="col-small" cdk-header-cell *cdkHeaderCellDef>P3</th>
+      <td
+        data-automation="page-failure-p3-failure-total"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        {{ row.priority3Failures.toLocaleString() }}
+      </td>
+    </ng-container>
+
+    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value"></tr>
+    <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value"></tr>
+  </table>
+
+  <ng-container *ngIf="hasScanGroups; else noresults">
+    <ng-container
+      *ngIf="pageFailureResults$ | async as pageFailures; else spinner"
+    >
+      <api-handler-error-guard [maybeError]="pageFailures">
+        <ng-container *ngIf="pageFailures.length == 0">
+          <div class="no-results" data-automation="no-data-available">
+            No data available
+          </div>
+        </ng-container>
+      </api-handler-error-guard>
+    </ng-container>
+  </ng-container>
+</section>
+
+<ng-template #spinner>
+  <div class="loading-container">
+    <div class="loading">Loading...</div>
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noresults>
+  <div class="no-results" data-automation="no-data-available">
+    No data available
+  </div>
+</ng-template>

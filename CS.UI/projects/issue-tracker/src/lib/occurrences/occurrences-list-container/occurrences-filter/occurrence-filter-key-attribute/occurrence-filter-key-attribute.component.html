@@ -1,0 +1,84 @@
+<section
+  [ngClass]="{ 'filter-picker-container': true, cinv: useCInvStyles }"
+  data-automation="key-attribute-picker-container"
+>
+  <div
+    [ngClass]="{ 'filter-picker-wrapper': true, cinv: useCInvStyles }"
+    [formGroup]="keyAttribute"
+  >
+    <input
+      autocomplete="off"
+      type="text"
+      #searchBox
+      [value]="
+        (expandedDropdown | async) ? searchBox.value : keyAttribute.value
+      "
+      id="key-attribute-filter-input"
+      [ngClass]="{ 'filter-input': true, cinv: useCInvStyles }"
+      [formControl]="keyAttribute"
+      data-automation="key-attribute-search-input"
+      placeholder="Select a Key Attribute to filter on"
+      (click)="onClickInput()"
+      (input)="onSearchChanged(searchBox.value)"
+      (keydown)="onKeyDown($event)"
+    />
+    <div
+      [style.display]="dropdownDisplay | async"
+      [ngClass]="{ 'filter-dropdown-wrapper': true, cinv: useCInvStyles }"
+      data-automation="filter-dropdown-wrapper"
+      id="keyAttributeIdPicker"
+      (click)="onClickTypeahead($event)"
+    >
+      <ul [style.display]="allItemsDisplay | async">
+        <li
+          *ngFor="let attr of keyAttributeFilterList"
+          #allItemsList
+          tabindex="-1"
+          [id]="attr.key"
+          [value]="attr"
+          data-automation="key-attribute-all-items-list-item"
+          [ngClass]="{
+            'list-item': true,
+            'active-selection': attr.value == keyAttribute.value,
+            cinv: useCInvStyles
+          }"
+          (click)="onSearchSelect(attr.value)"
+          (keydown)="onKeyDown($event)"
+        >
+          <span
+            id="attr-item"
+            [ngClass]="{ 'item-name': true, cinv: useCInvStyles }"
+            data-automation="key-attribute-text"
+          >
+            {{ attr.value }}
+          </span>
+        </li>
+      </ul>
+      <ul [style.display]="searchResultsDisplay | async">
+        <li
+          *ngFor="let result of searchResult$ | async"
+          #searchResultsList
+          tabindex="-1"
+          [id]="result.key"
+          [value]="result"
+          data-automation="key-attribute-search-result-list-item"
+          [ngClass]="{
+            'list-item': true,
+            'active-selection': result.value == keyAttribute.value,
+            cinv: useCInvStyles
+          }"
+          (click)="onSearchSelect(result.value); searchBox.value = ''"
+          (keydown)="onKeyDown($event)"
+        >
+          <span
+            id="result-item"
+            [ngClass]="{ 'item-name': true, cinv: useCInvStyles }"
+            data-automation="search-result-text"
+          >
+            {{ result.value }}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

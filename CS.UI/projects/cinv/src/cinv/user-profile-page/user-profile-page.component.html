@@ -1,0 +1,236 @@
+<div class="user-profile-hdr">Account Settings</div>
+<form
+  name="userProfileFrm"
+  [formGroup]="userProfileForm"
+  (ngSubmit)="onUpdateUserProfile()"
+>
+  <div class="user-profile-name-hdr">Name</div>
+  <label for="firstName" class="firstName-frm-label">First Name</label>
+  <input
+    type="text"
+    id="firstName"
+    class="firstName-frm-input"
+    formControlName="firstName"
+    data-automation="input-firstname"
+  />
+  <div class="firstName-errors">
+    <div class="error-message" *ngIf="isSubmitted && f.firstName.errors">
+      <small
+        *ngIf="f.firstName.errors.required"
+        data-automation="error-input-firstName-required"
+        >First Name is Required</small
+      >
+      <small
+        *ngIf="f.firstName.errors.pattern"
+        data-automation="error-input-firstName-pattern"
+        >Please provide valid First Name</small
+      >
+    </div>
+  </div>
+  <label for="lastName" class="lastName-frm-label">Last Name</label>
+  <input
+    type="text"
+    id="lastName"
+    class="lastName-frm-input"
+    formControlName="lastName"
+    data-automation="input-lastName"
+  />
+  <div class="lastName-errors">
+    <div class="error-message" *ngIf="isSubmitted && f.lastName.errors">
+      <small
+        *ngIf="f.lastName.errors.required"
+        data-automation="error-input-lastName-required"
+        >Last Name is Required</small
+      >
+      <small
+        *ngIf="f.lastName.errors.pattern"
+        data-automation="error-input-lastName-pattern"
+        >Please provide valid Last Name</small
+      >
+    </div>
+  </div>
+  <div class="user-profile-email-hdr">Email Address</div>
+  <label for="email" class="email-frm-label">Email</label>
+  <input
+    type="text"
+    id="email"
+    class="email-frm-input"
+    formControlName="email"
+    data-automation="input-email"
+  />
+  <div class="email-errors">
+    <div class="error-message" *ngIf="isSubmitted && f.email.errors">
+      <small
+        *ngIf="f.email.errors.required"
+        data-automation="error-input-email-required"
+        >Email is Required</small
+      >
+      <small
+        *ngIf="f.email.errors.pattern"
+        data-automation="error-input-email-pattern"
+        >Please provide valid Email Address</small
+      >
+    </div>
+    </div>
+    <div class="email-note">
+      <p>Please Note: The provided Email address is used to log-in to Compliance Investigate and receive notifications (such as password reset requests). 
+        Changing the email address associated with your account will end your current session. All future log-in's and notifications will use the updated Email address.</p>
+    </div>
+  <div class="user-profile-timezone-hdr">Time Zone</div>
+  <select id="timeZone" class="timeZone-frm-select" data-automation="select-timezone" formControlName="timeZone">
+    <option *ngFor="let timeZone of timeZoneList" value="{{ timeZone.id }}">
+      {{ timeZone.displayName }}
+    </option>
+  </select>
+  <div class="timeZone-errors">
+    <div
+      class="error-message"
+      data-automation="error-input-timezone-invalid"
+      *ngIf="
+        (f.timeZone.invalid && f.timeZone.touched) ||
+        (isSubmitted && f.timeZone.pristine)
+      "
+    >
+      <small
+        *ngIf="f.timeZone.errors?.required"
+        data-automation="error-input-timeZone-required"
+        >Timezone is Required</small
+      >
+    </div>
+  </div>
+
+  <div
+    [class.error-message-color]="isUserProfileError === true"
+    class="userProfile-client-messages"
+    data-automation="userProfile-client-message"
+  >
+    {{ userProfileClientMessages }}
+  </div>
+
+  <button class="user-profile-button-submit" data-automation="userProfile-submit" type="submit">Save</button>
+</form>
+
+<form
+  name="pwdFrm"
+  [formGroup]="changePasswordForm"
+  (ngSubmit)="onSubmitPasswordChange()"
+>
+  <div class="pwd-hdr">Change Password</div>
+  <label for="currentPassword" class="currentPassword-frm-label"
+    >Current Password</label
+  >
+  <input
+    type="password"
+    id="currentPassword"
+    class="currentPassword-frm-input"
+    formControlName="currentPassword"
+    data-automation="pwd-input-currentPassword"
+  />
+  <div class="current-password-errors">
+    <div
+      class="error-message"
+      *ngIf="
+        (pwdform.currentPassword.invalid && pwdform.currentPassword.touched) ||
+        (isPasswordSubmitted && pwdform.currentPassword.pristine)
+      "
+    >
+      <small
+        *ngIf="pwdform.currentPassword?.errors.required"
+        data-automation="error-input-current-password-required"
+        >Current Password is Required</small
+      >
+      <small
+        *ngIf="pwdform.currentPassword.errors.pattern"
+        data-automation="error-input-current-password-pattern-invalid"
+        >Password minimum length is 8 and should include uppercase, lowercase,
+        and one special character</small
+      >
+    </div>
+  </div>
+
+  <label for="newPassword" class="newPassword-frm-label">New Password</label>
+  <input
+    type="password"
+    id="newPassword"
+    class="newPassword-frm-input"
+    formControlName="newPassword"
+    data-automation="input-newPassword"
+  />
+  <div class="new-password-errors">
+    <div
+      class="error-message"
+      *ngIf="
+        (pwdform.newPassword.invalid && pwdform.newPassword.touched) ||
+        (isPasswordSubmitted && pwdform.newPassword.pristine)
+      "
+    >
+      <small
+        *ngIf="pwdform.newPassword?.errors.required"
+        data-automation="error-input-new-password-required"
+        >New Password is Required</small
+      >
+      <small
+        *ngIf="pwdform.newPassword.errors.pattern"
+        data-automation="error-input-new-password-pattern-invalid"
+        >Password minimum length is 8 and should include uppercase, lowercase,
+        and one special character</small
+      >
+    </div>
+  </div>
+
+  <label for="confirmNewPassword" class="confirm-new-password-frm-label"
+    >Re-enter New Password</label
+  >
+  <input
+    type="password"
+    id="confirmNewPassword"
+    class="confirm-new-password-frm-input"
+    formControlName="confirmNewPassword"
+    data-automation="input-confirm-new-password"
+  />
+  <div class="confirm-new-password-errors">
+    <div
+      class="error-message"
+      *ngIf="
+        (pwdform.confirmNewPassword.invalid &&
+          pwdform.confirmNewPassword.touched) ||
+        (isPasswordSubmitted && pwdform.confirmNewPassword.pristine)
+      "
+    >
+      <small
+        *ngIf="pwdform.confirmNewPassword?.errors.required"
+        data-automation="error-input-confirm-new-password-required"
+        >Confirm New Password is Required</small
+      >
+      <small
+        *ngIf="pwdform.confirmNewPassword?.errors.pattern"
+        data-automation="error-input-confirm-new-password-pattern-invalid"
+        >Password minimum length is 8 and should include uppercase, lowercase,
+        and one special character</small
+      >
+    </div>
+  </div>
+  <div
+    class="passwords-do-not-match-errors"
+    *ngIf="changePasswordForm.hasError('passwordMatchError')"
+  >
+    <div class="error-message">
+      <small data-automation="error-input-passwords-do-not-match"
+        >New Password and Re-enter New Password do not match</small
+      >
+    </div>
+  </div>
+  <div
+    [class.error-message-color]="isPasswordError === true"
+    class="pwd-client-messages"
+    data-automation="pwd-client-message"
+  >
+    {{ passwordClientMessages }}
+  </div>
+  <div class="forgot-pwd-link" data-automation="link-forgot-password">
+    <a routerLink="/sendPasswordReset">Forgot password? Reset here</a>
+  </div>
+  <button class="change-password-button-submit" data-automation="password-submit" type="submit">
+    Update Password
+  </button>
+</form>

@@ -1,0 +1,25 @@
+<div
+  [ngClass]="{ 'occurrences-container': true, cinv: useCInvStyles }"
+  data-automation="occurrences-container"
+  id="main"
+  role="main"
+>
+  <h1
+    class="hide-element"
+    *ngIf="!useCInvStyles"
+    id="main-content"
+    tabindex="-1"
+  >
+    Occurrences Report
+  </h1>
+  <div class="cinv-header" *ngIf="useCInvStyles">
+    <h1 id="main-content">Occurrences for: {{ checkpoint }}</h1>
+    <app-export-items
+      [orgVirtualDir]=""
+      [childRoute]="'auditresults/Occurrences'"
+      class="export-items"
+    ></app-export-items>
+  </div>
+  <app-occurrences-filter-summary></app-occurrences-filter-summary>
+  <app-occurrences-list-container></app-occurrences-list-container>
+</div>

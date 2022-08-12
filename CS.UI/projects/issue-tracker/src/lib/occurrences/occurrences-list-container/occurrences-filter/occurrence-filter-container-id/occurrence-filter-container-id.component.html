@@ -1,0 +1,83 @@
+<section
+  [ngClass]="{ 'filter-picker-container': true, cinv: useCInvStyles }"
+  data-automation="container-id-picker-container"
+>
+  <div
+    [ngClass]="{ 'filter-picker-wrapper': true, cinv: useCInvStyles }"
+    [formGroup]="containerId"
+  >
+    <input
+      autocomplete="off"
+      type="text"
+      #searchBox
+      [value]="(expandedDropdown | async) ? searchBox.value : containerId.value"
+      id="container-id-filter-input"
+      [ngClass]="{ 'filter-input': true, cinv: useCInvStyles }"
+      [formControl]="containerId"
+      data-automation="container-id-search-input"
+      placeholder="Select a Container ID to filter on"
+      (click)="onClickInput()"
+      (input)="onSearchChanged(searchBox.value)"
+      (keydown)="onKeyDown($event)"
+    />
+    <div
+      [style.display]="dropdownDisplay | async"
+      [ngClass]="{ 'filter-dropdown-wrapper': true, cinv: useCInvStyles }"
+      data-automation="filter-dropdown-wrapper"
+      id="ContainerIdPicker"
+      (click)="onClickTypeahead($event)"
+    >
+      <ul [style.display]="allItemsDisplay | async">
+        <li
+          *ngFor="let container of containerIdFilterList"
+          #allItemsList
+          tabindex="-1"
+          [id]="container.key"
+          [value]="container"
+          class="list-item"
+          data-automation="container-id-all-items-list-item"
+          [ngClass]="{
+            'list-item': true,
+            'active-selection': container.value == containerId.value,
+            cinv: useCInvStyles
+          }"
+          (click)="onSearchSelect(container.value)"
+          (keydown)="onKeyDown($event)"
+        >
+          <span
+            id="container-id-item"
+            [ngClass]="{ 'item-name': true, cinv: useCInvStyles }"
+            data-automation="container-id-text"
+          >
+            {{ container.value }}
+          </span>
+        </li>
+      </ul>
+      <ul [style.display]="searchResultsDisplay | async">
+        <li
+          *ngFor="let result of searchResult$ | async"
+          #searchResultsList
+          tabindex="-1"
+          [id]="result.key"
+          [value]="result"
+          data-automation="container-id-search-result-list-item"
+          [ngClass]="{
+            'list-item': true,
+            'active-selection': result.value == containerId.value,
+            cinv: useCInvStyles
+          }"
+          (click)="onSearchSelect(result.value); searchBox.value = ''"
+          (keydown)="onKeyDown($event)"
+        >
+          <span
+            id="result-item"
+            [ngClass]="{ 'item-name': true, cinv: useCInvStyles }"
+            data-automation="search-result-text"
+          >
+            {{ result.value }}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

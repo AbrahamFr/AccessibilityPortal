@@ -1,0 +1,289 @@
+<app-app-online></app-app-online>
+
+<div id="DisplayAuditReportsGrid" class="table-container">
+  <table
+    cdk-table
+    role="table"
+    [dataSource]="auditReports"
+    data-automation="audit-reports-list-table"
+  >
+    <caption class="hide-element">
+      {{
+        auditReports && auditReports.length > 0
+          ? "List of Audit Reports uploaded for this organization instance"
+          : "List of Audit Reports - No Reports uploaded "
+      }}
+    </caption>
+
+    <ng-container cdkColumnDef="reportName">
+      <th
+        cdk-header-cell
+        *cdkHeaderCellDef
+        data-automation="audit-report-name-column"
+      >
+        Report Name
+      </th>
+      <th
+        [id]="row.reportName"
+        data-automation="audit-report-name-item"
+        class="align-left cdk-cell"
+        cdk-cell
+        *cdkCellDef="let row"
+        scope="row"
+      >
+        {{ row.reportName }}
+        <div *ngIf="row.fileStatusId == 2" class="file-missing">
+          File is missing, contact your Administrator
+        </div>
+      </th>
+    </ng-container>
+
+    <ng-container cdkColumnDef="reportDescription">
+      <th
+        cdk-header-cell
+        *cdkHeaderCellDef
+        data-automation="audit-report-comments-column"
+      >
+        Comments
+      </th>
+      <td
+        data-automation="audit-report-comments-item"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        {{ row.reportDescription }}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="auditTypeName">
+      <th
+        cdk-header-cell
+        *cdkHeaderCellDef
+        data-automation="audit-report-type-column"
+      >
+        Report Type
+      </th>
+      <td
+        data-automation="audit-report-type-item"
+        class="align-center"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        {{ row.auditTypeName }}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="fileUploadDate">
+      <th
+        cdk-header-cell
+        *cdkHeaderCellDef
+        data-automation="audit-report-upload-date-column"
+      >
+        Upload Date
+      </th>
+      <td
+        data-automation="audit-report-upload-date-item"
+        class="align-center"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        {{ row.fileUploadDate | date: "MM/dd/yyyy" }}
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="fileSize">
+      <th
+        cdk-header-cell
+        *cdkHeaderCellDef
+        data-automation="audit-report-file-size-column"
+      >
+        File Size
+      </th>
+      <td
+        data-automation="audit-report-file-size-item"
+        class="align-center"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        <ng-container *ngIf="row.fileStatusId !== 2; else dashes">
+          {{ row.fileSize | number: "1.0-0" }}KB
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="fileType">
+      <th
+        cdk-header-cell
+        *cdkHeaderCellDef
+        data-automation="audit-report-file-format-column"
+      >
+        File Format
+      </th>
+      <td
+        data-automation="audit-report-file-format-item"
+        class="align-center"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        <ng-container *ngIf="row.fileStatusId !== 2; else dashes">
+          {{ row.fileType }}
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container cdkColumnDef="actions">
+      <th
+        cdk-header-cell
+        *cdkHeaderCellDef
+        data-automation="audit-report-actions-column"
+      >
+        Actions
+      </th>
+      <td
+        data-automation="audit-report-actions-item"
+        class="align-center inline-spinner-container"
+        cdk-cell
+        *cdkCellDef="let row"
+      >
+        <ng-container
+          *ngIf="
+            (activeDownload$ | async) &&
+              (selectedReport$ | async).auditReportId == row.auditReportId;
+            else actionButtons
+          "
+        >
+          <div
+            class="inline-loading-container"
+            data-automation="inline-loading-spinner"
+          >
+            <div class="inline-lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #actionButtons>
+          <button
+            *ngIf="row.canEdit && row.fileStatusId !== 2"
+            [id]="'edit-' + row.auditReportId.toString()"
+            class="action-btn"
+            [name]="'edit-button-' + row.auditReportId.toString()"
+            aria-haspopup="dialog"
+            title="Edit"
+            [attr.aria-describedby]="row.reportName"
+            data-automation="edit-button"
+            [setFocus]="
+              (previousActiveElement$ | async)?.id ==
+              'edit-' + row.auditReportId.toString()
+            "
+            (click)="onClickEditReport(row)"
+          >
+            <svg aria-hidden="true" class="edit"></svg>
+          </button>
+          <button
+            *ngIf="row.fileStatusId !== 2"
+            [id]="'download-' + row.auditReportId.toString()"
+            class="action-btn"
+            [name]="'download-button-' + row.auditReportId.toString()"
+            aria-haspopup="dialog"
+            title="Download"
+            [attr.aria-describedby]="row.reportName"
+            data-automation="download-button"
+            [setFocus]="
+              (previousActiveElement$ | async)?.id ==
+              'download-' + row.auditReportId.toString()
+            "
+            (click)="onClickDownloadAuditReport(row)"
+          >
+            <svg aria-hidden="true" class="download"></svg>
+          </button>
+          <button
+            *ngIf="row.canEdit"
+            [id]="'delete-' + row.auditReportId.toString()"
+            class="action-btn"
+            [name]="'delete-button-' + row.auditReportId.toString()"
+            aria-haspopup="dialog"
+            title="Delete"
+            [attr.aria-describedby]="row.reportName"
+            data-automation="delete-button"
+            [setFocusNext]="
+              (nextActiveElement$ | async)?.id == row.auditReportId
+            "
+            [setFocus]="
+              (previousActiveElement$ | async)?.id ==
+              'delete-' + row.auditReportId.toString()
+            "
+            (click)="onClickDeleteRow(row)"
+          >
+            <svg aria-hidden="true" class="delete"></svg>
+          </button>
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <tr cdk-header-row *cdkHeaderRowDef="displayedColumns$.value"></tr>
+    <tr
+      #auditReportsListItems
+      [id]="row.auditReportId"
+      [ngClass]="row.fileStatusId == 2 ? 'disabled' : ''"
+      cdk-row
+      *cdkRowDef="let row; let i = index; columns: displayedColumns$.value"
+    ></tr>
+  </table>
+
+  <ng-container *ngIf="activeEdit$ | async">
+    <app-audit-report-edit
+      [selectedReport]="selectedReport$ | async"
+      (closeEdit)="onCloseEdit()"
+    >
+    </app-audit-report-edit>
+  </ng-container>
+
+  <ng-container *ngIf="activeDelete$ | async">
+    <app-audit-report-delete
+      [selectedReport]="selectedReport$ | async"
+      (closeDelete)="onCloseDelete()"
+    ></app-audit-report-delete>
+  </ng-container>
+
+  <ng-container *ngIf="activeDownloadError$ | async">
+    <app-audit-report-download
+      [selectedReport]="selectedReport$ | async"
+      [error]="activeDownloadError$ | async"
+      (closeDownloadError)="onCloseDownloadError()"
+    ></app-audit-report-download>
+  </ng-container>
+
+  <ng-container *ngIf="auditReports; else spinner">
+    <api-handler-error-guard [maybeError]="auditReports">
+      <ng-container *ngIf="auditReports.length == 0">
+        <div class="no-results" data-automation="no-data-available">
+          No data available
+        </div>
+      </ng-container>
+    </api-handler-error-guard>
+  </ng-container>
+</div>
+
+<ng-template #spinner>
+  <div class="loading-container" data-automation="loading-spinner">
+    <div class="loading">Loading...</div>
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noresults>
+  <div class="no-results" data-automation="no-data-available">
+    No data available
+  </div>
+</ng-template>
+
+<ng-template #dashes><span>---</span></ng-template>

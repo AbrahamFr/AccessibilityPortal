@@ -1,0 +1,82 @@
+<section
+  [ngClass]="{ 'filter-picker-container': true, cinv: useCInvStyles }"
+  data-automation="page-title-picker-container"
+>
+  <div
+    [ngClass]="{ 'filter-picker-wrapper': true, cinv: useCInvStyles }"
+    [formGroup]="pageTitle"
+  >
+    <input
+      autocomplete="off"
+      type="text"
+      #searchBox
+      [value]="(expandedDropdown | async) ? searchBox.value : pageTitle.value"
+      id="page-title-filter-input"
+      [ngClass]="{ 'filter-input': true, cinv: useCInvStyles }"
+      [formControl]="pageTitle"
+      data-automation="page-title-search-input"
+      placeholder="Select a Page Title to filter on"
+      (click)="onClickInput()"
+      (input)="onSearchChanged(searchBox.value)"
+      (keydown)="onKeyDown($event)"
+    />
+    <div
+      [style.display]="dropdownDisplay | async"
+      [ngClass]="{ 'filter-dropdown-wrapper': true, cinv: useCInvStyles }"
+      data-automation="filter-dropdown-wrapper"
+      id="pageTitleIdPicker"
+      (click)="onClickTypeahead($event)"
+    >
+      <ul [style.display]="allItemsDisplay | async">
+        <li
+          *ngFor="let title of titleFilterList"
+          #allItemsList
+          tabindex="-1"
+          [id]="title.key"
+          [value]="title"
+          data-automation="page-title-all-items-list-item"
+          [ngClass]="{
+            'list-item': true,
+            'active-selection': title.value == pageTitle.value,
+            cinv: useCInvStyles
+          }"
+          (click)="onSearchSelect(title.value)"
+          (keydown)="onKeyDown($event)"
+        >
+          <span
+            id="title-item"
+            [ngClass]="{ 'item-name': true, cinv: useCInvStyles }"
+            data-automation="page-title-text"
+          >
+            {{ title.value }}
+          </span>
+        </li>
+      </ul>
+      <ul [style.display]="searchResultsDisplay | async">
+        <li
+          *ngFor="let result of searchResult$ | async"
+          #searchResultsList
+          tabindex="-1"
+          [id]="result.key"
+          [value]="result"
+          data-automation="page-title-search-result-list-item"
+          [ngClass]="{
+            'list-item': true,
+            'active-selection': result.value == pageTitle.value,
+            cinv: useCInvStyles
+          }"
+          (click)="onSearchSelect(result.value); searchBox.value = ''"
+          (keydown)="onKeyDown($event)"
+        >
+          <span
+            id="result-item"
+            [ngClass]="{ 'item-name': true, cinv: useCInvStyles }"
+            data-automation="search-result-text"
+          >
+            {{ result.value }}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

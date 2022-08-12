@@ -1,0 +1,431 @@
+<h1 id="TopOfPage">Compliance Investigate Help</h1>
+
+<div class="toc">
+    <h2>Contents</h2>
+    <a [routerLink]="['/help']" fragment=TopOfPage class="sr-skip">Skip to content</a
+  >
+    <ol>
+        <li>
+            <a [routerLink]="['/help']" fragment="CreateAnAccount">Create An Account</a>
+            <ul>
+                <li><a [routerLink]="['/help']" fragment="CreateAnAccount_Email">Email</a></li>
+                <li><a [routerLink]="['/help']" fragment="CreateAnAccount_Password">Password</a></li>
+                <li><a [routerLink]="['/help']" fragment="CreateAnAccount_Name">First And Last Name</a></li>
+            </ul>
+        </li><br>
+        <li>
+            <a [routerLink]="['/help']" fragment="AuditOptions">Audit Options</a>
+            <ul>
+                <li><a [routerLink]="['/help']" fragment="AuditOptions_Start">Start At This Page</a></li>
+                <li><a [routerLink]="['/help']" fragment="AuditOptions_Guideline">Guideline</a></li>
+                <li><a [routerLink]="['/help']" fragment="AuditOptions_Pages">Total Pages To Crawl</a></li>
+                <li><a [routerLink]="['/help']" fragment="AuditOptions_Levels">Number Of Levels To Crawl</a></li>
+            </ul>
+        </li><br>
+        <li><a [routerLink]="['/help']" fragment="AuditResults">Audit Results</a>
+            <ul>
+                <li><a [routerLink]="['/help']" fragment="AuditResults_AuditandGuidelineSelection">Audit And Guideline Selection</a></li>
+                <li><a [routerLink]="['/help']" fragment="AuditResults_SummaryBar">Summary Bar</a></li>
+                <li><a [routerLink]="['/help']" fragment="AuditResults_IssuesFound">Issues Found</a></li>
+                <li><a [routerLink]="['/help']" fragment="AuditResults_Filter">Filter</a></li>
+                <li>
+                    <a [routerLink]="['/help']" fragment="AuditResults_Sort">Sort</a></li>
+                <li>
+                    <a [routerLink]="['/help']" fragment="AuditResults_Export">Export</a></li>
+            </ul>
+        </li><br>
+        <li><a [routerLink]="['/help']" fragment="MyProfile">My Profile</a>
+        <ul>
+            <li><a [routerLink]="['/help']" fragment="MyProfile_Settings">Settings</a></li>
+        </ul>
+    </li><br>
+    <li><a [routerLink]="['/help']" fragment="FAQ">FAQ</a>
+    <ul>
+        <li><a [routerLink]="['/help']" fragment="FAQ_SessionTimeout">Session Timeout</a></li>
+    </ul>
+</li>
+    </ol>
+</div>
+
+<div class="article">
+    <h2 id="CreateAnAccount">1. Create An Account</h2>
+    <h3 id="CreateAnAccount_Email"><b>Email:</b></h3>
+    <p>A valid Email address is required for all Compliance Investigate accounts. The Email address is used to login to a user's account. The provided Email address is used for any Compliance Investigate notifications, such as password reset request.</p>
+    <h3 id="CreateAnAccount_Password"><b>Password:</b></h3>
+    <p>Compliance Investigate uses the following requirements for all passwords:</p>
+        <ul>
+            <li>Minimum password length is 8 characters</li>
+            <li>Passwords must include uppercase, lowercase, and special characters</li>
+        </ul>
+    <h3 id="CreateAnAccount_Name"><b>First And Last Name:</b></h3>
+    <p>Please provide your First and Last Name.</p>
+<h4 class="BackToTop"><a [routerLink]="['/help']" fragment=TopOfPage>Back to top</a></h4>
+    <hr />
+    <h2 id="AuditOptions">2. Audit Options</h2>
+    <h3 id="AuditOptions_Start">Start At This Page</h3>
+    <p>Enter the Full Path Web Address of the page you would like to scan. This defines the scope of the Audit. Please note the URL you provide should not be a page that redirects to another URL.</p>
+    <p>Common Error Messages:</p>
+    <ul>
+        <li><span class="error-message">Start Page is invalid </span> - A valid http:// or https:// URL needs to be entered.</li>
+    </ul>
+    <h3 id="AuditOptions_Guideline">Guideline</h3>
+    <p>Select the compliance guideline that you would like to audit your page against. The available guidelines include:</p>
+    <ul>
+        <li>Section 508</li>
+        <li>WCAG 2.1 A</li>
+        <li>WCAG 2.1 AA</li>
+        <li>WCAG 2.1 AAA</li>
+    </ul>
+    <table summary="The table lists the four guidelines that will be used by the Audit:Section 508, WCAG 2.1 A, WCAG 2.1 AA, WCAG 2.1 AAA.">
+        <caption>The table below lists the guidelines that will be used by the Audit:</caption>
+        <col style="width: 30%;">
+        <col style="width: 70%;">
+        <tbody>
+            <tr class="table-heading">
+                <th class="mode-col" scope="col">Guideline</th>
+                <th class="desc" scope="col">Description</th>
+            </tr>
+            <tr>
+                <td class="center-text bold">Section 508</td>
+                <td class="desc">Checks against the accessibility standards as set forth by the US Access Board. Section 508 of the Rehabilitation Act Amendments mandates that federal agencies must ensure that all electronic and information technology purchased, maintained,
+                    or developed meets the accessibility standards established by the U.S. Access Board. For more information go to: <a href="http://www.access-board.gov/ict/" target="_blank">http://www.access-board.gov/ict</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="center-text bold">WCAG 2.1 A</td>
+                <td class="desc">Published by the W3C, the Web Content Accessibility Guidelines (WCAG) 2.1 A standards are meant to be the baseline of success criteria for accessibility compliance. WCAG 2.1 covers a wide range of recommendations for making Web content
+                    more accessible. Following these guidelines will make content accessible to a wider range of people with disabilities, including blindness and low vision, deafness and hearing loss, learning disabilities, cognitive limitations, limited
+                    movement, speech disabilities, photosensitivity and combinations of these.</td>
+            </tr>
+            <tr>
+                <td class="center-text bold">WCAG 2.1 AA</td>
+                <td class="desc">The WCAG 2.1 AA standards are meant to include all of the level A standards as well as more stringent criteria and conformance requirements.</td>
+            </tr>
+            <tr>
+                <td class="center-text bold">WCAG 2.1 AAA</td>
+                <td class="desc">The WCAG 2 AAA standards are meant to include all the A, AA criteria as well as the highest level of conformance requirements.</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <h3 id="AuditOptions_Pages">Total Pages To Crawl</h3>
+    <p>Limit the maximum number of pages returned per audit between 1-25 pages</p>
+    <h3 id="AuditOptions_Levels">Number Of Levels To Crawl</h3>
+    <p>In Compliance Investigate, users can specify the number of levels that an audit will track down. An audit will include any pages referenced by the current page that is being assessed. A level of zero (0) will only audit the page defined in
+        the "Start at this page" field. An audit that uses 1 or more levels will spider the domain of the specified site.</p>
+    <p>Note: Increasing the number of levels used will increase Audit completion times.</p>
+    <h4 class="BackToTop"><a [routerLink]="['/help']" fragment=TopOfPage>Back to top</a></h4>
+
+    <hr />
+    <h2 id="AuditResults">3. Audit Results</h2>
+    <h3 id="AuditResults_AuditandGuidelineSelection">Audit And Guideline Selection</h3>
+    <p>An audit must be selected in order to show data in the report. By default, the first Audit alphabetically is selected. You can change the Audit selections at any time and the report will update accordingly. The Guideline selection is defaulted to
+        All. This means that all Guidelines tested for this Audit will be included in the report. However, you can also change these selections at any time and the report will update.</p>
+    <h3 id="AuditResults_SummaryBar">Summary Bar</h3>
+    <p>The Summary Bar section of the report will update based on the Audit and Guideline selections. The Summary Bar consists of the following metrics.</p>
+    <ul>
+        <li>Pages Scanned – The total number of pages scanned for the selected Audit.</li>
+        <li>Pages Impacted – The total number of pages that had at least one issue associated as a result of a test performed.</li>
+        <li>Total Issues – The total number of issues that did not Pass a test across the Audits and Guidelines selected.</li>
+        <li>Total Failed – the total number of issues that Failed a test across the Audits and Guidelines selected.</li>
+        <li>High Severity Failed – The total number of issues that Failed a test and were a High Severity issue based on the Audits and Guidelines selected.</li>
+    </ul>
+    <h3 id="AuditResults_IssuesFound">Issues Found</h3>
+    <p>The Issues Found table includes the list of all issues that did not Pass a test based on the Audit and Guidelines selected.</p>
+    <p>Issues Found ‘count’ (found in parenthesis after the heading) includes the total number of issues that did not Pass a test. This initial list displayed on the screen will be the top 20 issues in priority order. You will have to select See More option
+        at the end of the list to see more issues.</p>
+    <h4>Table Columns:</h4>
+    <ul>
+        <li>Issue - The Result of a particular test performed on a particular page.</li>
+        <li>Severity - The Severity of an issue is determined by a combination of priority level and highest page level.
+            <br />Priority Level + Page Level = Severity
+            <table class="center-text">
+                <tbody>
+                    <tr>
+                        <th>
+                            <p>Priority Level</p>
+                        </th>
+                        <th>
+                            <p>Page Level</p>
+                        </th>
+                        <th>
+                            <p>Severity</p>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Level 1</p>
+                        </td>
+                        <td>
+                            <p>Level 1 or 2</p>
+                        </td>
+                        <td>
+                            <p>HIGH</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Level 2</p>
+                        </td>
+                        <td>
+                            <p>Level 1 or 2</p>
+                        </td>
+                        <td>
+                            <p>HIGH</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Level 1</p>
+                        </td>
+                        <td>
+                            <p>Level 3, 4, or 5</p>
+                        </td>
+                        <td>
+                            <p>MEDIUM</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Level 2</p>
+                        </td>
+                        <td>
+                            <p>Level 3, 4, or 5</p>
+                        </td>
+                        <td>
+                            <p>MEDIUM</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Level 2</p>
+                        </td>
+                        <td>
+                            <p>Level 6 +</p>
+                        </td>
+                        <td>
+                            <p>LOW</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Level 3</p>
+                        </td>
+                        <td>
+                            <p>Level 1 +</p>
+                        </td>
+                        <td>
+                            <p>LOW</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </li>
+        <li>Impact – The Impact is the Total Pages with at least one Issue / Total Pages Scanned.</li>
+        <li>Occurrences – The number of instances the particular issue is identified in the html code.</li>
+        <ul>
+            <li>If the number of Occurrences is greater than zero (0), then the number will be a hyperlink. If selected, you will be brought to the Occurrences Report.</li>
+        </ul>
+        <li>Pages – The number of pages that contained at least one instance of the issue.</li>
+        <ul>
+            <li>If the number of pages is greater than zero (0), then the number will be a hyperlink. If selected, you will be brought to the Occurrences Report.</li>
+        </ul>
+        <li>Highest Page Level – The highest level where this issue was found during the page crawl, e.g., if the Audit started on the homepage, then the homepage is Level 1. If there are links on the homepage then when we crawl to that secondary link, that
+            would be Level 2, etc.</li>
+        <li>Priority Level – All Guideline tests are assigned a priority level of 1, 2, or 3. In the case of WCAG, it relates to Level A, AA, or AAA.
+        </li>
+        <li>Guideline – The Guideline or test that was run against one or more pages.</li>
+        <ul>
+            <li>Each Guideline listed will also be a hyperlink. When selected, a new tab will open to the WCAG technique on the W3C site that defines the criteria tested.</li>
+        </ul>
+        <li>State – The result of the test performed. The result will either indicate Fail, Warning, or Visual.</li>
+    </ul>
+    <h4>Default Priority Order</h4>
+    <p>Severity, Impact, Priority, Occurrences, then Issue.</p>
+    <h4>See More</h4>
+    <p>By default, the Issues Found list will only display the first 20 items. In order to see additional items, you will have to select “See More …” at the bottom of the list. This option will reload the page to include 20 more items. </p>
+    <h3 id="AuditResults_Filter">Filter</h3>
+    <p>The Filter feature in the Issue Tracker report allows for focus on the items most important to you. To filter your Issue list, simply click on the first icon above the Issue table on the far right. When you click the icon, a box will open that will
+        provide the following filter options. These options can be accessed through the tabs at the top of the box.
+    </p>
+    <p>
+        To filter your Issue list, simply click on the first icon above the Issue table on the far right.
+    </p>
+    <p>
+        When you click the icon, a box will open that will provide the following filter options. These options can be accessed through the tabs at the top of the box.
+    </p>
+    <ul>
+        <li>
+            <b>Severity</b>
+            <ul>
+                <li>Checkbox</li>
+                <li>Multiple selections allowed</li>
+                <li>Options = High, Medium, Low</li>
+            </ul>
+        </li>
+        <li>
+            <b>Impact</b>
+            <ul>
+                <li>Checkbox</li>
+                <li>Multiple selections allowed</li>
+                <li>Options = High, Medium, Low</li>
+            </ul>
+        </li>
+        <li>
+            <b>Priority</b>
+            <ul>
+                <li>Checkbox</li>
+                <li>Multiple selections allowed</li>
+                <li>Options = 1, 2, 3</li>
+            </ul>
+        </li>
+        <li>
+            <b>Guideline</b>
+            <ul>
+                <li>Keyword Typeahead dropdown</li>
+                <li>Single selection only</li>
+                <li>Options = All relevant Guidelines in the issue list</li>
+            </ul>
+        </li>
+        <li>
+            <b>State</b>
+            <ul>
+                <li>Checkbox</li>
+                <li>Multiple selections allowed</li>
+                <li>Options = Failed, Warning, Visual</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>
+        <b>Apply:</b> You can make selections across all filter options/tabs and when you are finished, you must click on the <b>Apply </b>button in order to apply the filter to your Issue list.
+    </p>
+    <p>
+        <b>Remove:</b> To remove a single filter option, you must select that option from the specific tab and deselect the option.
+    </p>
+    <p>
+        <b>Cancel:</b> If you wish to clear all your filter options, then click on Cancel button. The box will close, and no filters will be applied.
+    </p>
+    <p>
+        <b><i>Note:</i></b> Once you have applied your filters, you can bookmark this page with the filters applied by selecting the URL in the address bar and copy/paste in a safe place.
+    </p>
+    <h3 id="AuditResults_Sort">
+        Sort
+    </h3>
+    <p>
+        The Sort option allows you to prioritize the Issues list based on what is most important to you.
+    </p>
+    <p>
+        To sort your Issue list, simply click on the <b>second</b> icon above the Issue table on the far right.
+    </p>
+    <p>
+        When you click the icon, a box will open that will provide the following filter options. This allows for a single sort option.
+    </p>
+    <ul>
+        <li>
+            Default sort (as defined above in Issue Found section)
+        </li>
+        <li>
+            Impact (High to low)
+        </li>
+        <li>
+            Severity (High to low)
+        </li>
+        <li>
+            Priority Level, ascending (1 to 3)
+        </li>
+        <li>
+            Highest Page Level, ascending
+        </li>
+        <li>
+            Occurrences, descending
+        </li>
+        <li>
+            Guideline, alpha ascending
+        </li>
+        <li>
+            State, alpha ascending
+        </li>
+    </ul>
+    <p>
+        Once you make a selection, you must select<b> Sort</b> to initiate the sort of your Issue list.
+    </p>
+    <p>
+        <b>Cancel:</b> If you select Cancel, then you will return to your current Issue list with no other Sort option applied.
+    </p>
+    <h3 id="AuditResults_Export">
+        Export
+    </h3>
+    <p>
+        The Issue Tracker report allows for exporting all the data available on the issues listed. The Export icon can be found in the header bar at the same level as the page breadcrumbs but right justified.
+    </p>
+    <p>
+        The only required fields for export are Format and Name. Only when these are selected will the Export button be available.
+    </p>
+    <p>
+        <b>Format options</b> include:
+    </p>
+    <ol>
+        <li>Comma Separated Value – CSV.</li>
+        <li>JavaScript Object Notation – JSON.</li>
+        <li>Microsoft Excel – XLSX.</li>
+        <li>eXtensible Markup Language – XML.</li>
+    </ol>
+    <p>
+        If you applied any Filters to your Issue Found list then you will be provided with the option to only Export those issues.
+    </p>
+    <p>
+        <b><i>Note:</i></b> The Default selection for Export will be Export all issues.
+    </p>
+    <p>
+        Once you select Export, then the file will automatically download to your computer.
+    </p>
+    <p>
+        <b>Cancel:</b> If you select Cancel, then the dialog box will close and no issues will be exported.
+    </p>
+    <h4 class="BackToTop"><a [routerLink]="['/help']" fragment=TopOfPage>Back to top</a></h4>
+
+    <hr />
+    <h2 id="MyProfile">4. My Profile</h2>
+    <h3 id="MyProfile_Settings">Settings</h3>
+    <p><b>Name:</b> A First and Last name is required for each Compliance Investigate User.</p>
+    <p><b>Email Address:</b> Please be sure to use a valid Email address. This Email address will be used for any automated Emails from Compliance Investigate, including password reset requests.</p>
+    <p><b>Time Zone:</b> Selecting your local time zone will allow all reports to be referencing the appropriate time.</p>
+    <p><b>Change Password:</b> Users who are logged in will be able to change their password from the settings page. Compliance Investigate password complexity requirements are outlined in <a [routerLink]="['/help']" fragment="CreateAnAccount_Password">Create an Account: Password</a> section of these help files.</p>
+    <p>If users wish to change their password but do not remember their Current Password, you will be able to <a [routerLink]="['/sendPasswordReset']">Reset your Password.</a></p>
+    <h4 class="BackToTop"><a [routerLink]="['/help']" fragment=TopOfPage>Back to top</a></h4>
+    <hr />
+
+    <h2 id="FAQ">5. FAQ</h2>
+    <p>A collection of frequently asked questions:</p>
+    <h3 id="FAQ_SessionTimeout">Session Timeout</h3>
+    <h4>Why do I have to login every 30 minutes?</h4>
+    <p>Compliance Investigate requires a user to log in every 30 minutes, regardless if they are actively navigating between pages. This is a security setting.</p>
+    <h4 class="BackToTop"><a [routerLink]="['/help']" fragment=TopOfPage>Back to top</a></h4>
+    <hr />
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>

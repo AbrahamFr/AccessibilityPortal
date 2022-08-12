@@ -1,0 +1,22 @@
+<div class="checkpoint-group-container">
+    <label for="checkpoint-group-select" class="checkpoint-group-label">Checkpoint Group </label>
+    <select
+      *ngIf="checkpointGroups"
+      id="checkpoint-group-select"
+      tabindex="0"
+      [value]="selectedCheckpointGroup.checkpointGroupId"
+      class="checkpoint-group"
+      (change)="onSelectOptionChange($event.target.value)"
+      data-automation="checkpoint-group-select"
+    >
+      <option *ngIf="selectedCheckpointGroup" [value]="selectedCheckpointGroup.checkpointGroupId">{{
+        selectedCheckpointGroup.shortDescription
+      }}</option>
+      <option
+        *ngFor="let group of checkpointGroups | filterOptions: selectedCheckpointGroup:'checkpointGroupId':checkpointGroups"
+        [value]="group.checkpointGroupId"
+        >{{ group.shortDescription }}</option
+      >
+    </select>
+  </div>
+  

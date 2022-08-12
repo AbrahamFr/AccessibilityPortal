@@ -1,0 +1,52 @@
+#Build Definition: Worker Agent Build
+#This build will create the artifact for 
+#the Worker agent component of Compliance 
+#Sheriff. 
+
+pool:
+  name: CSBuild
+  demands: msbuild
+
+trigger:
+  branches:
+    include:
+     - RC6.3
+  paths:
+    include:
+     - src/WinServices/Worker/CSWorkerAgent/*
+     - src/Common/*
+    exclude:
+     - src/Common/BasicEnvironmentInstaller/*
+
+variables:
+  BuildConfiguration: 'release'
+  BuildDefintionName: 'Worker Agent Build'
+  WorkerAgentProjSource: 'src/WinServices/Worker/CSWorkerAgent'
+
+name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+steps:
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 5.x'
+  inputs:
+    versionSpec: 5.x
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: ComplianceSheriff.sln
+    feedsToUse: config
+    nugetConfigPath: .nuget/NuGet.Config
+
+- task: MSBuild@1
+  displayName: 'Build project CSWorkerAgent'
+  inputs:
+    solution: $(WorkerAgentProjSource)/CSWorkerAgent.csproj
+    msbuildArchitecture: x64
+    configuration: '$(BuildConfiguration)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: WorkerServiceDrop'
+  inputs:
+    PathtoPublish: 'src/WinServices/Worker/CSWorkerAgent/bin/$(BuildConfiguration)'
+    ArtifactName: WorkerServiceDrop

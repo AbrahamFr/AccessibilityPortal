@@ -1,0 +1,79 @@
+<section
+  [ngClass]="{ 'picker-container': true, cinv: useCInvStyles }"
+  data-automation="checkpoint-picker-container"
+>
+  <div class="checkpoint-wrapper" [formGroup]="checkpoint">
+    <input
+      autocomplete="off"
+      type="text"
+      #searchBox
+      [value]="
+        (expandedDropdown | async)
+          ? searchBox.value
+          : getCheckpointDescription(checkpoint.value)
+      "
+      id="checkpoint-filter-input"
+      [ngClass]="{ 'checkpoint-filter-input': true, cinv: useCInvStyles }"
+      [formControl]="checkpoint"
+      data-automation="checkpoint-search-input"
+      placeholder="{{
+        useCInvStyles
+          ? 'Select a Test to filter on'
+          : 'Select a Checkpoint to filter on'
+      }}"
+      (click)="onClickInput()"
+      (input)="onSearchChanged(searchBox.value)"
+      (keydown)="onKeyDown($event)"
+    />
+    <div
+      [style.display]="dropdownDisplay | async"
+      class="checkpoint-picker"
+      id="checkpointIdPicker"
+      (click)="onClickTypeahead($event)"
+    >
+      <ul [style.display]="allItemsDisplay | async">
+        <li
+          *ngFor="let group of checkpoints"
+          #allItemsList
+          tabindex="-1"
+          [id]="group.checkpointId"
+          [value]="group"
+          data-automation="checkpoint-group-all-items-list-item"
+          [ngClass]="{
+            'list-item': true,
+            'active-selection':
+              (group && group.checkpointId) == checkpoint.value
+          }"
+          (click)="onSearchSelect(group.checkpointId)"
+          (keydown)="onKeyDown($event)"
+        >
+          <span id="group-item" class="item-name">
+            {{ group.checkpointDescription }}
+          </span>
+        </li>
+      </ul>
+      <ul [style.display]="searchResultsDisplay | async">
+        <li
+          *ngFor="let result of searchResult$ | async"
+          #searchResultsList
+          tabindex="-1"
+          [id]="result.checkpointId"
+          [value]="result.checkpointId"
+          class="list-item"
+          data-automation="checkpoint-group-search-result-list-item"
+          [ngClass]="
+            (result && result.checkpointId) == checkpoint.value
+              ? 'active-selection'
+              : ''
+          "
+          (click)="onSearchSelect(result.checkpointId); searchBox.value = ''"
+          (keydown)="onKeyDown($event)"
+        >
+          <span id="result-item" class="item-name">
+            {{ result.checkpointDescription }}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

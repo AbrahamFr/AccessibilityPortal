@@ -1,0 +1,82 @@
+<section
+  [ngClass]="{ 'filter-picker-container': true, cinv: useCInvStyles }"
+  data-automation="page-url-picker-container"
+>
+  <div
+    [ngClass]="{ 'filter-picker-wrapper': true, cinv: useCInvStyles }"
+    [formGroup]="pageUrl"
+  >
+    <input
+      autocomplete="off"
+      type="text"
+      #searchBox
+      [value]="(expandedDropdown | async) ? searchBox.value : pageUrl.value"
+      id="page-url-filter-input"
+      [ngClass]="{ 'filter-input': true, cinv: useCInvStyles }"
+      [formControl]="pageUrl"
+      data-automation="page-url-search-input"
+      placeholder="Select a Page Url to filter on"
+      (click)="onClickInput()"
+      (input)="onSearchChanged(searchBox.value)"
+      (keydown)="onKeyDown($event)"
+    />
+    <div
+      [style.display]="dropdownDisplay | async"
+      [ngClass]="{ 'filter-dropdown-wrapper': true, cinv: useCInvStyles }"
+      data-automation="filter-dropdown-wrapper"
+      id="pageUrlIdPicker"
+      (click)="onClickTypeahead($event)"
+    >
+      <ul [style.display]="allItemsDisplay | async">
+        <li
+          *ngFor="let url of urlFilterList"
+          #allItemsList
+          tabindex="-1"
+          [id]="url"
+          [value]="url"
+          data-automation="page-url-all-items-list-item"
+          [ngClass]="{
+            'list-item': true,
+            'active-selection': url == pageUrl.value,
+            cinv: useCInvStyles
+          }"
+          (click)="onSearchSelect(url)"
+          (keydown)="onKeyDown($event)"
+        >
+          <span
+            id="url-item"
+            [ngClass]="{ 'item-name': true, cinv: useCInvStyles }"
+            data-automation="page-url-text"
+          >
+            {{ url }}
+          </span>
+        </li>
+      </ul>
+      <ul [style.display]="searchResultsDisplay | async">
+        <li
+          *ngFor="let result of searchResult$ | async"
+          #searchResultsList
+          tabindex="-1"
+          [id]="result"
+          [value]="result"
+          data-automation="page-url-search-result-list-item"
+          [ngClass]="{
+            'list-item': true,
+            'active-selection': result == pageUrl.value,
+            cinv: useCInvStyles
+          }"
+          (click)="onSearchSelect(result); searchBox.value = ''"
+          (keydown)="onKeyDown($event)"
+        >
+          <span
+            id="result-item"
+            [ngClass]="{ 'item-name': true, cinv: useCInvStyles }"
+            data-automation="search-result-text"
+          >
+            {{ result }}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

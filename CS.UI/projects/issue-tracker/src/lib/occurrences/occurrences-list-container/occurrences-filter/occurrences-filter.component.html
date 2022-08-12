@@ -1,0 +1,162 @@
+<div
+  id="occurrences-filter-container"
+  data-automation="occurrences-filter-container"
+  cdkTrapFocus
+  (outsideClick)="onOutsideClick($event)"
+  [ngClass]="{ 'filter-container': true, cinv: useCInvStyles }"
+>
+  <!-- [formGroup]="occurrencesFilterForm" -->
+  <form
+    autocomplete="off"
+    data-automation="occurrences-filter-form-wrapper"
+    (ngSubmit)="onSubmit()"
+  >
+    <h2 class="hide-element">Issue Tracker Filter Fields</h2>
+    <div>
+      <div role="tablist" class="filter-buttons">
+        <ng-container
+          *ngFor="let occurrenceFilter of Object.keys(occurrenceFilters)"
+        >
+          <button
+            #filterProperties
+            [id]="occurrenceFilter.concat('-filter')"
+            [ngClass]="{ 'filter-btn': true, cinv: useCInvStyles }"
+            [attr.data-automation]="occurrenceFilter + '-filter-btn'"
+            role="tab"
+            type="button"
+            (click)="onClickFilter($event)"
+            (keydown)="onKeydownFilter($event)"
+            [ngStyle]="
+              occurrenceFilter.concat('-filter') == activeFilter.value
+                ? { opacity: '1' }
+                : ''
+            "
+            [attr.tabindex]="
+              occurrenceFilter.concat('-filter') == activeFilter.value
+                ? '0'
+                : '-1'
+            "
+            [setFocus]="occurrenceFilter == 'pageTitle' ? true : false"
+          >
+            {{ formFilterDisplay[occurrenceFilter] }}
+          </button>
+        </ng-container>
+      </div>
+    </div>
+    <div>
+      <ng-container
+        *ngFor="let occurrenceFilter of Object.keys(occurrenceFilters)"
+      >
+        <section
+          [attr.data-automation]="occurrenceFilter + 'filter-panel'"
+          role="tabpanel"
+          [ngClass]="{ 'filter-panel': true, cinv: useCInvStyles }"
+          [ngStyle]="
+            activeFilter.value == occurrenceFilter.concat('-filter')
+              ? { display: 'block' }
+              : { display: 'none' }
+          "
+        >
+          <h2 class="hide-element">
+            {{ formFilterDisplay[occurrenceFilter] }} Filter
+          </h2>
+          <div
+            [ngClass]="{ 'filter-wrapper': true, cinv: useCInvStyles }"
+            *ngIf="getFilterControl(occurrenceFilter) as control"
+          >
+            <ng-container *ngIf="occurrenceFilter == 'pageUrl'">
+              <app-occurrence-filter-page-url
+                [pageUrl]="occurrencesFilterForm.controls['pageUrl']"
+                (itemSelected)="onPageUrlSelected($event)"
+              >
+              </app-occurrence-filter-page-url>
+            </ng-container>
+
+            <ng-container *ngIf="occurrenceFilter == 'pageTitle'">
+              <app-occurrence-filter-page-title
+                [pageTitle]="occurrencesFilterForm.controls['pageTitle']"
+                (itemSelected)="onPageTitleSelected($event)"
+              >
+              </app-occurrence-filter-page-title>
+            </ng-container>
+
+            <ng-container *ngIf="occurrenceFilter == 'keyAttribute'">
+              <app-occurrence-filter-key-attribute
+                [keyAttribute]="occurrencesFilterForm.controls['keyAttribute']"
+                (itemSelected)="onKeyAttributeSelected($event)"
+              >
+              </app-occurrence-filter-key-attribute>
+            </ng-container>
+
+            <ng-container *ngIf="occurrenceFilter == 'element'">
+              <app-occurrence-filter-html-element
+                [htmlElement]="occurrencesFilterForm.controls['element']"
+                (itemSelected)="onHtmlElementSelected($event)"
+              >
+              </app-occurrence-filter-html-element>
+            </ng-container>
+
+            <ng-container *ngIf="occurrenceFilter == 'containerId'">
+              <app-occurrence-filter-container-id
+                [containerId]="occurrencesFilterForm.controls['containerId']"
+                (itemSelected)="onContainerIdSelected($event)"
+              >
+              </app-occurrence-filter-container-id>
+            </ng-container>
+          </div>
+        </section>
+      </ng-container>
+      <div
+        [ngClass]="{ 'selected-filters-wrapper': true, cinv: useCInvStyles }"
+      >
+        <label
+          (ngModel)="(allSelectedFilters)"
+          [ngClass]="{ 'selected-filters-label': true, cinv: useCInvStyles }"
+        >
+          Selected Filters:<span
+            data-automation="selected-filters-label"
+            [ngClass]="{ 'selected-filter': true, cinv: useCInvStyles }"
+            *ngFor="let filter of allSelectedFilters; let i = index"
+            >{{ filter
+            }}<span
+              class="plus-filter"
+              *ngIf="
+                allSelectedFilters.length > 0 &&
+                i < allSelectedFilters.length - 1
+              "
+              >+</span
+            ></span
+          >
+        </label>
+        <button
+          *ngIf="allSelectedFilters"
+          id="clear-filters-button"
+          data-automation="clear-filters-button"
+          [ngClass]="{ 'clear-icon': true, cinv: useCInvStyles }"
+          type="button"
+          title="Clear Filters"
+          (click)="onClearFilters($event)"
+        ></button>
+      </div>
+    </div>
+    <div [ngClass]="{ 'button-group': true, cinv: useCInvStyles }">
+      <button
+        title="Cancel Button"
+        data-automation="cancel-button"
+        [ngClass]="{ btn: true, 'med-margin-rt': true, cinv: useCInvStyles }"
+        type="button"
+        (click)="onClose(occurrencesFilterForm)"
+      >
+        Cancel
+      </button>
+      <button
+        title="Apply Button"
+        data-automation="apply-filter-button"
+        [ngClass]="{ btn: true, 'primary-btn': true, cinv: useCInvStyles }"
+        type="submit"
+      >
+        Apply
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,71 @@
+<section class="top-failures-section">
+  <h2 class="hide-element">Pages and Checkpoints With Most Failures</h2>
+  <div class="tables-container">
+    <div role="tablist" class="table-headings-list">
+      <button
+        #topFailures
+        id="top-ten-page-failures"
+        role="tab"
+        [attr.aria-selected]="(pageFailuresVisibility | async) ? 'true' : 'false'"
+        [attr.tabindex]="(pageFailuresVisibility | async) ? '0' : '-1'"
+        class="table-heading-wrapper page-heading-wrapper"
+        (click)="onClickTopFailures($event)"
+        (keydown)="onKeydownTopFailures($event)"
+        [ngClass]="
+          (pageFailuresVisibility | async) ? 'active-tab' : 'inactive-tab'
+        "
+        data-automation="top-10-page-failures"
+      >
+        <span
+          class="page-heading"
+          [ngClass]="
+            (pageFailuresVisibility | async)
+              ? 'table-heading'
+              : 'inactive-heading'
+          "
+          >Pages With Most Checkpoint Failures</span
+        >
+      </button>
+      <button
+        #topFailures
+        id="top-ten-checkpoint-failures"
+        role="tab"
+        [attr.aria-selected]="(pageFailuresVisibility | async) ? 'false' : 'true'"
+        [attr.tabindex]="(pageFailuresVisibility | async) ? '-1' : '0'"
+        class="table-heading-wrapper"
+        (click)="onClickTopFailures($event)"
+        (keydown)="onKeydownTopFailures($event)"
+        [ngClass]="
+          (pageFailuresVisibility | async) ? 'inactive-tab' : 'active-tab'
+        "
+        data-automation="top-10-checkpoint-failures"
+      >
+        <span
+          class="checkpoint-heading"
+          [ngClass]="
+            (pageFailuresVisibility | async)
+              ? 'inactive-heading'
+              : 'table-heading'
+          "
+          >Checkpoints With Most Failures</span
+        >
+      </button>
+    </div>
+    <div>
+      <app-page-failure
+        [ngClass]="
+          (pageFailuresVisibility | async) ? 'active-table' : 'inactive-table'
+        "
+        [hasScanGroups]="hasScanGroups"
+        [scanGroupId]="scanGroupId"
+      ></app-page-failure>
+      <app-checkpoint-failure
+        [ngClass]="
+          (pageFailuresVisibility | async) ? 'inactive-table' : 'active-table'
+        "
+        [hasScanGroups]="hasScanGroups"
+        [scanGroupId]="scanGroupId"
+      ></app-checkpoint-failure>
+    </div>
+  </div>
+</section>

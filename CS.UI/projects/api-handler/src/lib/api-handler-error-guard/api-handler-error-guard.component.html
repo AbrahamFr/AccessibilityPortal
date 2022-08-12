@@ -1,0 +1,23 @@
+<ng-container *ngIf="isError">
+  <ng-container *ngIf="formTemplate; else defaultTemplate">
+    <div [ngStyle]="styles">
+      <div class="server-error-container">
+        <div class="error-message-wrapper">
+          <span class="warning-icon-wrapper">
+            <svg class="warning-icon"></svg>
+          </span>
+          <div
+            class="validation-error-message"
+            translate="{{ errorCode }}"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+
+<ng-content *ngIf="!isError"></ng-content>
+
+<ng-template #defaultTemplate>
+  <div id="defaultError" translate="{{ errorCode }}"></div>
+</ng-template>

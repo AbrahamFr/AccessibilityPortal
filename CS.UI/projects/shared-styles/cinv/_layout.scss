@@ -1,0 +1,18 @@
+@import "./base";
+
+html,
+body {
+  margin: 0rem;
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+  // font-family: "Lato-Regular", sans-serif;
+  background-color: $color-white;
+  color: $color-black;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0rem;
+}

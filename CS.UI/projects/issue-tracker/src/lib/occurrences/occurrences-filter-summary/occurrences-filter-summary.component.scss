@@ -1,0 +1,108 @@
+@import "main-lib";
+@import "main-cinv";
+
+.summary-container {
+  padding: 2rem;
+  background-color: $color-navy-blue;
+  border-radius: 0.5rem;
+  &.cinv {
+    padding: 1.25rem;
+    background-color: $color-purple;
+    margin-top: 1.25rem;
+    margin-right: 1.875rem;
+    margin-left: 1.875rem;
+  }
+
+  .hide-element {
+    position: absolute;
+    left: -9999px;
+    height: 1px;
+    width: 1px;
+  }
+
+  .summary-filters-container {
+    font-size: 1.6rem;
+    &.cinv {
+      font-size: 1rem;
+    }
+    .summary-groups-wrapper {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      &.cinv {
+        padding-bottom: 1rem;
+      }
+      .summary-detail {
+        color: $color-white-medium;
+      }
+    }
+
+    .summary-filter-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: $color-white-medium;
+      .filter-count {
+        color: inherit;
+        padding-right: 0.5rem;
+      }
+
+      .selected-filter {
+        color: inherit;
+        .plus-filter {
+          color: inherit;
+          padding: 0 0.5rem;
+        }
+      }
+
+      .back-arrow-button {
+        background-color: $color-primary-blue;
+        display: flex;
+        border: none;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border: 1px solid $color-white-light;
+        &.cinv {
+          background-color: $color-light-blue;
+          padding: 0.3125rem 0.625rem;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .back-arrow-icon {
+          border: none;
+          background: no-repeat center/100%
+            url(./shared-styles/assets/back-arrow-icon.svg);
+          width: 3rem;
+          height: 3rem;
+          &.cinv {
+            width: 1.875rem;
+            height: 1.875rem;
+          }
+        }
+
+        .btn-label {
+          color: $color-white-medium;
+          padding: 0.5rem 1rem;
+          text-transform: uppercase;
+          &.cinv {
+            padding: 0.3125rem 0.625rem;
+            font-size: 0.875rem;
+          }
+        }
+      }
+    }
+
+    .summary-label {
+      color: inherit;
+      padding-right: 1rem;
+      font-size: 1.8rem;
+      &.cinv {
+        padding-right: 0.625rem;
+        font-size: 1.125rem;
+      }
+    }
+  }
+}

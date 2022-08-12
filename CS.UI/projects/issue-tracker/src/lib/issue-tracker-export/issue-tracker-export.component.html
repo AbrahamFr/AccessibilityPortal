@@ -1,0 +1,288 @@
+<div class="modal">
+  <div
+    class="overlay"
+    (click)="onClose(issueTrackerExportsFileDownloadForm)"
+    data-automation="overlay"
+  ></div>
+  <div
+    [ngClass]="{ modal_content: true, cinv: useCInvStyles }"
+    role="dialog"
+    aria-labelledby="issue-tracker-export"
+    cdkTrapFocus
+    aria-modal="true"
+  >
+    <form
+      autocomplete="off"
+      [formGroup]="issueTrackerExportsFileDownloadForm"
+      (ngSubmit)="onExport()"
+    >
+      <button
+        title="Close Modal"
+        data-automation="close-modal"
+        [ngClass]="{ close_modal: true, cinv: useCInvStyles }"
+        type="button"
+        (click)="onClose(issueTrackerExportsFileDownloadForm)"
+      >
+        <svg [ngClass]="{ close: true, cinv: useCInvStyles }"></svg>
+      </button>
+
+      <h2
+        [ngClass]="{ 'modal-heading': true, cinv: useCInvStyles }"
+        id="issue-tracker-export"
+      >
+        Export Issues
+      </h2>
+
+      <fieldset
+        [ngClass]="{ 'form-fields-container': true, cinv: useCInvStyles }"
+      >
+        <ng-container
+          *ngIf="
+            issues.totalFilteredRecords === issues.totalIssuesFound ||
+            issues.totalFilteredRecords === 0
+          "
+        >
+          <p
+            [ngClass]="{ 'modal-text': true, cinv: useCInvStyles }"
+            id="all-issues-instruction"
+          >
+            All report issues
+            <span
+              *ngIf="issues.totalIssuesFound"
+              [ngClass]="{ 'issues-count': true, cinv: useCInvStyles }"
+              data-automation="total-issues-count"
+              aria-label="Total Number of Issues"
+              >({{ issues.totalIssuesFound }})</span
+            >
+            will be exported.
+          </p>
+        </ng-container>
+        <ng-container
+          *ngIf="
+            issues.totalFilteredRecords !== issues.totalIssuesFound &&
+            issues.totalFilteredRecords > 0
+          "
+        >
+          <p
+            [ngClass]="{ 'modal-text': true, cinv: useCInvStyles }"
+            id="which-issues"
+          >
+            Which issues do you want to export?
+          </p>
+          <div [ngClass]="{ 'radio-btn-wrapper': true, cinv: useCInvStyles }">
+            <div>
+              <input
+                [ngClass]="{ 'radio-options': true, cinv: useCInvStyles }"
+                type="radio"
+                id="allIssues"
+                name="issuesType"
+                formControlName="issuesType"
+                value="allIssues"
+                aria-labelledby="label-all-issues"
+                [checked]="true"
+              />
+              <label
+                [ngClass]="{ 'radio-label': true, cinv: useCInvStyles }"
+                id="label-all-issues"
+                for="allIssues"
+              >
+                All issues in this report
+              </label>
+              <span
+                *ngIf="issues.totalIssuesFound"
+                [ngClass]="{ 'issues-count': true, cinv: useCInvStyles }"
+                data-automation="total-issues-count"
+                aria-label="Total Number of Issues"
+                >({{ issues.totalIssuesFound }})</span
+              >
+            </div>
+            <div>
+              <input
+                [ngClass]="{ 'radio-options': true, cinv: useCInvStyles }"
+                type="radio"
+                id="filteredIssues"
+                name="issuesType"
+                formControlName="issuesType"
+                aria-labelledby="label-filtered-issues"
+                value="filteredIssues"
+              />
+              <label
+                [ngClass]="{ 'radio-label': true, cinv: useCInvStyles }"
+                id="label-filtered-issues"
+                for="filteredIssues"
+              >
+                Only the issues I filtered
+              </label>
+              <span
+                *ngIf="issues.totalFilteredRecords"
+                [ngClass]="{ 'issues-count': true, cinv: useCInvStyles }"
+                data-automation="total-filtered-issues-count"
+                aria-label="Total Number of Filtered Issues"
+                >({{ issues.totalFilteredRecords }})</span
+              >
+            </div>
+          </div>
+        </ng-container>
+
+        <div [ngClass]="{ 'input-wrapper': true, cinv: useCInvStyles }">
+          <label
+            [ngClass]="{ 'input-padding': true, cinv: useCInvStyles }"
+            for="reportFormat"
+            >Format</label
+          >
+          <select
+            id="reportFormat"
+            data-automation="reportFormat"
+            name="reportFormat"
+            [ngClass]="{
+              'report-format': true,
+              'input-field': true,
+              cinv: useCInvStyles
+            }"
+            formControlName="reportFormat"
+            [(ngModel)]="reportFormat"
+            [ngStyle]="
+              !issueTrackerExportsFileDownloadForm.controls['reportFormat']
+                .value
+                ? { 'font-style': 'italic', color: 'rgba(255, 255, 255, .6)' }
+                : ''
+            "
+          >
+            <option
+              value=""
+              disabled
+              selected
+              [ngClass]="{ 'select-hint': true, cinv: useCInvStyles }"
+            >
+              require
+            </option>
+            <option value="csv" [ngClass]="{ cinv: useCInvStyles }">
+              Comma Separated Value - CSV
+            </option>
+            <option value="json" [ngClass]="{ cinv: useCInvStyles }">
+              JavaScript Object Notation - JSON
+            </option>
+            <option value="xlsx" [ngClass]="{ cinv: useCInvStyles }">
+              Microsoft Excel - XLSX
+            </option>
+            <option value="xml" [ngClass]="{ cinv: useCInvStyles }">
+              eXtensible Markup Language - XML
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            issueTrackerExportsFileDownloadForm.controls['reportFormat']
+              .hasError &&
+            issueTrackerExportsFileDownloadForm.controls['reportFormat'].touched
+          "
+          class="error-message-wrapper"
+        >
+          <ng-container
+            *ngIf="
+              issueTrackerExportsFileDownloadForm.controls[
+                'reportFormat'
+              ].hasError('required')
+            "
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.issueTracker.fileType.required'"
+              [styles]="{ left: '2%' }"
+            ></interactions-input-validation-error>
+          </ng-container>
+        </div>
+
+        <div [ngClass]="{ 'input-wrapper': true, cinv: useCInvStyles }">
+          <label
+            [ngClass]="{ 'input-padding': true, cinv: useCInvStyles }"
+            for="reportName"
+            >Name</label
+          >
+          <div class="file-name-type-wrapper">
+            <input
+              type="text"
+              id="reportName"
+              data-automation="reportName"
+              name="reportName"
+              formControlName="reportName"
+              [ngClass]="{ 'input-field': true, cinv: useCInvStyles }"
+              [(ngModel)]="reportName"
+            />
+            <p [ngClass]="{ 'modal-text': true, cinv: useCInvStyles }">
+              .{{ reportFormat }}
+            </p>
+          </div>
+        </div>
+        <div
+          *ngIf="
+            issueTrackerExportsFileDownloadForm.controls['reportName']
+              .hasError &&
+            issueTrackerExportsFileDownloadForm.controls['reportName'].touched
+          "
+          class="error-message-wrapper"
+        >
+          <ng-container
+            *ngIf="
+              issueTrackerExportsFileDownloadForm.controls[
+                'reportName'
+              ].hasError('required')
+            "
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.issueTracker.fileName.required'"
+              [styles]="{ left: '2%' }"
+            ></interactions-input-validation-error>
+          </ng-container>
+        </div>
+      </fieldset>
+
+      <api-handler-error-guard
+        [maybeError]="activeError$ | async"
+        [formTemplate]="true"
+      ></api-handler-error-guard>
+
+      <ng-container *ngIf="isLoading | async">
+        <div [ngClass]="{ 'loading-wrapper': true, cinv: useCInvStyles }">
+          <div [ngClass]="{ 'loading-container': true, cinv: useCInvStyles }">
+            <div [ngClass]="{ loading: true, cinv: useCInvStyles }">
+              Generating Report...
+            </div>
+            <div class="lds-ring">
+              <div [ngClass]="{ cinv: useCInvStyles }"></div>
+              <div [ngClass]="{ cinv: useCInvStyles }"></div>
+              <div [ngClass]="{ cinv: useCInvStyles }"></div>
+              <div [ngClass]="{ cinv: useCInvStyles }"></div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <div [ngClass]="{ 'button-group': true, cinv: useCInvStyles }">
+        <button
+          id="cancel-button"
+          title="Cancel"
+          data-automation="cancel-button"
+          [ngClass]="{ btn: true, 'med-margin-rt': true, cinv: useCInvStyles }"
+          focus="true"
+          type="button"
+          (click)="onClose(issueTrackerExportsFileDownloadForm)"
+          [disabled]="isLoading | async"
+        >
+          Cancel
+        </button>
+        <button
+          id="export-button"
+          title="Export"
+          data-automation="export-button"
+          [ngClass]="{ btn: true, 'primary-btn': true, cinv: useCInvStyles }"
+          type="submit"
+          [disabled]="
+            issueTrackerExportsFileDownloadForm.invalid || (isLoading | async)
+          "
+        >
+          Export
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

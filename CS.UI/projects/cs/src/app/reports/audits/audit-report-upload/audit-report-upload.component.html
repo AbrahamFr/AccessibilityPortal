@@ -1,0 +1,244 @@
+<div class="modal">
+  <div
+    class="overlay"
+    (click)="onClose(fileUploadForm)"
+    data-automation="overlay"
+  ></div>
+  <div
+    class="modal_content"
+    role="dialog"
+    aria-labelledby="upload-audit-report"
+    cdkTrapFocus
+    aria-modal="true"
+  >
+    <form
+      autocomplete="off"
+      [formGroup]="fileUploadForm"
+      class="form"
+      (ngSubmit)="onSubmit()"
+    >
+      <button
+        title="Close Modal"
+        data-automation="close-modal"
+        class="close_modal"
+        type="button"
+        (click)="onClose(fileUploadForm)"
+      >
+        <svg class="close"></svg>
+      </button>
+      <h2 class="modal-heading" id="upload-audit-report">
+        Add Audit Report
+      </h2>
+      <fieldset class="form-fields-container">
+        <app-file-upload
+          id="reportFile"
+          formControlName="reportFile"
+          (change)="onFileInput($event.target.files)"
+          [isDisabled]="(isLoading | async) ? '' : null"
+        ></app-file-upload>
+        <div
+          *ngIf="
+            fileUploadForm.controls['reportFile'].invalid &&
+            fileUploadForm.controls['reportFile'].dirty
+          "
+          class="error-message-wrapper"
+        >
+          <ng-container
+            *ngIf="
+              fileUploadForm.controls['reportFile'].hasError('requiredFileType')
+            "
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.auditReport.reportFile.requiredFileType'"
+              [styles]="{ left: '20%' }"
+            ></interactions-input-validation-error>
+          </ng-container>
+
+          <ng-container
+            *ngIf="fileUploadForm.controls['reportFile'].hasError('required')"
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.auditReport.reportFile.required'"
+              [styles]="{ left: '20%' }"
+            ></interactions-input-validation-error>
+          </ng-container>
+
+          <ng-container
+            *ngIf="
+              fileUploadForm.controls['reportFile'].hasError(
+                'validateFileSize'
+              ) &&
+              !fileUploadForm.controls['reportFile'].hasError(
+                'requiredFileType'
+              )
+            "
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.auditReport.reportFile.fileTooLarge'"
+              [param]="maxFileSize"
+              [styles]="{ left: '20%' }"
+            ></interactions-input-validation-error>
+          </ng-container>
+
+          <ng-container
+            *ngIf="
+              fileUploadForm.controls['reportFile'].hasError('fileNameExists')
+            "
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.auditReport.reportFile.fileNameExists'"
+              [styles]="{ left: '20%' }"
+            ></interactions-input-validation-error>
+          </ng-container>
+        </div>
+        <div class="input-wrapper">
+          <label for="reportName">Name</label>
+          <input
+            type="text"
+            id="reportName"
+            data-automation="report-name"
+            name="reportName"
+            formControlName="reportName"
+            [(ngModel)]="fileReportName"
+            [attr.disabled]="(isLoading | async) ? '' : null"
+          />
+        </div>
+        <div
+          *ngIf="
+            fileUploadForm.controls['reportName'].hasError &&
+            fileUploadForm.controls['reportName'].touched
+          "
+          class="error-message-wrapper"
+        >
+          <ng-container
+            *ngIf="fileUploadForm.controls['reportName'].hasError('minlength')"
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.auditReport.reportName.minLength'"
+            ></interactions-input-validation-error>
+          </ng-container>
+
+          <ng-container
+            *ngIf="fileUploadForm.controls['reportName'].hasError('required')"
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.auditReport.reportName.required'"
+            ></interactions-input-validation-error>
+          </ng-container>
+
+          <ng-container
+            *ngIf="fileUploadForm.controls['reportName'].hasError('maxlength')"
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.auditReport.reportName.maxLength'"
+            ></interactions-input-validation-error>
+          </ng-container>
+
+          <ng-container
+            *ngIf="
+              fileUploadForm.controls['reportName'].hasError('reportNameExists')
+            "
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.auditReport.reportName.reportNameExists'"
+            ></interactions-input-validation-error>
+          </ng-container>
+        </div>
+        <div class="input-wrapper">
+          <label for="reportType">Type</label>
+          <select
+            id="reportType"
+            data-automation="report-type"
+            name="reportType"
+            class="select-report"
+            formControlName="reportType"
+            [ngStyle]="
+              !fileUploadForm.controls['reportType'].value
+                ? { 'font-style': 'italic', color: 'rgba(255, 255, 255, .6)' }
+                : ''
+            "
+            [attr.disabled]="(isLoading | async) ? '' : null"
+          >
+            <option value="" disabled selected class="select-hint"
+              >select report type</option
+            >
+            <option value="1">Baseline Audit</option>
+            <option value="2">Regression</option>
+            <option value="3">VPAT</option>
+            <option value="4">Other</option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            fileUploadForm.controls['reportType'].invalid &&
+            fileUploadForm.controls['reportType'].touched
+          "
+          class="error-message-wrapper"
+        >
+          <ng-container
+            *ngIf="fileUploadForm.controls['reportType'].hasError('required')"
+          >
+            <interactions-input-validation-error
+              [errorMessage]="'reports.auditReport.reportType.required'"
+            ></interactions-input-validation-error>
+          </ng-container>
+        </div>
+        <div class="comments-wrapper">
+          <label class="comments-label" for="reportDescription">Comments</label>
+          <textarea
+            type="text"
+            id="reportDescription"
+            data-automation="report-description"
+            class="comments-textarea"
+            name="reportDescription"
+            formControlName="reportDescription"
+            [attr.disabled]="(isLoading | async) ? '' : null"
+          ></textarea>
+        </div>
+
+        <ng-container *ngIf="!(serverValidationError$ | async)">
+          <api-handler-error-guard
+            [maybeError]="activeError$ | async"
+            [formTemplate]="true"
+          ></api-handler-error-guard>
+        </ng-container>
+      </fieldset>
+
+      <ng-container *ngIf="isLoading | async">
+        <div class="loading-wrapper">
+          <div class="loading-container">
+            <div class="loading">Uploading...</div>
+            <div class="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <div class="button-group">
+        <button
+          title="Cancel Button"
+          data-automation="cancel-button"
+          class="btn med-margin-rt"
+          type="button"
+          (click)="onClose(fileUploadForm)"
+          [disabled]="isLoading | async"
+        >
+          Cancel
+        </button>
+        <button
+          title="Add Button"
+          data-automation="add-button"
+          class="btn primary-btn"
+          type="submit"
+          [disabled]="fileUploadForm.invalid || (isLoading | async)"
+        >
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

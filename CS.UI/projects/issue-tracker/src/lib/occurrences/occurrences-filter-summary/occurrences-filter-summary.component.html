@@ -1,0 +1,79 @@
+<section
+  [ngClass]="{ 'summary-container': true, cinv: useCInvStyles }"
+  data-automation="occurrences-summary-container"
+>
+  <h2 class="hide-element">Occurrences Filters Summary</h2>
+  <div
+    *ngIf="issueTrackerParams"
+    [ngClass]="{ 'summary-filters-container': true, cinv: useCInvStyles }"
+    role="group"
+    aria-label="Occurrences Active Search Filters"
+    data-automation="occurrences-search-summary-container"
+  >
+    <div [ngClass]="{ 'summary-groups-wrapper': true, cinv: useCInvStyles }">
+      <div class="summary-detail">
+        <span
+          [ngClass]="{ 'summary-label': true, cinv: useCInvStyles }"
+          data-automation="scan-name-text"
+          >{{ scanDisplay }}:</span
+        >{{ summaryFilters.scanDisplayname }}
+      </div>
+      <div class="summary-detail">
+        <span
+          [ngClass]="{ 'summary-label': true, cinv: useCInvStyles }"
+          data-automation="checkpoint-group-text"
+          >{{ groupDisplay }}:</span
+        >{{ summaryFilters.checkpointGroupDisplayname }}
+      </div>
+    </div>
+    <div class="summary-filter-wrapper">
+      <div
+        class="summary-filter-wrapper"
+        data-automation="filters-summary-container"
+      >
+        <span
+          *ngIf="filterCount"
+          class="filter-count"
+          data-automation="filter-count"
+          >{{ filterCount }}</span
+        >
+        <span
+          [ngClass]="{ 'summary-label': true, cinv: useCInvStyles }"
+          data-automation="filters-label-text"
+          >Filters:</span
+        >
+        <span
+          *ngIf="!filterCount"
+          [ngClass]="{ 'summary-label': true, cinv: useCInvStyles }"
+          data-automation="no-filters-text"
+          >No filters applied</span
+        >
+        <span
+          class="selected-filter"
+          data-automation="search-filter-text"
+          *ngFor="
+            let filter of summaryFilters.issueTrackerSearchFilters as searchFilters;
+            let i = index
+          "
+          >{{ filter
+          }}<span
+            class="plus-filter"
+            data-automation="plus-filter-delimiter-text"
+            *ngIf="searchFilters.length > 0 && i < searchFilters.length - 1"
+            >+</span
+          >
+        </span>
+      </div>
+      <button
+        [ngClass]="{ 'back-arrow-button': true, cinv: useCInvStyles }"
+        data-automation="navigate-back-to-issue-tracker-button"
+        (click)="onReturnToIssuesClick()"
+      >
+        <svg [ngClass]="{ 'back-arrow-icon': true, cinv: useCInvStyles }"></svg>
+        <span [ngClass]="{ 'btn-label': true, cinv: useCInvStyles }"
+          >Return To Issues</span
+        >
+      </button>
+    </div>
+  </div>
+</section>

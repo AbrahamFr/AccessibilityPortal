@@ -1,0 +1,184 @@
+<section
+  [ngClass]="{ 'summary-container': true, cinv: useCInvStyles }"
+  data-automation="issue-tracker-summary-container"
+>
+  <h2 class="hide-element">Issue Tracker Summary Statistics</h2>
+  <div class="stats-container">
+    <ng-container *ngIf="hasScansOrScanGroups$ | async; else zeroState">
+      <ng-container *ngIf="issues; else spinner">
+        <api-handler-error-guard [maybeError]="issues">
+          <ul class="summary-stats-list" data-automation="summary-stats-list">
+            <li
+              class="stat-wrapper"
+              data-automation="summary-statistic-list-item-occurrences"
+            >
+              <span
+                [ngClass]="{ 'count-total': true, cinv: useCInvStyles }"
+                data-automation="pages-scanned-count-total"
+                >{{
+                  issues.totalPagesScanned &&
+                    issues.totalPagesScanned.toLocaleString()
+                }}</span
+              >
+              <span
+                [ngClass]="{ 'count-text': true, cinv: useCInvStyles }"
+                data-automation="pages-scanned-count-text"
+                >pages scanned</span
+              >
+            </li>
+            <li
+              class="stat-wrapper"
+              data-automation="summary-statistic-list-item"
+            >
+              <span
+                [ngClass]="{ 'count-total': true, cinv: useCInvStyles }"
+                data-automation="pages-impacted-count-total"
+                >{{
+                  issues.totalPagesImpacted &&
+                    issues.totalPagesImpacted.toLocaleString()
+                }}</span
+              >
+              <span
+                [ngClass]="{ 'count-text': true, cinv: useCInvStyles }"
+                data-automation="pages-impacted-count-text"
+                >pages impacted</span
+              >
+            </li>
+            <li
+              class="stat-wrapper"
+              data-automation="summary-statistic-list-item"
+            >
+              <span
+                [ngClass]="{ 'count-total': true, cinv: useCInvStyles }"
+                data-automation="total-issues-count-total"
+                >{{
+                  issues.totalIssuesFound &&
+                    issues.totalIssuesFound.toLocaleString()
+                }}</span
+              >
+              <span
+                [ngClass]="{ 'count-text': true, cinv: useCInvStyles }"
+                data-automation="total-issues-count-text"
+                >total issues</span
+              >
+            </li>
+            <li
+              class="stat-wrapper"
+              data-automation="summary-statistic-list-item"
+            >
+              <button
+                id="total-failed-quick-filter"
+                [ngClass]="{ 'stat-filter-btn': true, cinv: useCInvStyles }"
+                (click)="onToggelQuickFilter($event)"
+                data-automation="total-failed-quick-filter-btn"
+                [attr.aria-selected]="
+                  (activeQuickFilter$ | async) == 'total-failed-quick-filter'
+                    ? 'true'
+                    : 'false'
+                "
+                [attr.aria-label]="
+                  (activeQuickFilter$ | async) == 'total-failed-quick-filter'
+                    ? 'Disable Total Failed Quick Filter'
+                    : 'Enable Total Failed Quick Filter'
+                "
+              >
+                <span
+                  [ngClass]="{ 'count-total': true, cinv: useCInvStyles }"
+                  data-automation="total-failed-count-total"
+                  >{{
+                    issues.totalFailedIssues &&
+                      issues.totalFailedIssues.toLocaleString()
+                  }}</span
+                >
+                <span
+                  data-automation="total-failed-count-text"
+                  [ngClass]="{
+                    'count-text': true,
+                    cinv: useCInvStyles
+                  }"
+                  >total failed</span
+                >
+                <span
+                  [ngClass]="{
+                    'stat-filter-icon': true,
+                    enabled:
+                      (activeQuickFilter$ | async) ==
+                      'total-failed-quick-filter',
+                    cinv: useCInvStyles
+                  }"
+                ></span>
+              </button>
+            </li>
+            <li
+              class="stat-wrapper"
+              data-automation="summary-statistic-list-item"
+            >
+              <button
+                id="high-severity-failed-quick-filter"
+                [ngClass]="{ 'stat-filter-btn': true, cinv: useCInvStyles }"
+                (click)="onToggelQuickFilter($event)"
+                data-automation="high-severity-failed-quick-filter-btn"
+                [attr.aria-selected]="
+                  (activeQuickFilter$ | async) ==
+                  'high-severity-failed-quick-filter'
+                    ? 'true'
+                    : 'false'
+                "
+                [attr.aria-label]="
+                  (activeQuickFilter$ | async) ==
+                  'high-severity-failed-quick-filter'
+                    ? 'Disable High Severity Failed Quick Filter'
+                    : 'Enable High Severity Failed Quick Filter'
+                "
+              >
+                <span
+                  [ngClass]="{ 'count-total': true, cinv: useCInvStyles }"
+                  data-automation="high-severity-failed-count-total"
+                  >{{
+                    issues.totalHighSeverityIssues &&
+                      issues.totalHighSeverityIssues.toLocaleString()
+                  }}</span
+                >
+                <span
+                  data-automation="high-severity-failed-count-text"
+                  [ngClass]="{
+                    'count-text': true,
+                    cinv: useCInvStyles
+                  }"
+                  >high severity failed</span
+                >
+                <span
+                  [ngClass]="{
+                    'stat-filter-icon': true,
+                    enabled:
+                      (activeQuickFilter$ | async) ==
+                      'high-severity-failed-quick-filter',
+                    cinv: useCInvStyles
+                  }"
+                ></span>
+              </button>
+            </li>
+          </ul>
+        </api-handler-error-guard>
+      </ng-container>
+    </ng-container>
+  </div>
+</section>
+
+<ng-template #spinner>
+  <div class="loading-container" data-automation="loading-spinner-container">
+    <div [ngClass]="{ loading: true, cinv: useCInvStyles }">Loading...</div>
+    <div class="lds-ring">
+      <div [ngClass]="{ cinv: useCInvStyles }"></div>
+      <div [ngClass]="{ cinv: useCInvStyles }"></div>
+      <div [ngClass]="{ cinv: useCInvStyles }"></div>
+      <div [ngClass]="{ cinv: useCInvStyles }"></div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #zeroState>
+  <div class="no-data" data-automation="no-data-zero-state">
+    No data available
+  </div>
+</ng-template>

@@ -1,0 +1,46 @@
+@import "main-cinv";
+
+:host {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  grid-template:
+    " main      " auto
+    " offerings " auto
+    / auto;
+  .main {
+    grid-area: main;
+    display: grid;
+    justify-items: center;
+    grid-template:
+      "  welcome           " auto
+      "  welcome-sub-text  " auto
+      "  login-form        " auto
+      / auto;
+    background-color: $color-green;
+    width: 100%;
+    color: $color-white;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+
+    h1 {
+      grid-area: welcome;
+    }
+    .welcome-sub-text {
+      grid-area: welcome-sub-text;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 0rem;
+    }
+    .login-form {
+      grid-area: login-form;
+      width: 60%;
+    }
+  }
+
+  .offerings {
+    grid-area: offerings;
+    width: 100%;
+    background-color: $color-gray;
+  }
+}

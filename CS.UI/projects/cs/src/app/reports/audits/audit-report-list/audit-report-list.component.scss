@@ -1,0 +1,186 @@
+@import "main";
+
+.table-container {
+  overflow: auto;
+  padding-bottom: 3rem;
+  min-height: 70vh;
+  position: relative;
+}
+
+.cdk-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.cdk-header-cell {
+  border: 1px solid $color-dark-grey;
+  color: $color-primary-blue;
+  padding: 0.5rem 1rem;
+}
+
+table tbody {
+  border-bottom: 1px solid $color-dark-grey;
+  border-left: 1px solid $color-dark-grey;
+  border-right: 1px solid $color-dark-grey;
+}
+
+.cdk-row {
+  border-left: 1px solid $color-dark-grey;
+  border-right: 1px solid $color-dark-grey;
+}
+
+.cdk-row:last-child {
+  border-bottom: 1px solid $color-dark-grey;
+}
+
+.cdk-cell {
+  padding: 0.5rem;
+  border-bottom: 1px solid $color-dark-grey;
+  border-right: 1px solid $color-dark-grey;
+  font-weight: normal;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.hide-element {
+  position: absolute;
+  left: -9999px;
+  height: 1px;
+  width: 1px;
+}
+
+.action-btn {
+  background-color: transparent;
+  border: none;
+  vertical-align: middle;
+  margin: 0 3px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.disabled > th,
+.disabled td {
+  color: $color-translucent-black;
+}
+
+.file-missing {
+  color: $color-red;
+}
+
+.edit {
+  height: 3rem;
+  width: 2rem;
+  background: no-repeat center/100% url(../../../../assets/pencil-edit-icon.svg);
+  vertical-align: middle;
+}
+
+.download {
+  height: 3rem;
+  width: 2rem;
+  background: no-repeat center/100%
+    url(../../../../../../shared-styles/assets/download-icon.svg);
+  vertical-align: middle;
+}
+
+.delete {
+  height: 3rem;
+  width: 2rem;
+  background: no-repeat center/100% url(../../../../assets/delete-icon.svg);
+  vertical-align: middle;
+}
+
+.no-results {
+  position: absolute;
+  min-height: 25vh;
+  background-color: $color-white;
+  width: 100%;
+  font-size: 1.6rem;
+  font-family: "Lato-Bold", sans-serif;
+  text-align: center;
+  padding-top: 4rem;
+}
+
+.loading-container {
+  position: absolute;
+  left: 50%;
+  background-color: $color-white !important;
+  transform: translate(-50%, 50%);
+}
+
+.loading {
+  display: flex;
+  justify-self: center;
+  align-self: end;
+  margin-left: 1rem;
+  font-size: 1.6rem;
+  font-family: "Lato-Bold", sans-serif;
+}
+
+.inline-spinner-container {
+  position: relative;
+}
+
+.inline-loading-container {
+  position: absolute;
+  left: 40%;
+  transform: translateY(-60%);
+}
+
+.inline-lds-ring {
+  height: 3rem;
+}
+
+.lds-ring div,
+.inline-lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  margin: 6px;
+  border: 3px solid $color-navy-blue;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: $color-navy-blue transparent transparent transparent !important;
+}
+
+.lds-ring {
+  justify-content: center;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  position: relative;
+  height: 4rem;
+}
+
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,36 @@
+<section tabindex="0" class="checkpoint-performance-section">
+  <ng-container *ngIf="hasScanGroups; else noresults">
+    <ng-container
+      *ngIf="
+        checkpointPerformanceResults$ | async as checkpointsResults;
+        else spinner
+      "
+    >
+      <ng-container *ngIf="checkpointsResults; else spinner">
+        <app-checkpoint-performance-gauge
+          [data]="checkpointsResults"
+          [settings]="settings"
+        >
+        </app-checkpoint-performance-gauge>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</section>
+
+<ng-template #spinner>
+  <div class="loading-container">
+    <div class="loading">Loading...</div>
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noresults>
+  <div class="no-results" data-automation="no-data-available">
+    No data available
+  </div>
+</ng-template>

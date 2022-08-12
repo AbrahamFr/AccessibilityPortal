@@ -1,0 +1,79 @@
+<div
+  id="issue-tracker-sort-container"
+  cdkTrapFocus
+  (outsideClick)="onOutsideClick($event)"
+  [ngClass]="{ 'sort-container': true, cinv: useCInvStyles }"
+>
+  <span class="triangle-icon"></span>
+  <form
+    autocomplete="off"
+    [formGroup]="issueTrackerSortForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <h2 [ngClass]="{ 'sort-heading': true, cinv: useCInvStyles }">
+      Sort data by ...
+    </h2>
+    <div [ngClass]="{ 'sort-options-container': true, cinv: useCInvStyles }">
+      <ng-container *ngFor="let sortOption of Object.keys(formSortOptions)">
+        <div
+          [ngClass]="{
+            'default-option-wrapper': sortOption === 'default',
+            'sort-option-wrapper': sortOption !== 'default',
+            cinv: useCInvStyles
+          }"
+        >
+          <input
+            [ngClass]="{ 'option-input': true, cinv: useCInvStyles }"
+            type="radio"
+            name="sort"
+            formControlName="sort"
+            [checked]="formSortOptions[sortOption].selected"
+            [id]="sortOption"
+            [attr.data-automation]="
+              'issue-tracker-' + sortOption + '-sort-button'
+            "
+            [value]="sortOption"
+            [setFocus]="formSortOptions[sortOption].selected"
+          />
+          <label
+            [ngClass]="{
+              'default-option-label': sortOption === 'default',
+              'option-label': sortOption !== 'default',
+              cinv: useCInvStyles
+            }"
+            [for]="sortOption"
+            >{{
+              useCInvStyles && formSortOptions[sortOption].name === "Checkpoint"
+                ? "Test"
+                : formSortOptions[sortOption].name
+            }}<span
+              *ngIf="sortOption == 'default'"
+              [ngClass]="{
+                'default-supplement-label': true,
+                cinv: useCInvStyles
+              }"
+              >(Severity + Impact)</span
+            ></label
+          >
+        </div>
+      </ng-container>
+    </div>
+    <div [ngClass]="{ 'button-group': true, cinv: useCInvStyles }">
+      <button
+        data-automation="sort-cancel-button"
+        [ngClass]="{ btn: true, 'med-margin-rt': true, cinv: useCInvStyles }"
+        type="button"
+        (click)="onClose(issueTrackerSortForm)"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        data-automation="sort-submit-button"
+        [ngClass]="{ btn: true, 'primary-btn': true, cinv: useCInvStyles }"
+      >
+        Sort
+      </button>
+    </div>
+  </form>
+</div>

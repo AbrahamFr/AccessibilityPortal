@@ -1,0 +1,113 @@
+@import "main";
+
+h2 {
+  color: $color-white-medium;
+}
+
+button {
+  font-size: 1.8rem;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 990;
+  display: block;
+}
+
+.modal .overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 995;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.modal .modal_content {
+  background-color: $color-navy-blue !important;
+  z-index: 999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 90%;
+  overflow: auto;
+  background: #fff;
+  box-sizing: border-box;
+  padding: 3rem;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+  width: 40%;
+}
+
+.form {
+  position: relative;
+}
+
+.modal-heading {
+  font-size: 2.8rem;
+  padding-bottom: 3rem;
+  font-family: "Lato-Light", sans-serif;
+}
+
+.modal .modal_content .buttons_wrapper {
+  padding: 2rem;
+}
+
+.modal .close_modal {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  transform: translateY(-25%);
+  transition: opacity 0.2s ease;
+}
+
+.close {
+  height: 3rem;
+  width: 2.5rem;
+  background: no-repeat center/100%
+    url(../../../../../../../shared-styles/assets/close-icon-white.svg);
+  vertical-align: middle;
+}
+
+.content {
+  padding: 2rem;
+}
+
+.button-group {
+  text-align: right;
+}
+
+.btn {
+  border: 1px solid $color-grey-medium;
+  font-weight: 500;
+  padding: 1rem 1.5rem;
+  width: 9rem;
+  color: $color-white;
+  cursor: pointer;
+  background-color: transparent;
+
+  &:disabled {
+    background-color: $color-white-light;
+    color: $color-grey-dark;
+    cursor: unset;
+  }
+}
+
+.primary-btn {
+  background-color: $color-white-medium;
+  color: $color-navy-blue;
+}
+
+:host ::ng-deep #defaultError {
+  color: $color-white-medium;
+  font-size: 1.8rem;
+  padding-bottom: 3rem;
+}

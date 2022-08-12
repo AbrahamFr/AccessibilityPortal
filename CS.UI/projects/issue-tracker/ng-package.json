@@ -1,0 +1,12 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/issue-tracker",
+  "lib": {
+    "entryFile": "src/projects.ts",
+    "styleIncludePaths": [
+      "../shared-styles/cs",
+      "../shared-styles/lib",
+      "../shared-styles/cinv"
+    ]
+  }
+}

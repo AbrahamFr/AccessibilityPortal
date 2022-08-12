@@ -1,0 +1,53 @@
+#Build Definition: CS Webservice Installer Build
+#This build will create the installer artifact for
+#the webservices component of Compliance Sheriff.
+#This installer will install both Trend and Operations
+#along with any future webservices we develop. 
+
+pool:
+  name: CSBuild
+
+trigger:
+  branches:
+    include:
+     - RC6.3
+  paths: 
+    include: 
+     - src/Webservices/WebservicesInstaller/*
+  #   exclude: src/Common/*
+
+variables:
+  BuildConfiguration: 'release'
+  BuildDefintionName: 'Installer_CSWebservices Build'
+  CSWebservicesInstallerProjSource: 'src/Webservices/WebservicesInstaller'
+
+name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+steps:
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 5.x'
+  inputs:
+    versionSpec: 5.x
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: $(CSWebservicesInstallerProjSource)/RestApiInstallerEnvironment/RestApiInstallerEnvironment.csproj
+    feedsToUse: config
+    nugetConfigPath: .nuget/NuGet.Config
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish WebserviceInstaller'
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: $(CSWebservicesInstallerProjSource)/RestApiInstallerEnvironment/RestApiInstallerEnvironment.csproj
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)/Installer --runtime win-x64 --self-contained '
+    zipAfterPublish: false
+    modifyOutputPath: false
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: WebService Installer'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)/Installer'
+    ArtifactName: WebserviceInstallerDrop

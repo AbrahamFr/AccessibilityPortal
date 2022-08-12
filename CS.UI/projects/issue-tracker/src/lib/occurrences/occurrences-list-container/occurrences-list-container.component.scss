@@ -1,0 +1,126 @@
+@import "main-lib";
+@import "main-cinv";
+
+.occurrences-list-container {
+  background-color: $color-white;
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  &.cinv {
+    border-color: $color-purple;
+    border-radius: 2.5rem;
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 1.25rem;
+    margin-right: 1.25rem;
+    margin-bottom: 1.25rem;
+    margin-left: 1.25rem;
+    padding-top: 1.25rem;
+    padding-right: 1.25rem;
+    padding-bottom: 1.875rem;
+    padding-left: 1.25rem;
+  }
+  .occurrences-details-section {
+    padding: 2rem 0;
+    &.cinv {
+      padding: 1.25rem 0;
+    }
+    .occurrences-headings-list {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 2rem;
+      &.cinv {
+        padding-bottom: 1.25rem;
+      }
+      .table-heading-wrapper {
+        background-color: $color-white;
+        color: $color-navy-blue;
+        border-radius: 0;
+        border: none;
+        font-size: 2rem;
+        text-transform: uppercase;
+        font-family: "Lato-Bold", sans-serif;
+        text-align: left;
+        &.cinv {
+          color: $color-black;
+          font-size: 1.25rem;
+        }
+        .active-tab {
+          border-bottom: 1.5px solid $color-navy-blue;
+          padding-bottom: 2px;
+          cursor: pointer;
+          &.cinv {
+            border-bottom-color: $color-black;
+          }
+        }
+
+        .inactive-tab {
+          background-color: $color-white;
+          color: $color-primary-blue;
+          cursor: pointer;
+          &.cinv {
+            color: rgba($color-black, 0.5);
+          }
+        }
+      }
+      .filter-btn {
+        position: relative;
+        background: transparent;
+        border: none;
+        min-width: 4rem;
+        height: 3rem;
+        margin-right: 0.5rem;
+        &.cinv {
+          min-width: 2.5rem;
+          height: 1.875rem;
+        }
+        .search-filters-label {
+          font-family: "Lato-Bold", sans-serif;
+          font-size: 1.6rem;
+          color: $color-primary-blue;
+          margin-right: 5rem;
+          pointer-events: none;
+          height: 100%;
+          padding-left: 1rem;
+          &.cinv {
+            font-size: 1rem;
+          }
+        }
+
+        .filter-icon {
+          position: absolute;
+          top: 0;
+          right: 0;
+          pointer-events: none;
+          border: none;
+          background: no-repeat center/100%
+            url(./shared-styles/assets/filter-icon.svg);
+          width: 4rem;
+          height: 3rem;
+          &.cinv {
+            width: 2.5rem;
+            height: 1.875rem;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .lg-margin-rt {
+        margin-right: 2rem;
+      }
+    }
+
+    .table-display-container {
+      position: relative;
+      .active-table {
+        display: block;
+      }
+
+      .inactive-table {
+        display: none;
+      }
+    }
+  }
+}

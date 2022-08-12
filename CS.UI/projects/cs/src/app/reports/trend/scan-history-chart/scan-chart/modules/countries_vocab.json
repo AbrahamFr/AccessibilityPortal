@@ -1,0 +1,32 @@
+[
+  {
+    "country": "USA",
+    "name": "United States of America",
+    "abbreviation": "US",
+    "code": "1"
+  },
+  {
+    "country": "Australia",
+    "name": "Australia",
+    "abbreviation": "AU",
+    "ordinal": "2"
+  },
+  {
+    "country": "Canada",
+    "name": "Canada",
+    "abbreviation": "CA",
+    "ordinal": "3"
+  },
+  {
+    "country": "UK",
+    "name": "United Kingdom",
+    "abbreviation": "UK",
+    "ordinal": "4"
+  },
+  {
+    "country": "other",
+    "name": "other",
+    "abbreviation": "other",
+    "ordinal": "5"
+  }
+]

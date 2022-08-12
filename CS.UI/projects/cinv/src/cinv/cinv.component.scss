@@ -1,0 +1,15 @@
+@import "main-cinv";
+
+:host {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  min-height: 100%;
+
+  footer {
+    background-color: $color-navy;
+    padding-top: 2rem;
+    padding-right: 1rem;
+    padding-bottom: 4rem;
+    padding-left: 1rem;
+  }
+}

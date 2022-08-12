@@ -1,0 +1,206 @@
+@import "main-cinv";
+
+:host {
+  height: 100%;
+  width: 100%;
+
+  form {
+    @extend %form-cinv;
+    display: grid;
+    grid-gap: 0.4rem;
+    grid-template:
+      " header              header                 " auto
+      " name-frm-label      name-frm-input         " auto
+      " .                   name-errors            " auto
+      " guideline-frm-label guideline-frm-select   " auto
+      " .                   guideline-errors       " auto
+      " startPage-frm-label startPage-frm-input    " auto
+      " .                   startpage-errors       " auto
+      " pageLimit-frm-label pages-levels-container " auto
+      " .                   server-errors          " auto
+      " button-row          button-row             " auto
+      / 30% 70%;
+    padding-top: 1rem;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+  }
+  h2 {
+    grid-area: header;
+    .selected-audit-name {
+      color: $color-purple;
+    }
+  }
+}
+/*** Label styles ***/
+
+.name-frm-label {
+  grid-area: name-frm-label;
+  justify-self: end;
+  align-self: center;
+}
+
+.guideline-frm-label {
+  grid-area: guideline-frm-label;
+  justify-self: end;
+  align-self: center;
+}
+
+.startPage-frm-label {
+  grid-area: startPage-frm-label;
+  justify-self: end;
+  align-self: center;
+}
+
+.pageLimit-frm-label {
+  grid-area: pageLimit-frm-label;
+  justify-self: end;
+  align-self: center;
+}
+
+.levels-frm-label {
+  grid-area: levels-frm-label;
+  justify-self: end;
+  align-self: center;
+}
+
+/*** Pages/Levels grid ***/
+
+.pages-levels-container {
+  display: grid;
+  grid-area: pages-levels-container;
+  grid-template:
+    " pageLimit-frm-input .                levels-frm-label levels-frm-input " auto
+    " pageLimit-errors    pageLimit-errors levels-errors    levels-errors    " auto
+    / 17% 33% 33% 17%;
+  /*margin-bottom: 1rem;*/
+}
+
+/*** Error style ***/
+
+.error-message {
+  display: inline-block;
+  justify-self: center;
+  align-self: center;
+  color: $color-pink;
+}
+
+.name-errors {
+  grid-area: name-errors;
+}
+
+.guideline-errors {
+  grid-area: guideline-errors;
+}
+
+.startpage-errors {
+  grid-area: startpage-errors;
+}
+
+.pageLimit-errors {
+  grid-area: pageLimit-errors;
+}
+
+.levels-errors {
+  grid-area: levels-errors;
+  justify-self: end;
+}
+
+.server-errors {
+  grid-area: server-errors;
+  justify-self: center;
+  color: $color-pink;
+  height: 1.75rem;
+}
+
+/*** Input styles ***/
+
+.name-frm-input {
+  grid-area: name-frm-input;
+}
+
+.guideline-frm-select {
+  grid-area: guideline-frm-select;
+}
+
+.startPage-frm-input {
+  grid-area: startPage-frm-input;
+}
+
+.pageLimit-frm-input {
+  grid-area: pageLimit-frm-input;
+  text-align: center;
+}
+
+.levels-frm-input {
+  grid-area: levels-frm-input;
+  justify-self: end;
+  text-align: center;
+}
+
+/*** Button row ***/
+
+.button-row {
+  grid-area: button-row;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  // padding-right: 1rem;
+  padding-left: 1rem;
+  &.edit {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  input[type="button"] {
+    display: inline-block;
+    height: 2rem;
+    border: 1px solid $color-navy;
+    background-color: $color-white; //#666;
+    color: $color-navy;
+    text-transform: uppercase;
+    &:hover,
+    &:focus {
+      background-color: $color-light-blue;
+      color: $color-white;
+    }
+    &.clear-form {
+      background-image: url("projects/shared-styles/assets/close-icon.svg");
+      background-repeat: no-repeat;
+      background-position-x: 0.7rem;
+      background-position-y: center;
+      &:hover,
+      &:focus {
+        background-image: url("projects/shared-styles/assets/close-icon-white.svg");
+      }
+    }
+    &.copy-audit {
+      background-image: url("../../../assets/images/content_copy.svg");
+      background-repeat: no-repeat;
+      background-position-x: 0.7rem;
+      background-position-y: center;
+      &:hover,
+      &:focus {
+        background-image: url("../../../assets/images/content_copyWhite.svg");
+      }
+    }
+    &.save-audit {
+      background-image: url("../../../assets/images/save-icon.svg");
+      background-repeat: no-repeat;
+      background-position-x: 0.7rem;
+      background-position-y: center;
+      &:hover,
+      &:focus {
+        background-image: url("../../../assets/images/save-icon-white.svg");
+      }
+    }
+    &.run-audit {
+      background-image: url("../../../assets/images/play_circle_outline.svg");
+      background-repeat: no-repeat;
+      background-position-x: 0.7rem;
+      background-position-y: center;
+      &:hover,
+      &:focus {
+        background-image: url("../../../assets/images/play_circle_outline-white.svg");
+      }
+    }
+  }
+}

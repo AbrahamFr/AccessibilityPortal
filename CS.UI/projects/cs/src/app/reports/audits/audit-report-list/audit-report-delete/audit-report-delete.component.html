@@ -1,0 +1,70 @@
+<div class="modal">
+  <div class="overlay" (click)="onClose()" data-automation="overlay"></div>
+  <div
+    class="modal_content"
+    role="dialog"
+    aria-labelledby="delete-audit-report"
+    cdkTrapFocus
+    aria-modal="true"
+  >
+    <form class="form" (ngSubmit)="onDelete()">
+      <button
+        title="Close Modal"
+        data-automation="close-modal"
+        class="close_modal"
+        type="button"
+        (click)="onClose()"
+      >
+        <svg class="close"></svg>
+      </button>
+      <h2 class="modal-heading" id="delete-audit-report">
+        Delete Audit Report
+      </h2>
+
+      <div class="message-wrapper">
+        Are you sure you want to delete "{{ selectedReport?.reportName }}"?
+      </div>
+
+      <ng-container *ngIf="isLoading | async">
+        <div class="loading-wrapper">
+          <div class="loading-container">
+            <div class="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <api-handler-error-guard
+        [formTemplate]="true"
+        [maybeError]="activeError$ | async"
+      ></api-handler-error-guard>
+
+      <div class="button-group">
+        <button
+          title="Cancel Button"
+          data-automation="cancel-button"
+          class="btn med-margin-rt"
+          type="button"
+          (click)="onClose()"
+          [disabled]="isLoading | async"
+        >
+          Cancel
+        </button>
+        <button
+          title="Delete Button"
+          data-automation="delete-button"
+          class="btn primary-btn"
+          type="submit"
+          focus="true"
+          [disabled]="isLoading | async"
+        >
+          Delete
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

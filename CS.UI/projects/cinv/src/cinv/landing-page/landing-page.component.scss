@@ -1,0 +1,71 @@
+@import "main-cinv";
+
+:host {
+  margin-bottom: 2rem;
+  width: 100%;
+  display: grid;
+  grid-template:
+    " main      " auto
+    " offerings " auto
+    / auto;
+
+  .main {
+    grid-area: main;
+    display: grid;
+    grid-gap: 0.6rem;
+    grid-template:
+      " welcome          welcome          " auto
+      " welcome-sub-text welcome-sub-text " auto
+      " benefits         audit-info       " auto
+      " benefits         audit-info       " auto
+      " offerings        offerings        " auto
+      / 35% 65%;
+    background-color: $color-green;
+    color: $color-white;
+    padding-bottom: 3rem;
+    padding-left: 2rem;
+
+    h1 {
+      grid-area: welcome;
+      margin-bottom: 1rem;
+    }
+    .welcome-sub-text {
+      grid-area: welcome-sub-text;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 0rem;
+    }
+    .audit-info {
+      grid-area: audit-info;
+    }
+    .benefits {
+      grid-area: benefits;
+      h2 {
+        font-weight: normal;
+        font-size: 1.7rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1rem;
+      }
+      ul {
+        font-size: 1.2rem;
+        list-style-type: none;
+        li {
+          padding-top: 1.2rem;
+          padding-bottom: 1.2rem;
+          display: flex;
+          align-items: center;
+          img {
+            width: 3.5rem;
+            height: 3.5rem;
+            padding-right: 0.7rem;
+          }
+        }
+      }
+    }
+  }
+
+  .offerings {
+    grid-area: offerings;
+    background-color: $color-gray;
+  }
+}

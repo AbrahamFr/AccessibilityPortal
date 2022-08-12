@@ -1,0 +1,50 @@
+#Build Definition: Controller Agent Build
+#This build will create the artifact for the 
+#Controller agent component of the Compliance
+#Sheriff product.
+
+pool:
+  name: CSBuild
+  demands: msbuild
+
+trigger:
+  branches:
+    include:
+     - RC6.3
+  paths:
+    include:
+     - src/WinServices/Controller/CSControllerAgent/*
+     - src/Common/*
+    exclude:
+     - src/Common/BasicEnvironmentInstaller/*
+
+variables:
+  BuildConfiguration: 'release'
+  BuildDefintionName: 'Controller Agent Build'
+  ControllerAgentProjSource: 'src/WinServices/Controller/CSControllerAgent'
+
+name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+steps:
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 5.x'
+  inputs:
+    versionSpec: 5.x
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: ComplianceSheriff.sln
+
+- task: MSBuild@1
+  displayName: 'Build project CSControllerAgent'
+  inputs:
+    solution: $(ControllerAgentProjSource)/CSControllerAgent.csproj
+    msbuildArchitecture: x64
+    configuration: '$(BuildConfiguration)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: ControllerServiceDrop'
+  inputs:
+    PathtoPublish: 'src/WinServices/Controller/CSControllerAgent/bin/$(BuildConfiguration)'
+    ArtifactName: ControllerServiceDrop

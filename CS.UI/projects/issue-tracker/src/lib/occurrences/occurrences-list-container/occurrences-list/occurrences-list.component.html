@@ -1,0 +1,197 @@
+<section
+  role="tabpanel"
+  tabindex="0"
+  class="table-container"
+  data-automation="issues-list-section"
+>
+  <h3 class="hide-element">Issue by Occurrences</h3>
+  <div class="table-wrapper">
+    <table
+      cdk-table
+      role="table"
+      [dataSource]="occurrences && occurrences.occurrencesList"
+      data-automation="issue-by-occurrence-list-table"
+    >
+      <caption class="hide-element" data-automation="issues-list-table-caption">
+        List of Issue By Occurrences
+      </caption>
+
+      <ng-container cdkColumnDef="element">
+        <th
+          cdk-header-cell
+          *cdkHeaderCellDef
+          [ngClass]="{ cinv: useCInvStyles }"
+          data-automation="occurrences-list-element-column"
+        >
+          Element
+        </th>
+        <th
+          scope="row"
+          cdk-cell
+          class="cell-align-left"
+          *cdkCellDef="let row"
+          data-automation="occurrences-list-element-item"
+        >
+          {{ row.element }}
+        </th>
+      </ng-container>
+
+      <ng-container cdkColumnDef="keyAttribute">
+        <th
+          cdk-header-cell
+          *cdkHeaderCellDef
+          class="key-attribute-container"
+          data-automation="occurrences-list-key-attribute-column"
+        >
+          Key Attribute
+        </th>
+        <td
+          cdk-cell
+          *cdkCellDef="let row"
+          class="cell-container"
+          data-automation="occurrences-list-key-attribute-item"
+        >
+          <ng-container *ngIf="row.keyAttribute.trim() === ''"
+            ><span aria-label="no data" class="lg-margin-lt"
+              >--</span
+            ></ng-container
+          >
+          <ng-container *ngIf="row.keyAttribute">{{
+            row.keyAttribute
+          }}</ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="containerId">
+        <th
+          cdk-header-cell
+          *cdkHeaderCellDef
+          data-automation="occurrences-list-container-id-column"
+        >
+          Container Id
+        </th>
+        <td
+          cdk-cell
+          *cdkCellDef="let row"
+          data-automation="occurrences-list-container-id-item"
+        >
+          <ng-container *ngIf="row.containerId.trim() === ''"
+            ><span aria-label="no data" class="lg-margin-lt"
+              >--</span
+            ></ng-container
+          >
+          <ng-container *ngIf="row.containerId">{{
+            row.containerId
+          }}</ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="pageTitle">
+        <th
+          cdk-header-cell
+          *cdkHeaderCellDef
+          data-automation="occurrences-list-page-title-column"
+        >
+          Page Title
+        </th>
+        <td
+          cdk-cell
+          *cdkCellDef="let row"
+          data-automation="occurrences-list-page-title-item"
+        >
+          {{ row.pageTitle }}
+        </td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="pageUrl">
+        <th
+          cdk-header-cell
+          *cdkHeaderCellDef
+          data-automation="occurrences-list-page-url-column"
+        >
+          Page Url
+        </th>
+        <td
+          cdk-cell
+          *cdkCellDef="let row"
+          data-automation="occurrences-list-page-url-item"
+        >
+          <a
+            class="page-url-link"
+            href="{{ row.cachedPageUrl }}"
+            data-automation="page-url-cached-page-link"
+            target="_blank"
+          >
+            {{ row.pageUrl }}
+          </a>
+        </td>
+      </ng-container>
+
+      <tr
+        cdk-header-row
+        *cdkHeaderRowDef="displayedColumns$.value"
+        [ngClass]="{ cinv: useCInvStyles }"
+      ></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns$.value"></tr>
+    </table>
+  </div>
+  <ng-container
+    *ngIf="
+      occurrences &&
+      occurrences.occurrencesList &&
+      occurrences.occurrencesList.length > 0
+    "
+  >
+    <interactions-pagination
+      [numberOfRecordsToShow]="occurrences.occurrencesList.length"
+      [totalRecords]="occurrences.totalFilteredRecords"
+      [numberOfRecordsToFetchMore]="20"
+      (seeMore)="getMoreData($event)"
+    ></interactions-pagination>
+  </ng-container>
+  <ng-container
+    *ngIf="
+      occurrences &&
+      occurrences.totalFilteredRecords === 0 &&
+      occurrencesByPage &&
+      occurrencesByPage.occurrencePages &&
+      occurrencesByPage.occurrencePages?.length > 0
+    "
+  >
+    <interactions-pagination
+      [numberOfRecordsToShow]="occurrencesByPage.occurrencePages.length"
+      [totalRecords]="occurrencesByPage.totalFilteredPages"
+      [numberOfRecordsToFetchMore]="20"
+      (seeMore)="getMoreData($event)"
+    ></interactions-pagination>
+  </ng-container>
+
+  <ng-container *ngIf="occurrences; else spinner">
+    <api-handler-error-guard [maybeError]="occurrences">
+      <ng-container
+        *ngIf="
+          occurrences.occurrencesList &&
+          occurrences.occurrencesList?.length == 0
+        "
+      >
+        <div class="no-results" data-automation="no-data-available">
+          No data available
+        </div>
+      </ng-container>
+    </api-handler-error-guard>
+  </ng-container>
+</section>
+
+<ng-template #spinner>
+  <div>
+    <div class="loading-container" data-automation="loading-spinner-container">
+      <div class="loading">Loading...</div>
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,160 @@
+<div id="main-content" class="main-container">
+  <section class="audit-container">
+    <div class="heading-wrapper">
+      <h2 class="heading">Free accessibility audit for your site!</h2>
+      <p class="sub-heading">
+        test against WCAG 2.0, 2.1, & Section 508 guidelines
+      </p>
+    </div>
+    <div class="form-container">
+      <form class="audit-form" [formGroup]="siteAuditForm">
+        <fieldset class="form-fields-container">
+          <p class="section-heading">What do you want to audit?</p>
+          <div class="input-wrapper">
+            <label for="siteUrl">Site Page</label>
+            <input
+              type="text"
+              id="siteUrl"
+              data-automation="site-url"
+              name="siteUrl"
+              formControlName="siteUrl"
+            />
+          </div>
+          <div
+            *ngIf="
+              siteAuditForm.controls['siteUrl'].invalid &&
+              siteAuditForm.controls['siteUrl'].touched
+            "
+            class="error-message-wrapper"
+          >
+            <ng-container
+              *ngIf="siteAuditForm.controls['siteUrl'].hasError('required')"
+            >
+              <app-input-validation-error
+                [errorMessage]="'testSite.siteUrl.required'"
+              ></app-input-validation-error>
+            </ng-container>
+          </div>
+          <div class="input-wrapper">
+            <label for="complianceType">Compliance Level</label>
+            <select
+              id="complianceType"
+              data-automation="compliance-type"
+              name="complianceType"
+              class="select-compliance-type"
+              formControlName="complianceType"
+            >
+              <option value="" disabled selected class="select-hint"
+                >select checkpoint type</option
+              >
+              <option value="1">WCAG 2.0 A</option>
+              <option value="2">WCAP 2.1 A</option>
+              <option value="3">Section 508</option>
+            </select>
+          </div>
+          <div
+            *ngIf="
+              siteAuditForm.controls['complianceType'].invalid &&
+              siteAuditForm.controls['complianceType'].touched
+            "
+            class="error-message-wrapper"
+          >
+            <ng-container
+              *ngIf="
+                siteAuditForm.controls['complianceType'].hasError('required')
+              "
+            >
+              <app-input-validation-error
+                [errorMessage]="'testSite.complianceType.required'"
+              ></app-input-validation-error>
+            </ng-container>
+          </div>
+        </fieldset>
+        <fieldset class="form-fields-container">
+          <p class="section-heading">Tell us about yourself</p>
+          <div class="input-wrapper">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              data-automation="email-input"
+              name="email"
+              formControlName="email"
+            />
+          </div>
+          <div
+            *ngIf="
+              siteAuditForm.controls['email'].invalid &&
+              siteAuditForm.controls['email'].touched
+            "
+            class="error-message-wrapper"
+          >
+            <ng-container
+              *ngIf="siteAuditForm.controls['email'].hasError('required')"
+            >
+              <app-input-validation-error
+                [errorMessage]="'testSite.email.required'"
+              ></app-input-validation-error>
+            </ng-container>
+          </div>
+          <div class="input-wrapper">
+            <label for="firstName">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              data-automation="first-name-input"
+              name="firstName"
+              formControlName="firstName"
+            />
+          </div>
+          <div class="input-wrapper">
+            <label for="lastName">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              data-automation="last-name-input"
+              name="lastName"
+              formControlName="lastName"
+            />
+          </div>
+          <div class="input-wrapper">
+            <label for="organization">Organization</label>
+            <input
+              type="text"
+              id="organization"
+              data-automation="organization-input"
+              name="organization"
+              formControlName="organization"
+            />
+          </div>
+        </fieldset>
+        <div class="btn-wrapper">
+          <button
+            data-automation="start-audit-button"
+            class="btn"
+            type="button"
+            (click)="('')"
+            [disabled]="siteAuditForm.invalid"
+          >
+            Start Audit
+          </button>
+        </div>
+      </form>
+      <div class="value-prop-container">
+        <ul class="value-prop-list">
+          <li class="list-item">Value proposition 1</li>
+          <li class="list-item">Value proposition 2</li>
+          <li class="list-item">Value proposition 3</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="download-section">
+    <h2 class="download-heading">Need some guidance on Web accessibility?</h2>
+    <p class="download-wrapper">
+      Download our
+      <a class="download-link">Guidance at a Glance: Web Accessibility</a> white
+      paper to help you kick start or improve your existing program.
+    </p>
+  </section>
+</div>

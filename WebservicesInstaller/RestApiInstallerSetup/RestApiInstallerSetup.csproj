@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>6.5.0.2</Version>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.Administration" Version="11.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="1.6.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+    <PackageReference Include="System.IO" Version="4.3.0" />
+    <PackageReference Include="System.IO.Compression.ZipFile" Version="4.3.0" />
+    <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
+    <PackageReference Include="System.IO.FileSystem.AccessControl" Version="4.5.0" />
+    <PackageReference Include="System.Net.Primitives" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Installers\InstallersDomain\ComplianceSheriff.Domain.Installers\ComplianceSheriff.Domain.Installers.csproj" />
+    <ProjectReference Include="..\..\..\Installers\InstallersPrerequisites\IISPrerequisities\IISPrerequisities.csproj" />
+    <ProjectReference Include="..\..\..\Installers\InstallersPrerequisites\MSMQPrerequisites\MSMQPrerequisites.csproj" />
+    <ProjectReference Include="..\..\..\Installers\InstallersPrerequisites\SharedDataDirectoryPrerequisites\SharedDataDirectoryPrerequisites.csproj" />
+    <ProjectReference Include="..\..\..\Installers\InstallersShared\ConfigurationFileManager\ConfigurationFileManager.csproj" />
+    <ProjectReference Include="..\RestApiInstallerDomain\RestApiInstallerDomain.csproj" />
+  </ItemGroup>
+
+</Project>

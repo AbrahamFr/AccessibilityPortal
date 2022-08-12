@@ -1,0 +1,197 @@
+<section
+  [ngClass]="{ 'picker-container': true, cinv: useCInvStyles }"
+  data-automation="scan-picker-container"
+>
+  <p class="label-wrapper">
+    Which <span id="radioLabel" *ngIf="!useCInvStyles">scan or scan group</span
+    ><span *ngIf="useCInvStyles">audit</span> do you want to use?
+  </p>
+  <div class="scan-wrapper">
+    <div class="radio-container" role="radiogroup" aria-labelledby="radioLabel">
+      <button
+        *ngIf="!useCInvStyles"
+        #scanSelectOptions
+        (click)="onClickScanSelect($event)"
+        [ngClass]="{
+          'radio-btn': true,
+          'inactive-btn': (scanGroupVisibility | async),
+          'active-btn': !(scanGroupVisibility | async),
+          cinv: useCInvStyles
+        }"
+        data-automation="scan-button"
+        role="radio"
+        [attr.aria-checked]="!(hasScanGroups$ | async)"
+        [disabled]="!(hasScanGroups$ | async)"
+      >
+        <label
+          [ngClass]="
+            (scanGroupVisibility | async) ? 'inactive-label' : 'active-label'
+          "
+          [attr.for]="(scanGroupVisibility | async) ? '' : 'selectMenu'"
+          >Scan</label
+        >
+      </button>
+      <button
+        *ngIf="hasScanGroups$ | async"
+        #scanSelectOptions
+        (click)="onClickScanSelect($event)"
+        data-automation="scan-group-button"
+        [ngClass]="{
+          'radio-btn': true,
+          'active-btn': (scanGroupVisibility | async),
+          'inactive-btn': !(scanGroupVisibility | async),
+          cinv: useCInvStyles
+        }"
+        role="radio"
+        [attr.aria-checked]="true"
+      >
+        <label
+          [ngClass]="
+            (scanGroupVisibility | async) ? 'active-label' : 'inactive-label'
+          "
+          [attr.for]="(scanGroupVisibility | async) ? 'selectMenu' : ''"
+          >Group</label
+        >
+      </button>
+      <div class="input-wrapper">
+        <input
+          autocomplete="off"
+          type="text"
+          #searchBox
+          [value]="
+            (expandedDropdown | async)
+              ? searchBox.value
+              : (scanGroupVisibility | async)
+              ? selectedScanGroup && selectedScanGroup.displayName
+              : (hasScansOrScanGroups$ | async)
+              ? selectedScan && selectedScan.displayName
+              : ''
+          "
+          id="scan-input"
+          data-automation="scan-search-input"
+          [ngClass]="{ 'scan-input': true, cinv: useCInvStyles }"
+          (click)="this.onClickInput()"
+          [attr.title]="
+            (expandedDropdown | async)
+              ? searchBox.value
+              : (scanGroupVisibility | async)
+              ? selectedScanGroup && selectedScanGroup.displayName
+              : (hasScansOrScanGroups$ | async)
+              ? selectedScan && selectedScan.displayName
+              : ''
+          "
+          (input)="onSearchChanged(searchBox.value)"
+          (keydown)="onKeyDown($event)"
+        />
+        <div
+          [style.display]="dropdownDisplay | async"
+          [ngClass]="{ 'scan-picker': true, cinv: useCInvStyles }"
+          id="scanPicker"
+          (click)="onClickTypeahead($event)"
+        >
+          <ng-container *ngIf="scanGroupActive$ | async; else scanList">
+            <ul [style.display]="allItemsDisplay | async">
+              <li
+                *ngFor="let group of scanGroups"
+                #allItemsList
+                tabindex="-1"
+                [id]="group.scanGroupId"
+                [value]="group.scanGroupId"
+                class="list-item"
+                data-automation="scan-group-all-items-list-item"
+                [ngClass]="
+                  (group && group.scanGroupId) ==
+                  (selectedScanGroup && selectedScanGroup.scanGroupId)
+                    ? 'active-selection'
+                    : ''
+                "
+                (click)="onSearchSelect(group.scanGroupId)"
+                (keydown)="onKeyDown($event)"
+              >
+                <span
+                  id="'group-item-' + group.scanGroupId"
+                  class="item-name"
+                  >{{ group.displayName }}</span
+                >
+              </li>
+            </ul>
+          </ng-container>
+          <ng-container
+            *ngIf="scanGroupActive$ | async; else scanSearchResults"
+          >
+            <ul [style.display]="searchResultsDisplay | async">
+              <li
+                *ngFor="let result of searchScanGroupResult$ | async"
+                #searchResultsList
+                tabindex="-1"
+                [id]="result.scanGroupId"
+                [value]="result.scanGroupId"
+                class="list-item"
+                data-automation="scan-group-search-result-list-item"
+                [ngClass]="
+                  result.scanGroupId == selectedScanGroup.scanGroupId
+                    ? 'active-selection'
+                    : ''
+                "
+                (click)="onSearchSelect(result.scanGroupId)"
+                (keydown)="onKeyDown($event)"
+              >
+                <span
+                  id="'result-item-' + result.scanGroupId"
+                  class="item-name"
+                  >{{ result.displayName }}</span
+                >
+              </li>
+            </ul>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #scanList>
+  <ul [style.display]="allItemsDisplay | async">
+    <li
+      *ngFor="let scan of scans"
+      #allItemsList
+      [value]="scan.scanId"
+      tabindex="-1"
+      [id]="scan.scanId"
+      class="list-item"
+      data-automation="scan-all-items-list-item"
+      [ngClass]="
+        (scan && scan.scanId) == (selectedScan && selectedScan.scanId)
+          ? 'active-selection'
+          : ''
+      "
+      (click)="onSearchSelect(scan.scanId)"
+      (keydown)="onKeyDown($event)"
+    >
+      <span [id]="'scan-item-' + scan.scanId" class="item-name">{{
+        scan.displayName
+      }}</span>
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #scanSearchResults>
+  <ul [style.display]="searchResultsDisplay | async">
+    <li
+      *ngFor="let result of searchScanResult$ | async"
+      #searchResultsList
+      tabindex="-1"
+      [id]="result.scanId"
+      [value]="result.scanId"
+      class="list-item"
+      data-automation="scan-search-result-list-item"
+      [ngClass]="result.scanId == selectedScan.scanId ? 'active-selection' : ''"
+      (click)="onSearchSelect(result.scanId)"
+      (keydown)="onKeyDown($event)"
+    >
+      <span [id]="'result-item-' + result.scanId" class="item-name">{{
+        result.displayName
+      }}</span>
+    </li>
+  </ul>
+</ng-template>

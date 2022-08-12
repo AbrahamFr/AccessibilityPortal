@@ -1,0 +1,86 @@
+@import "main-cinv";
+
+:host {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  padding-top: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 4rem;
+  padding-left: 2rem;
+
+  form {
+    @extend %form-cinv;
+    display: grid;
+    grid-gap: 0.4rem;
+    align-items: center;
+    grid-template:
+      " email-frm-label email-frm-input       email-frm-input        email-frm-input .            " auto
+      " .               email-errors          email-errors           email-errors    email-errors " auto
+      " .               user-messages         user-messages          user-messages   .            " auto
+      " .               .                     email-password-button  .               .            " auto
+      " .               .                     landing-link           .               .            " auto
+      / auto auto auto auto auto;
+
+    padding-top: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+
+    %frm-label {
+      justify-self: end;
+    }
+
+    .email-frm-label {
+      grid-area: email-frm-label;
+      @extend %frm-label;
+    }
+    .password-frm-label {
+      grid-area: password-frm-label;
+      @extend %frm-label;
+    }
+
+    .email-frm-input {
+      grid-area: email-frm-input;
+      min-width: 22rem;
+    }
+
+    .error-message {
+      display: inline-block;
+      justify-self: center;
+      align-self: center;
+    }
+
+    .email-errors {
+      grid-area: email-errors;
+    }
+    .password-errors {
+      grid-area: password-errors;
+    }
+    .user-messages {
+      grid-area: user-messages;
+      justify-self: center;
+      text-align: center;
+      font-size: small;
+    }
+
+    .email-password-button {
+      grid-area: email-password-button;
+      justify-self: center;
+      padding-top: 0.5rem;
+      padding-right: 3rem;
+      padding-bottom: 0.5rem;
+      padding-left: 3rem;
+      min-width: 15rem;
+    }
+
+    a {
+      grid-area: landing-link;
+      justify-self: center;
+      font-size: 0.7rem;
+
+      // margin-top: 0.3rem;
+      // margin-bottom: 4rem;
+    }
+  }
+}

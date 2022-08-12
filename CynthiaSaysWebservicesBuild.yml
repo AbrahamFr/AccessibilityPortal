@@ -1,0 +1,84 @@
+#Build Definition: CSWebservices Build
+#This build will build the CSWebservices used in Compliance Sheriff.
+#This includes the Trend and Operations webservices.
+#This build is specific to Cynthia Says and uses powershell to 
+#specify Cynthia Says  
+
+pool:
+  name: 'CSBuild'
+  demands: msbuild
+
+trigger:
+  branches:
+    include:
+     - FeatureSet_Rebrand
+  paths:
+    include:
+     - src/Webservices/Webservices/Webservices.CS/*
+     - src/Webservices/CS/*
+     - src/Webservices/CS.UI/*
+
+variables:
+  BuildConfiguration: 'release'
+  BuildDefinitionName: 'CSWebservices Build'
+  CSWebservicesProjSource: 'src/Webservices'
+  CSQueueServiceProjSource: 'src/Webservices/Webservices/QueueServer'
+  WebservicesSource: 'src/Webservices/CS/CS.csproj'
+
+name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+steps:
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 5.x'
+  inputs:
+    versionSpec: 5.x
+
+- task: NuGetCommand@2
+  displayName: 'NuGet CSWebService restore'
+  inputs:
+    restoreSolution: $(CSWebservicesProjSource)/CS/CS.csproj
+    feedsToUse: config
+    nugetConfigPath: .nuget/NuGet.Config
+
+- task: NuGetCommand@2
+  displayName: 'NuGet QueueService restore'
+  inputs:
+    restoreSolution: ComplianceSheriff.sln
+
+- task: PowerShell@2
+  displayName: 'Cynthia Says Text Replace via Powershell'
+  inputs:
+    targetType: 'inline'
+    script: |
+      ((Get-Content -path src/Webservices/CS/appsettings.json -Raw) -replace 'compliance-sheriff','cynthia-says') | Set-Content -Path src/Webservices/CS/appsettings.json
+      ((Get-Content -path src/Webservices/CS.UI/package.json -Raw) -replace 'ng build compliance-sheriff --prod --output-path ../CS/wwwroot/dist/compliance-sheriff --no-delete-output-path','ng build cynthia-says --prod --output-path ../CS/wwwroot/dist/cynthia-says --no-delete-output-path') | Set-Content -Path src/Webservices/CS.UI/package.json
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish CSWebService'
+  inputs:
+    command: build
+    publishWebProjects: false
+    projects: $(WebservicesSource)
+    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)/CS_Webservices --runtime win-x64 '
+    zipAfterPublish: false
+    modifyOutputPath: false
+
+- task: MSBuild@1
+  displayName: 'Build CS_QueueService'
+  inputs:
+    solution: $(CSQueueServiceProjSource)/QueueServer.csproj
+    msbuildArchitecture: x64
+    configuration: '$(BuildConfiguration)'
+
+- task: CopyFiles@2
+  displayName: 'Copy CS_QueueService'
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)/src/Webservices/Webservices/QueueServer/bin/$(BuildConfiguration)'
+    TargetFolder: '$(build.artifactstagingdirectory)/CS_QueueService'
+    OverWrite: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: CSWebserviceDrop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+    ArtifactName: CSWebserviceDrop

@@ -1,0 +1,41 @@
+@import "main-cinv";
+
+:host {
+  margin-right: 1rem;
+  margin-left: 1rem;
+  button {
+    background-color: $color-green;
+    background-position-x: 100%;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-image: url(../../../../../../shared-styles/assets/expand-more-icon.svg);
+
+    padding-top: 0.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 0.5rem;
+    color: $color-white;
+    border: none;
+    cursor: pointer;
+  }
+  ul {
+    z-index: 398;
+    position: absolute;
+    background-color: $color-green;
+    list-style-type: none;
+    margin-top: -0.25rem;
+    margin-right: 1rem;
+    padding-right: 1.5rem;
+    padding-left: 0.5rem;
+    right: 0;
+    li {
+      padding-top: 0.15rem;
+      padding-bottom: 0.15rem;
+      text-align: left;
+      a {
+        color: $color-white;
+        text-decoration: none;
+      }
+    }
+  }
+}

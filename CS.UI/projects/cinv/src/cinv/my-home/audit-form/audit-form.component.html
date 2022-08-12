@@ -1,0 +1,235 @@
+<form [formGroup]="auditForm">
+  <h2>
+    {{ formHeader
+    }}<span
+      *ngIf="selectedAudit && selectedAudit.scanName"
+      class="selected-audit-name"
+      >{{ selectedAudit.scanName }}</span
+    >
+  </h2>
+  <label for="auditName" class="name-frm-label">Name</label>
+  <input
+    #auditName
+    type="text"
+    id="auditName"
+    data-automation="input-auditname-myhome-page"
+    class="name-frm-input"
+    formControlName="auditName"
+  />
+  <div class="name-errors">
+    <div
+      class="error-message"
+      *ngIf="
+        (f.auditName.invalid && f.auditName.touched) ||
+        (isSubmitted && f.auditName.pristine)
+      "
+    >
+      <small
+        class="name-errors"
+        data-automation="error-auditname-required"
+        *ngIf="f.auditName.errors?.required"
+      >
+        Audit Name is required.
+      </small>
+      <small
+        class="name-errors"
+        data-automation="error-auditname-exists"
+        *ngIf="isSubmitted && f.auditName.errors?.auditExists"
+      >
+        Audit Name already exists.
+      </small>
+    </div>
+  </div>
+
+  <label for="guideline" class="guideline-frm-label">Guideline</label>
+  <select
+    id="guideline"
+    class="guideline-frm-select"
+    data-automation="select-guideline-myhome-page"
+    formControlName="guideline"
+    (change)="calculateGuidelines($event.target.value)"
+  >
+    <option value="0200">Section 508</option>
+    <option value="W21_A">WCAG 2.1 A</option>
+    <option value="W21_AA">WCAG 2.1 AA</option>
+    <option value="W21_AAA">WCAG 2.1 AAA</option>
+  </select>
+  <div class="guideline-errors">
+    <div
+      class="error-message"
+      *ngIf="
+        (f.guideline.invalid && f.guideline.touched) ||
+        (isSubmitted && f.guideline.pristine)
+      "
+    >
+      <small
+        data-automation="error-guideline-required"
+        *ngIf="f.guideline.errors?.required"
+      >
+        Guideline is required.
+      </small>
+    </div>
+  </div>
+
+  <label for="startPage" class="startPage-frm-label">Start at this page</label>
+  <input
+    type="text"
+    id="startPage"
+    data-automation="input-startPage-myhome-page"
+    class="startPage-frm-input"
+    formControlName="startPage"
+  />
+  <div class="startpage-errors">
+    <div
+      class="error-message"
+      *ngIf="
+        (f.startPage.invalid && f.startPage.touched) ||
+        (isSubmitted && f.startPage.pristine)
+      "
+    >
+      <small
+        data-automation="error-startPage-required"
+        *ngIf="f.startPage.errors?.required"
+      >
+        Start Page is required.
+      </small>
+      <small
+        data-automation="error-startPage-invalid"
+        *ngIf="f.startPage.touched && f.startPage.errors?.pattern"
+      >
+        Start Page is invalid.
+      </small>
+    </div>
+  </div>
+
+  <label for="pageLimit" class="pageLimit-frm-label"
+    >Total pages to crawl</label
+  >
+  <div class="pages-levels-container">
+    <interactions-number-spinner
+      [value]="pageLimitNumber"
+      id="pageLimit"
+      (change)="pageLimitChange($event)"
+      [min]="1"
+      [max]="25"
+      [direction]="'horizontal'"
+      data-automation="input-pageLimit-myhome-page"
+      class="pageLimit-frm-input"
+      formControlName="pageLimit"
+    ></interactions-number-spinner>
+
+    <label for="levels" class="levels-frm-label"
+      >Number of levels to crawl</label
+    >
+    <interactions-number-spinner
+      [value]="levelNumber"
+      id="levels"
+      (change)="levelsChange($event)"
+      [min]="0"
+      [max]="5"
+      [direction]="'horizontal'"
+      data-automation="input-levels-myhome-page"
+      class="levels-frm-input"
+      formControlName="levels"
+    ></interactions-number-spinner>
+
+    <div class="pageLimit-errors">
+      <div
+        class="error-message"
+        *ngIf="
+          (f.pageLimit.invalid && f.pageLimit.touched) ||
+          (isSubmitted && f.pageLimit.pristine)
+        "
+      >
+        <small
+          data-automation="error-pageLimit-required"
+          *ngIf="f.pageLimit.errors?.required"
+        >
+          Total pages is required.
+        </small>
+        <small
+          data-automation="error-pageLimit-maximum"
+          *ngIf="f.pageLimit.errors?.max"
+        >
+          We only support 25 pages at this time.
+        </small>
+        <small
+          data-automation="error-pageLimit-minimum"
+          *ngIf="f.pageLimit.errors?.min"
+        >
+          The minimum number of pages is 1.
+        </small>
+      </div>
+    </div>
+
+    <div class="levels-errors">
+      <div
+        class="error-message"
+        *ngIf="
+          (f.levels.invalid && f.levels.touched) ||
+          (isSubmitted && f.levels.pristine)
+        "
+      >
+        <small
+          class="levels-error"
+          data-automation="error-levels-required"
+          *ngIf="f.levels.errors?.required"
+        >
+          Levels is required.
+        </small>
+        <small
+          class="levels-error"
+          data-automation="error-levels-maximum"
+          *ngIf="f.levels.errors?.max"
+        >
+          The maximum number of levels is 5.
+        </small>
+        <small
+          class="levels-error"
+          data-automation="error-levels-minimum"
+          *ngIf="f.levels.errors?.min"
+        >
+          The minimum number of levels is 1.
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <div class="server-errors">
+    <small data-automation="server-error-response">{{
+      apiErrorResponse
+    }}</small>
+  </div>
+
+  <div [ngClass]="{ 'button-row': true, edit: !!selectedAudit }">
+    <input
+      type="button"
+      class="clear-form"
+      data-automation="button-clearForm-myhome-page"
+      value="{{ selectedAudit ? 'CANCEL' : 'Clear Form' }}"
+      (click)="clearform()"
+    />
+    <input
+      type="button"
+      *ngIf="selectedAudit"
+      class="copy-audit"
+      data-automation="button-copyAudit-editAudit-page"
+      value="COPY"
+      (click)="copyAudit()"
+    />
+    <input
+      type="button"
+      class="save-audit"
+      data-automation="button-saveAudit-myhome-page"
+      value="{{ selectedAudit ? 'Save changes' : 'Save for Later' }}"
+      (click)="saveAudit(false)"
+    />
+    <input
+      type="button"
+      class="run-audit"
+      data-automation="button-runAudit-myhome-page"
+      value="{{ selectedAudit ? 'Run Now' : 'Run Audit Now' }}"
+      (click)="saveAudit(true)"
+    />
+  </div>
+</form>

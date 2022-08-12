@@ -1,0 +1,71 @@
+<div id="main-content" class="main-container">
+    <h1 id="page-title" class="heading">CynthiaSays Website Help</h1>
+
+    <h2 class="heading">Web Page URL Requirements:</h2>
+    <p>Enter the Full Path Web Address of the page you would like to scan. This defines the scope of the scan. A valid http:// or https:// URL should be entered. If you do not type http://, it will be added automatically. Please note the URL you provide should not be a page that redirects to another URL.</p>
+
+    <h2 class="heading">Compliance Mode Checkpoint Groups:</h2>
+    <p>Select the compliance checkpoint group that you would like to scan your page against. The Compliance Mode options are: </p>
+    <ul>
+        <li>Section 508</li>
+        <li>WCAG 2.0 A</li>
+        <li>WCAG 2.0 AA</li>
+        <li>WCAG 2.0 AAA</li>
+    </ul>
+
+    <p>A checkpoint group is a set of checkpoints or checkpoint subgroups. Usually they are a related set, but a checkpoint group can be created for any purpose.</p>
+    <table class="compliance-mode" summary="The table lists the four checkpoint groups that will be used by the scan:Section 508, WCAG 2.0 A, WCAG 2.0 AA, WCAG 2.0 AAA.">
+        <caption>The table below lists the checkpoint groups that will be used by the scan.</caption>
+        <tr class="table-heading">
+            <th class="mode-col" scope="col">Compliance Mode</th>
+            <th class="desc" scope="col">Description</th>
+        </tr>
+        <tr>
+            <td class="label"><strong>Section 508</strong></td>
+            <td class="desc">Checks against the accessibility standards as set forth by the US Access Board. Section 508 of the Rehabilitation Act Amendments mandates that federal agencies must ensure that all electronic and information technology purchased, maintained, or developed meets the accessibility standards established by the U.S. Access Board. For more information go to: <a href="http://www.access-board.gov/ict" target="_blank">http://www.access-board.gov/ict</a>
+            </td>
+        </tr>
+        <tr>
+            <td><strong>WCAG 2.0 A</strong></td>
+            <td class="desc">Published by the W3C, the Web Content Accessibility Guidelines (WCAG) 2.0 A standards are meant to be the baseline of success criteria for accessibility compliance. WCAG 2.0 covers a wide range of recommendations for making Web content more accessible. Following these guidelines will make content accessible to a wider range of people with disabilities, including blindness and low vision, deafness and hearing loss, learning disabilities, cognitive limitations, limited movement, speech disabilities, photosensitivity and combinations of these.</td>
+        </tr>
+        <tr>
+            <td><strong>WCAG 2.0 AA</strong></td>
+            <td class="desc">The WCAG 2.0 AA standards are meant to include all of the level A standards as well as more stringent criteria and conformance requirements.</td>
+        </tr>
+        <tr>
+            <td><strong>WCAG 2.0 AAA</strong></td>
+            <td class="desc">The WCAG 2 AAA standards are meant to include all the A, AA criteria as well as the highest level of conformance requirements.</td>
+        </tr>
+    </table>
+
+    <p>For more information on the W3C’s WCAG 2.0 standards go to: <a href="http://www.w3.org/TR/WCAG/" target="_blank">http://www.w3.org/TR/WCAG/</a></p>
+    <div class="paragraphBreak"></div>
+    <h2 class="heading">Cynthia™ Tested Button Guidelines - Why, When and How to Use It</h2>
+    <img alt="Cynthia Tested Button" src="<%= Page.ResolveUrl("~/Content/images/Ctested.png") %>" />
+
+    <h3 class="heading">Why Use the “Cynthia Tested” Logo?</h3>
+    <p>Use the “Cynthia Tested” logo in accordance with the suggested usage guidelines below to indicate:</p>
+    <ol>
+        <li>You want your website to be accessible to everyone who uses the Internet regardless of physical capabilities.</li>
+        <li>You have made a commitment to educate yourself regarding accessible design.</li>
+        <li>You want to spread the word. Accessible design is contagious!</li>
+    </ol>
+
+    <h3 class="heading">When to Use the “Cynthia Tested” Button</h3>
+    <p>Accessible Web design and testing requires a process that includes both programmatic and manual visual tests to ensure accessibility.</p>
+    <p>With this in mind, we recommend the following suggested usage of the “Cynthia Tested” button:</p>
+    <ol>
+        <li>Select the Guideline or Standard that you want to announce that you follow (Section 508 or WCAG 2)</li>
+        <li>Run the Cynthia Tester against the page</li>
+        <li>Pass all automated tests</li>
+        <li>Then, before using the Cynthia tested button, validate all manual tests</li>
+        <li>We also strongly recommend, but do not require, that you place an accessibility statement on your page regarding the level of accessibility you support.</li>
+    </ol>
+    <p>This button requires minimum support for Section 508 and WCAG 2.0. Once you have completed the process above, proudly use the Cynthia Tested button to indicate your accessibility efforts and commitment!</p>
+    <h3 class="heading">How to Use the “Cynthia Tested” Logo</h3>
+    <img alt="Cynthia Tested Button" src="<%= Page.ResolveUrl("~/Content/images/Ctested.png") %>" />
+    <p>To show your site visitors that you have taken the care to create an accessible Web page and that you wish to promote Accessible Design, you may display this icon on any page that meets the when to use guideline. Here is the HTML to use to add this icon to your Web page:</p>
+    <div class="test-output">&lt;p&gt; &lt;a href=&quot;http://www.CynthiaSays.com/cynthiatested.htm&quot;&gt;&lt;img border=&quot;0&quot; src=&quot;http://www.CynthiaSays.com/images/Ctested.gif&quot; alt=&quot;Cynthia Tested!&quot; height=&quot;31&quot; width=&quot;88&quot;&gt;&lt;/a&gt; &lt;/p&gt;</div>
+    <p>By linking back to this page people can read and understand what the button represents.</p>
+</div>

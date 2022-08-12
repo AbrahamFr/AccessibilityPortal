@@ -1,0 +1,89 @@
+@import "main";
+
+.sub-nav {
+  background-color: $color-navy-blue;
+  display: flex;
+}
+
+.sub-nav-menu {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1.6rem;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+.reports-sub-nav-transform {
+  transform: translate(-15%, 0);
+}
+
+.alerts-sub-nav-transform {
+  transform: translate(-5%, 0);
+}
+
+.sub-nav-item-link {
+  color: $color-white;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+
+  &:focus,
+  &:active {
+    outline-color: $color-cornflower-blue;
+  }
+}
+
+.sub-nav-text {
+  align-self: center;
+  color: $color-white;
+}
+
+li > a.active-sub-nav > span.sub-nav-text {
+  border-bottom: 1px solid $color-white;
+}
+
+.icon-wrapper {
+  align-self: center;
+  padding-right: 0.5rem;
+}
+
+.summary-icon {
+  background: url(../../../../assets/summary-icon.svg) no-repeat;
+  width: 3rem;
+  height: 3rem;
+  display: block;
+}
+
+.views-icon {
+  background: url(../../../../assets/views-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.trend-icon {
+  background: url(../../../../assets/trend-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.issue-tracker-icon {
+  background: url(../../../../../../shared-styles/assets/issue-tracker-icon-white.svg)
+    no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}
+
+.audit-icon {
+  background: url(../../../../assets/audit-icon.svg) no-repeat;
+  width: 3rem;
+  height: 2.5rem;
+  display: block;
+}

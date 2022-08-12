@@ -1,0 +1,100 @@
+@import "main";
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.sr-skip {
+  position: absolute;
+  text-align: center;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  border: 0;
+
+  &:active,
+  &:focus {
+    height: auto;
+    width: auto;
+    padding: 1rem;
+    position: relative;
+    font-weight: 600;
+  }
+}
+
+.logo-nav-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  min-height: 6vh;
+  background-color: $color-white;
+}
+
+.header-logo {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  height: 6vh;
+  margin: 0 1rem;
+}
+
+a img,
+a:link img,
+a:visited img {
+  border: 0 none;
+}
+
+.logo {
+  align-self: center;
+}
+
+.logo-img-link {
+  background: no-repeat left/100% url(../../assets/logo.svg);
+  width: 16rem;
+  height: 4rem;
+  display: block;
+}
+
+.primary-nav {
+  flex-grow: 2;
+  height: 6vh;
+  display: flex;
+  min-height: 5rem;
+}
+
+.header-nav {
+  width: 100%;
+  display: flex;
+}
+
+@media print {
+  .logo-nav-container {
+    border-bottom: 2px solid $color-navy-blue;
+  }
+
+  .header-logo {
+    min-height: 5.5rem;
+  }
+
+  .logo-img-link {
+    width: 20rem;
+    height: 5rem;
+  }
+
+  .primary-nav,
+  .sub-nav,
+  .breadcrumb-nav {
+    display: none;
+  }
+
+  //IE11 specific properties used to detect browser for custom print
+  @media (-ms-high-contrast-adjust: none), (-ms-high-contrast: none) {
+    .header-logo {
+      display: none;
+    }
+  }
+}

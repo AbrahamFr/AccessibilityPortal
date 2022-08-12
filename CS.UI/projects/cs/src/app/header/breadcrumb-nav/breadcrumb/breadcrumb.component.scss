@@ -1,0 +1,79 @@
+@import "main";
+
+.breadcrumb-nav {
+  display: flex;
+  background-color: $color-primary-blue;
+  justify-content: space-between;
+}
+
+.breadcrumb-container {
+  display: flex;
+  list-style: none;
+  font-size: 1.6rem;
+  padding: 0.5rem 1rem;
+}
+
+.breadcrumb-home-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-home-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
+}
+
+.breadcrumb-home-icon {
+  background: url(../../../../assets/home-icon.svg) no-repeat;
+  width: 2.5rem;
+  height: 2rem;
+}
+
+.breadcrumb-home {
+  color: $color-white;
+}
+
+.breadcrumb-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-breadcrumb {
+  color: $color-white;
+  font-size: 1em;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  color: $color-white;
+}
+
+.active {
+  font-weight: 700;
+}
+
+.breadcrumb-icon-wrapper {
+  align-self: center;
+  padding-right: 0.5rem;
+  position: relative;
+  height: 3rem;
+  width: 3rem;
+}
+
+.breadcrumb-arrow {
+  background: url(../../../../assets/breadcrumb-arrows-icon.svg) no-repeat;
+  width: 2.5rem;
+  height: 2.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.export-items {
+  display: flex;
+}

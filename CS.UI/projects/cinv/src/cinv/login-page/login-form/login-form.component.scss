@@ -1,0 +1,95 @@
+@import "main-cinv";
+
+:host {
+  background-color: $color-green;
+  color: $color-white;
+  padding: 1rem;
+
+  form {
+    @extend %form-cinv;
+    display: grid;
+    grid-gap: 0.25rem;
+    grid-template:
+      " . .              form-header        .               . " auto
+      " . email-label    email-frm-input    .               . " auto
+      " . .              email-errors       email-errors    . " auto
+      " . password-label password-frm-input .               . " auto
+      " . .              password-errors    password-errors . " auto
+      " . .              forgot-password    .               . " auto
+      " . .              client-messages    client-messages . " auto
+      " . .              login-button       .               . " auto
+      " . .              create-account     .               . " auto
+      / 1fr auto auto auto 1fr;
+    padding: 1rem;
+
+    h2 {
+      grid-area: form-header;
+    }
+
+    label {
+      justify-self: end;
+      align-self: center;
+    }
+
+    .email-label {
+      grid-area: email-label;
+    }
+    .password-label {
+      grid-area: password-label;
+    }
+
+    .client-messages {
+      margin-top: 3px;
+      justify-self: center;
+      grid-area: client-messages;
+      color: $color-pink;
+    }
+
+    %frm-input {
+      font-weight: 500;
+      padding-top: 0rem;
+      padding-bottom: 0rem;
+    }
+    .email-frm-input {
+      grid-area: email-frm-input;
+      @extend %frm-input;
+    }
+    .password-frm-input {
+      grid-area: password-frm-input;
+      @extend %frm-input;
+    }
+
+    .error-message {
+      display: inline-block;
+      justify-self: center;
+      align-self: center;
+      color: $color-pink;
+    }
+    .email-errors {
+      grid-area: email-errors;
+    }
+    .password-errors {
+      grid-area: password-errors;
+    }
+
+    .forgot-password {
+      grid-area: forgot-password;
+      justify-self: center;
+    }
+    .login-button {
+      grid-area: login-button;
+      justify-self: center;
+      margin-top: 2rem;
+      margin-bottom: 0.25rem;
+      padding-top: 1rem;
+      padding-right: 4rem;
+      padding-bottom: 1rem;
+      padding-left: 4rem;
+      font-size: 1.2rem;
+    }
+    .create-account {
+      grid-area: create-account;
+      justify-self: center;
+    }
+  }
+}

@@ -1,0 +1,70 @@
+@import "main-lib";
+
+:host {
+  width: 100%;
+  .picker-container {
+    background-color: $color-white;
+    font-size: 1.6rem;
+    font-family: "Lato-Bold", sans-serif;
+    &.cinv {
+      font-size: 1rem;
+    }
+    .checkpoint-wrapper {
+      position: relative;
+
+      .checkpoint-filter-input {
+        font-family: "Lato-Regular", sans-serif;
+        font-size: 1.6rem;
+        width: 100%;
+        height: 100%;
+        padding: 0.5rem 3rem 0.5rem 1rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        border: none;
+        border-bottom: 1.5px solid $color-grey;
+        color: $color-white-medium;
+        background: no-repeat $color-navy-blue 100%
+          url(./shared-styles/assets/expand-more-icon-white.svg);
+        &.cinv {
+          font-size: 1rem;
+        }
+
+        &:focus,
+        &:active {
+          background: no-repeat 100%
+            url(./shared-styles/assets/expand-more-icon.svg);
+          color: $color-navy-blue;
+        }
+      }
+
+      .checkpoint-picker {
+        width: 100%;
+        position: absolute;
+        background-color: $color-navy-blue;
+        padding: 2rem;
+        font-family: "Lato-Regular", sans-serif;
+        z-index: 1;
+        max-height: 30rem;
+        overflow-y: auto;
+        border-left: 1px solid $color-white;
+        border-right: 1px solid $color-white;
+        border-bottom: 1px solid $color-white;
+        .list-item {
+          list-style: none;
+          padding: 0.5rem 2rem;
+          &:focus,
+          &:hover {
+            background-color: $color-primary-blue;
+          }
+          .item-name {
+            color: $color-white-medium;
+          }
+          &.active-selection {
+            background-color: $color-primary-blue;
+          }
+        }
+      }
+    }
+  }
+}

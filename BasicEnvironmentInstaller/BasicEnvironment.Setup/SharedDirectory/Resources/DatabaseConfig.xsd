@@ -1,0 +1,10 @@
+﻿<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+  <xsd:element name='Configuration'>
+    <xsd:complexType>
+      <xsd:all>
+        <xsd:element name='Host' minOccurs='1' maxOccurs='1'/>
+        <xsd:element name='MaxPoolSize' minOccurs='0' maxOccurs='1'/>
+      </xsd:all>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

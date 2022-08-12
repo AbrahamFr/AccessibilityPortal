@@ -1,0 +1,191 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  /* This defines what 1rem is */
+  font-size: 62.5%; /* 1rem = 10px, 10/16 = 62.5% */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  font-size: 1.4rem;
+  color: #26324e;
+}
+
+section {
+  padding: 1rem 0;
+}
+
+ul > li {
+  list-style: none;
+}
+
+h2 {
+  padding-bottom: 1rem;
+}
+
+ol {
+  padding-left: 1.5rem;
+}
+
+h3,
+p,
+li {
+  margin-bottom: 1rem;
+}
+
+.container {
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+
+.logo {
+  height: 3.5rem;
+  width: 20rem;
+}
+
+.main-heading {
+  color: #2c6094;
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+.panel-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.panel-left {
+  padding: 2rem;
+  margin-right: 0.5rem;
+  background-color: #dddde8;
+  max-width: 40%;
+}
+
+.summary {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #26324e;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.heading {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.block-text {
+  padding-bottom: 1rem;
+}
+
+.swagger-path-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.swagger-link {
+  height: 1.8rem;
+}
+.swagger-open-in-new-icon {
+  height: 1.8rem;
+  width: 1.8rem;
+  vertical-align: bottom;
+}
+.swagger-path-example {
+  color: #2c6094;
+  margin-left: 5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+.swagger-path-example:hover,
+.swagger-path-example:focus {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.tutorial-link-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tutorial-link-text {
+  font-size: 1.8rem;
+  opacity: 0.7;
+}
+
+.check-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.panel-right {
+  padding: 2rem;
+  border: 1.5px solid #dddde8;
+}
+
+.api-list-wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 3rem;
+  margin-bottom: 1rem;
+}
+
+.reports-list-wrapper {
+  width: 20%;
+}
+
+.list-heading {
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.api-list-item {
+  display: flex;
+  align-items: center;
+  color: #2c6094;
+  text-decoration: none;
+}
+.api-list-item:hover,
+.api-list-item:focus {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.api-link {
+  height: 1.8rem;
+  padding-right: 0.5rem;
+}
+
+.bearer-token-syntax-example {
+  padding: 1.5rem 1.5rem 0.5rem 5rem;
+}
+
+.open-in-new-icon {
+  height: 1.8rem;
+  width: 1.8rem;
+}
+
+.padding-left {
+  padding-left: 1rem;
+}
+
+.color-white {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.no-padding-no-margin {
+  padding: 0;
+  margin: 0;
+}
+
+.less-opacity {
+  opacity: 0.9;
+}

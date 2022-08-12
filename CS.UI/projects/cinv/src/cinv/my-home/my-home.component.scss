@@ -1,0 +1,46 @@
+@import "main-cinv";
+
+:host {
+  display: grid;
+  grid-gap: 1rem;
+  justify-items: center;
+  grid-template:
+    " audit-form    incentive     " auto
+    " recent-audits recent-audits " auto
+    / 50% 50%;
+  margin-top: 1rem;
+  margin-right: 2rem;
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+
+  .audit-form {
+    grid-area: audit-form;
+  }
+  .incentive {
+    grid-area: incentive;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../assets/images/futureCharts.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    .future-chart {
+      width: 100%;
+      height: 100%;
+      border-radius: 2.5rem;
+      background-color: rgba($color-purple, 0.9);
+      color: $color-white;
+      display: grid;
+      grid-template-rows: 1fr auto auto 1fr;
+      align-items: center;
+      justify-items: center;
+      p {
+        font-size: 2rem;
+      }
+    }
+  }
+  .recent-audits {
+    grid-area: recent-audits;
+  }
+}

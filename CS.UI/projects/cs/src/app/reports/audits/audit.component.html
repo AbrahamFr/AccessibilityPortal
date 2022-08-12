@@ -1,0 +1,29 @@
+<div class="audit-container" id="main" role="main">
+  <div class="upload-btn-wrapper">
+    <h1 class="hide-element" id="main-content" tabindex="-1">Audit Reports List</h1>
+    <button
+      *ngIf="canUploadReport"
+      id="add-report-btn"
+      name="Add"
+      type="button"
+      data-automation="btnAddAuditReport"
+      aria-label="Add report"
+      aria-haspopup="dialog"
+      class="add-btn"
+      (click)="onUploadClick()"
+      [setFocusNext]="
+      (nextActiveElement$ | async)?.id == 'add-report-btn'"
+    >
+      Add Report
+    </button>
+  </div>
+
+  <app-audit-report-list
+    [auditReports]="auditReports"
+  ></app-audit-report-list>
+
+  <ng-container *ngIf="activeUpload$ | async">
+    <app-audit-report-upload (closeUpload)="onCloseUpload()">
+    </app-audit-report-upload>
+  </ng-container>
+</div>
